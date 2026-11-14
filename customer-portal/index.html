@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="googlebot" content="noindex,nofollow">
+<meta name="theme-color" content="#061d2a">
+<title>Customer portal (desktop) · IVO Platform prototype (sample data)</title>
+<link rel="icon" href="../assets/img/favicon.png"><link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/app.css">
+</head><body class="">
+<div class="proto-banner"><b>Prototype – sample data</b><span>V01 · fictional companies and people · nothing is sent or saved</span><a href="../index.html">All screens</a></div>
+<div class="shell">
+<aside class="side" aria-label="Portal navigation">
+  <a class="brand" href="#dashboard"><img src="../assets/img/ivo-mark-white.png" alt=""><div><b>IVO</b><span>Customer portal</span></div></a>
+  <div class="grp">Harborline Property Group</div>
+  <a class="nav" href="#dashboard">▦ Dashboard</a>
+  <a class="nav" href="#requests" data-match="job">▤ Requests &amp; jobs</a>
+  <a class="nav" href="#new">⊕ New request</a>
+  <a class="nav" href="#approvals">✓ Approvals <span class="n">1</span></a>
+  <a class="nav" href="#documents">▣ Documents</a>
+  <a class="nav" href="#properties">⌂ Properties</a>
+  <a class="nav" href="#users">☰ Company users</a>
+  <a class="nav" href="#invoices">$ Invoices · Later</a>
+  <div class="foot">Maya Ortiz · org admin<br>maya.ortiz@harborline.example<br><a href="../customer/index.html" style="color:var(--gold-l)">Phone app view →</a><br><a href="../index.html" style="color:var(--gold-l)">← Prototype home</a></div>
+</aside>
+<div class="main">
+  <div class="topb"><button class="menu-btn" aria-label="Menu">☰</button><input class="inp search" placeholder="Search requests, properties, documents…" aria-label="Search"><div class="who"><a class="btn danger sm" href="../customer/index.html#emergency">! Emergency</a><span class="av">MO</span></div></div>
+  <div class="content" data-router>
+
+<section data-screen="dashboard">
+  <div class="ph"><div><h1>Harborline Property Group</h1><p>3 properties · your coordinator is Dana Whitfield at IVO</p></div><a class="btn" href="#new">⊕ New request</a></div>
+  <div class="grid g4">
+    <a class="metric" href="#approvals"><div class="l">Waiting on you</div><div class="v">1</div><div class="src">change order CO-2</div></a>
+    <a class="metric" href="#requests"><div class="l">Active jobs</div><div class="v">3</div></a>
+    <a class="metric" href="#requests"><div class="l">In IVO review</div><div class="v">1</div></a>
+    <a class="metric" href="#documents"><div class="l">Closed this quarter</div><div class="v">4</div></a>
+  </div>
+  <div class="grid" style="grid-template-columns:1.5fr 1fr;margin-top:16px">
+    <div class="card pad0"><div class="card-h" style="padding:14px 16px 0"><h3>Active jobs</h3><a class="small gold" href="#requests">All requests →</a></div>
+      <table class="t"><thead><tr><th>Request</th><th>Property</th><th>Stage</th><th>Committed vs NTE</th></tr></thead><tbody>
+        <tr class="click" onclick="location.hash='job'"><td><b>Ceiling leak, drywall &amp; paint</b><div class="tiny muted">REQ-1042 · Urgent</div></td><td>Cedar Court 3B</td><td><span class="chip info">On site</span></td><td style="min-width:140px"><div class="prog warn"><i style="width:91%"></i></div><span class="tiny muted">$4,350 / $4,800</span></td></tr>
+        <tr class="click" onclick="location.hash='job'"><td><b>Unit turnover #12</b><div class="tiny muted">REQ-1047 · Standard</div></td><td>Maple Row</td><td><span class="chip">Scheduled</span></td><td><div class="prog ok"><i style="width:0%"></i></div><span class="tiny muted">$0 / $3,200</span></td></tr>
+        <tr class="click" onclick="location.hash='job'"><td><b>Lobby LED retrofit</b><div class="tiny muted">REQ-1051 · Project</div></td><td>Office Plaza</td><td><span class="chip gold">Getting bids</span></td><td class="tiny muted">after award</td></tr>
+      </tbody></table></div>
+    <div class="stack"><div class="card" style="border-color:#e9c98f;background:#fffaf2"><h3>Needs your approval</h3><p class="small">Change order CO-2 on REQ-1042 · +$620 · raises NTE to $4,970</p><a class="btn sm" style="margin-top:10px" href="#approvals">Review</a></div>
+      <div class="card"><h3>Recent updates</h3><ol class="tl" style="margin-top:8px"><li class="done"><b>Ana Kim checked in</b> · Cedar Court<div class="t">Tue 9:02 AM</div></li><li class="done"><b>Bids due Friday</b> · Lobby LED<div class="t">Mon</div></li><li class="done"><b>Closeout signed</b> · Gutter cleaning<div class="t">Nov 2</div></li></ol></div></div>
+  </div>
+</section>
+
+<section data-screen="requests">
+  <div class="ph"><div><h1>Requests &amp; jobs</h1><p>Everything you've asked IVO for, by property.</p></div><a class="btn" href="#new">⊕ New request</a></div>
+  <div class="card pad0 tscroll"><table class="t"><thead><tr><th>ID</th><th>Request</th><th>Property</th><th>Tier</th><th>Stage</th><th>Requested by</th><th>Updated</th></tr></thead><tbody>
+    <tr class="click" onclick="location.hash='job'"><td>REQ-1042</td><td>Ceiling leak, drywall &amp; paint</td><td>Cedar Court</td><td><span class="chip warn">Urgent</span></td><td><span class="chip info">On site</span></td><td>Maya Ortiz</td><td>today</td></tr>
+    <tr class="click" onclick="location.hash='job'"><td>REQ-1047</td><td>Unit turnover #12</td><td>Maple Row</td><td><span class="chip">Standard</span></td><td><span class="chip">Scheduled</span></td><td>Jordan Reyes</td><td>yesterday</td></tr>
+    <tr class="click" onclick="location.hash='job'"><td>REQ-1051</td><td>Lobby LED retrofit</td><td>Office Plaza</td><td><span class="chip">Project</span></td><td><span class="chip gold">Getting bids</span></td><td>Maya Ortiz</td><td>Mon</td></tr>
+    <tr class="click" onclick="location.hash='job'"><td>REQ-1058</td><td>No heat, units 4 and 6</td><td>Maple Row</td><td><span class="chip warn">Urgent</span></td><td><span class="chip">IVO review</span></td><td>Jordan Reyes</td><td>today</td></tr>
+    <tr class="click" onclick="location.hash='documents'"><td>REQ-1031</td><td>Gutter cleaning</td><td>Cedar Court</td><td><span class="chip">Standard</span></td><td><span class="chip ok">Closed</span></td><td>Maya Ortiz</td><td>Nov 2</td></tr>
+  </tbody></table></div>
+</section>
+
+<section data-screen="job">
+  <div class="row small muted" style="margin-bottom:8px"><a href="#requests">Requests</a> › REQ-1042</div>
+  <div class="ph"><div><div class="row"><h1>Ceiling leak, drywall &amp; paint</h1><span class="chip warn">Urgent</span><span class="chip info">On site</span></div><p>Cedar Court Apartments, Unit 3B · coordinator Dana Whitfield · contractor Evergreen Restoration Co. <span class="chip ok">documents verified</span></p></div><a class="btn" href="#approvals">Review change order</a></div>
+  <div class="grid" style="grid-template-columns:1fr 1.3fr">
+    <div class="card"><h3>Status</h3><ol class="tl" style="margin-top:8px"><li class="done"><b>Received</b><div class="t">Mon 8:12 AM</div></li><li class="done"><b>Reviewed by IVO</b><div class="t">Mon 8:40 AM</div></li><li class="done"><b>Scope &amp; NTE approved</b> · $4,800<div class="t">Mon 11:20 AM</div></li><li class="done"><b>Contractor confirmed</b><div class="t">Mon 1:05 PM</div></li><li class="done"><b>On site</b><div class="t">Tue 9:02 AM</div></li><li class="now"><b>Repair in progress</b></li><li><b>Closeout &amp; sign-off</b></li></ol></div>
+    <div class="stack">
+      <div class="card"><h3>Photos</h3><div class="thumbs"><div class="thumb" style="background-image:url(../assets/img/ivo-05.webp);width:96px;height:96px"><span>Mon</span></div><div class="thumb" style="background-image:url(../assets/img/ivo-36.webp);width:96px;height:96px"><span>Mon</span></div><div class="thumb" style="background-image:url(../assets/img/ivo-51.webp);width:96px;height:96px"><span>check-in</span></div><div class="thumb" style="background-image:url(../assets/img/ivo-99.webp);width:96px;height:96px"><span>joist</span></div></div></div>
+      <div class="card"><h3>Messages with IVO</h3><div class="stack s8" style="margin-top:8px"><div class="bubble">They found a cracked joist. A change order is coming for your approval.<span class="t">Dana · IVO · Tue 11:05 AM</span></div><div class="bubble me">Thanks, will look now.<span class="t">You · 11:12 AM</span></div></div><div class="row" style="margin-top:10px"><input class="inp" placeholder="Message IVO…"><button class="btn" data-toast="Sent (prototype)">Send</button></div></div>
+    </div>
+  </div>
+</section>
+
+<section data-screen="new">
+  <div class="ph"><div><h1>New request</h1><p>Same steps as the phone app, on one page.</p></div></div>
+  <div class="grid" style="grid-template-columns:1.4fr 1fr">
+    <div class="card stack">
+      <div class="grid g2"><div class="field"><label class="f">Property</label><select class="inp"><option>Cedar Court Apartments</option><option>Maple Row Townhomes</option><option>Harborline Office Plaza</option></select></div><div class="field"><label class="f">Unit / area</label><input class="inp" value="Building B, Unit 7 hallway"></div></div>
+      <div class="field"><label class="f">Trade</label><div class="opts"><button>Plumbing</button><button>Electrical</button><button>HVAC</button><button class="on">Drywall &amp; paint</button><button>Water damage</button><button>Roofing</button><button>Handyman</button><button>Build-out / project</button><button>Not sure</button></div></div>
+      <div class="field"><label class="f">Scope</label><textarea class="inp">Water stain about 3 ft wide on hallway ceiling, drywall soft. Leak above stopped.</textarea></div>
+      <div class="grid g2"><div class="field"><label class="f">Urgency</label><div class="opts"><button>Emergency</button><button>Urgent</button><button class="on">Standard</button><button>Project / bid</button></div></div><div class="field"><label class="f">Not-to-exceed</label><input class="inp" value="$2,500"></div></div>
+      <div class="grid g2"><button class="drop" data-add-thumb="#pthumbs" data-base="../">📷 Add photos or video</button><button class="drop" data-add-file="#pfiles">⇪ Add files (plans, specs)</button></div>
+      <div class="thumbs" id="pthumbs"></div><div class="stack s8" id="pfiles"></div>
+      <div class="row"><button class="btn" data-toast="REQ-1059 sent to IVO for review" data-go="#requests">Send request</button><button class="btn ghost" data-toast="Draft saved">Save draft</button></div>
+    </div>
+    <div class="note">An IVO coordinator reviews every request, confirms scope and priority, and matches a verified contractor. You approve the scope and NTE before work starts.</div>
+  </div>
+</section>
+
+<section data-screen="approvals">
+  <div class="ph"><div><h1>Approvals</h1><p>Quotes, scopes and change orders waiting on your company.</p></div></div>
+  <div class="card" data-item style="max-width:820px">
+    <div class="row between"><h3>CO-2 · Sister cracked ceiling joist · REQ-1042</h3><span class="chip warn" data-status>Waiting on you</span></div>
+    <div class="grid g2" style="margin-top:10px"><table class="t small"><tbody><tr><td>Lumber &amp; hardware</td><td style="text-align:right">$140</td></tr><tr><td>Labor, 4 hrs</td><td style="text-align:right">$480</td></tr><tr><td><b>Change order</b></td><td style="text-align:right"><b>+$620</b></td></tr></tbody></table>
+      <div><div class="row between small"><span>Approved so far</span><b>$4,350</b></div><div class="row between small"><span>With this change</span><b style="color:var(--bad)">$4,970</b></div><div class="prog bad" style="margin:8px 0"><i style="width:100%"></i></div><p class="small">NTE $4,800 → $4,970 if approved. Within your $5,000 approval limit.</p></div></div>
+    <div class="row" style="margin-top:12px"><button class="btn" data-set="Approved|ok" data-toast="Approved. IVO and the crew are notified.">Approve +$620</button><button class="btn line" data-toast="Question sent to Dana">Ask a question</button><button class="btn ghost" data-set="Declined|bad">Decline</button></div>
+  </div>
+</section>
+
+<section data-screen="documents">
+  <div class="ph"><div><h1>Documents</h1><p>Quotes, approvals, closeout packages and warranties for every job.</p></div></div>
+  <div class="card pad0 tscroll"><table class="t"><thead><tr><th>Document</th><th>Job</th><th>Property</th><th>Date</th><th></th></tr></thead><tbody>
+    <tr><td><b>Closeout package</b> (photos, punch list, warranty, lien waiver)</td><td>REQ-1031</td><td>Cedar Court</td><td>Oct 30</td><td><span class="chip ok">signed</span></td></tr>
+    <tr><td>Approved scope &amp; NTE</td><td>REQ-1042</td><td>Cedar Court</td><td>Nov 9</td><td></td></tr>
+    <tr><td>Change order CO-2</td><td>REQ-1042</td><td>Cedar Court</td><td>Nov 10</td><td><span class="chip warn">open</span></td></tr>
+    <tr><td>Quote · unit turnover</td><td>REQ-1047</td><td>Maple Row</td><td>Nov 6</td><td></td></tr>
+    <tr><td>Contractor documents verified · Evergreen Restoration Co.</td><td>REQ-1042</td><td>—</td><td>Nov 9</td><td><span class="chip ok">verified</span></td></tr>
+  </tbody></table></div>
+</section>
+
+<section data-screen="properties">
+  <div class="ph"><div><h1>Properties</h1></div><button class="btn line" data-toast="Add property (prototype)">+ Add property</button></div>
+  <div class="grid g3">
+    <div class="tile"><div class="im" style="background-image:url(../assets/img/ivo-04.webp)"></div><div class="bd"><b>Cedar Court Apartments</b><span class="small muted">410 Sample Ave, Tacoma WA · 48 units</span><span class="small">2 active · 6 closed</span></div></div>
+    <div class="tile"><div class="im" style="background-image:url(../assets/img/ivo-21.webp)"></div><div class="bd"><b>Maple Row Townhomes</b><span class="small muted">1201 Example Rd, Tacoma WA · 16 units</span><span class="small">2 active · 3 closed</span></div></div>
+    <div class="tile"><div class="im" style="background-image:url(../assets/img/ivo-113.webp)"></div><div class="bd"><b>Harborline Office Plaza</b><span class="small muted">88 Example Way, Federal Way WA</span><span class="small">1 active · 1 closed</span></div></div>
+  </div>
+</section>
+
+<section data-screen="users">
+  <div class="ph"><div><h1>Company users</h1><p>Who at Harborline can request, approve and view.</p></div><button class="btn" data-modal="#cinv">Invite colleague</button></div>
+  <div class="card pad0 tscroll"><table class="t"><thead><tr><th>Person</th><th>Role</th><th>Properties</th><th>Approval limit</th></tr></thead><tbody>
+    <tr><td><b>Maya Ortiz</b> (you)</td><td><span class="chip navy">Org admin</span></td><td>All</td><td>$5,000 per job</td></tr>
+    <tr><td><b>Jordan Reyes</b></td><td><span class="chip">Requester</span></td><td>Maple Row, Cedar Court</td><td>$1,000</td></tr>
+    <tr><td><b>Priya Nair</b></td><td><span class="chip">Viewer</span></td><td>All</td><td>—</td></tr>
+  </tbody></table></div>
+  <div class="modal" id="cinv"><div class="box stack"><h2>Invite a colleague</h2><div class="field"><label class="f">Email</label><input class="inp" value="new.colleague@harborline.example"></div><div class="field"><label class="f">Role</label><div class="opts"><button>Admin</button><button class="on">Requester</button><button>Viewer</button></div></div><p class="small muted">IVO confirms new users before they get access (invite-only).</p><div class="row"><button class="btn" data-close data-toast="Invite sent to IVO to confirm (prototype)">Send</button><button class="btn ghost" data-close>Cancel</button></div></div></div>
+</section>
+
+<section data-screen="invoices">
+  <div class="ph"><div><h1>Invoices <span class="chip later">Later</span></h1></div></div>
+  <div class="later" style="max-width:720px"><span class="chip later">Later</span> <b>Invoices and payments</b> are outside the launch scope. At launch, IVO bills the way it does today; this page is a placeholder for a later phase.</div>
+</section>
+
+  </div>
+</div></div>
+
+<script src="../assets/js/app.js"></script>
+</body></html>

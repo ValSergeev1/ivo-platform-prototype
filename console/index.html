@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="googlebot" content="noindex,nofollow">
+<meta name="theme-color" content="#061d2a">
+<title>Staff console · IVO Platform prototype (sample data)</title>
+<link rel="icon" href="../assets/img/favicon.png"><link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/app.css">
+</head><body class="">
+<div class="proto-banner"><b>Prototype – sample data</b><span>V01 · fictional companies and people · nothing is sent or saved</span><a href="../index.html">All screens</a></div>
+<div class="shell">
+<aside class="side" aria-label="Console navigation">
+  <a class="brand" href="#overview"><img src="../assets/img/ivo-mark-white.png" alt=""><div><b>IVO</b><span>Staff console</span></div></a>
+  <div class="grp">Today</div>
+  <a class="nav" href="#overview">▦ Overview</a>
+  <a class="nav" href="#approvals">✓ Approval inbox <span class="n">6</span></a>
+  <a class="nav" href="#triage">⇢ Inquiry triage <span class="n">5</span></a>
+  <div class="grp">Work</div>
+  <a class="nav" href="#requests" data-match="job">▤ Requests &amp; jobs</a>
+  <a class="nav" href="#bids" data-match="bid">▧ Bid packages</a>
+  <div class="grp">Network</div>
+  <a class="nav" href="#contractors" data-match="contractor">◎ Contractors</a>
+  <a class="nav" href="#applications">✎ Applications <span class="n">3</span></a>
+  <div class="grp">Admin</div>
+  <a class="nav" href="#team">☰ Team &amp; roles</a>
+  <div class="foot">Signed in as <b style="color:#fff">Owner</b><br>owner@ivo.example · 2-step on<br><a href="../index.html" style="color:var(--gold-l)">← Prototype home</a></div>
+</aside>
+<div class="main">
+  <div class="topb">
+    <button class="menu-btn" aria-label="Menu">☰</button>
+    <input class="inp search" placeholder="Search requests, companies, packages…" aria-label="Search">
+    <span class="chip hide-m">Region: All · WA · OR · ID · N. CA</span>
+    <div class="who"><span class="chip ok hide-m">On call: Dana W.</span><span class="av">OW</span></div>
+  </div>
+  <div class="content" data-router>
+
+<!-- ================= OVERVIEW ================= -->
+<section data-screen="overview">
+  <div class="ph"><div><h1>Good morning</h1><p>Friday · sample data · every number below comes from one metrics source and opens the list it counts.</p></div>
+    <div class="row"><a class="btn line" href="#triage">Work triage queue</a><a class="btn" href="#approvals">Open approvals (6)</a></div></div>
+  <div class="grid g4">
+    <a class="metric" href="#approvals"><div class="l">Waiting on your approval</div><div class="v">6</div><div class="src">= 6 rows in Approval inbox</div></a>
+    <a class="metric" href="#triage"><div class="l">Inquiries to triage</div><div class="v">5</div><div class="src">= 5 rows in Triage · oldest 3h 10m</div></a>
+    <a class="metric" href="#requests"><div class="l">Active jobs</div><div class="v">4</div><div class="src">= 4 rows in Requests (active)</div></a>
+    <a class="metric" href="#bids"><div class="l">Bid packages due in 7 days</div><div class="v">3</div><div class="src">= 3 rows in Bid packages (due ≤ 7d)</div></a>
+  </div>
+  <div class="ba" style="margin-top:14px"><div><h5>Before (today's console)</h5>Two overview pages with counts that disagreed. Approval badge showed 1 while the queue held 12 plus 6 unlinked applications. Numbers didn't open the list behind them.</div><div><h5>After</h5>One metrics layer feeds every count on every screen. Each number is a link to a filtered list showing the same number. Test records are excluded everywhere.</div></div>
+  <div class="grid g2" style="margin-top:16px;grid-template-columns:1.4fr 1fr">
+    <div class="card pad0">
+      <div class="card-h" style="padding:14px 16px 0"><h3>Response timers (SLA board)</h3><span class="chip gold">Tiers proposed · owner to confirm</span></div>
+      <table class="t"><thead><tr><th>Request</th><th>Tier</th><th>Next target</th><th>Time left</th><th>Owner</th></tr></thead><tbody>
+        <tr class="click" onclick="location.hash='job'"><td><b>REQ-1053</b> Burst pipe · Riverbend Medical Suites</td><td><span class="chip bad">Emergency</span></td><td>On site</td><td><span class="sla" data-sla="74" data-warn="60"><span class="v"></span></span></td><td>Dana W.</td></tr>
+        <tr class="click" onclick="location.hash='job'"><td><b>REQ-1042</b> Ceiling leak repair · Cedar Court</td><td><span class="chip warn">Urgent</span></td><td>Fix or plan</td><td><span class="sla" data-sla="410"><span class="v"></span></span></td><td>Dana W.</td></tr>
+        <tr class="click" onclick="location.hash='triage'"><td><b>INQ-3318</b> No heat, 2 units · Maple Row</td><td><span class="chip warn">Urgent?</span></td><td>First reply</td><td><span class="sla" data-sla="22"><span class="v"></span></span></td><td><span class="chip">Unassigned</span></td></tr>
+        <tr class="click" onclick="location.hash='job'"><td><b>REQ-1047</b> Unit turnover · Maple Row #12</td><td><span class="chip">Standard</span></td><td>Estimate sent</td><td><span class="sla" data-sla="1980"><span class="v"></span></span></td><td>Sam P.</td></tr>
+        <tr class="click" onclick="location.hash='bid'"><td><b>BP-2207</b> Interior repaint · Alder Point Apts</td><td><span class="chip info">Bid</span></td><td>Bid / no-bid</td><td><span class="sla" data-sla="-35"><span class="v"></span></span></td><td>Sam P.</td></tr>
+      </tbody></table>
+    </div>
+    <div class="stack">
+      <div class="card"><div class="card-h"><h3>Needs a person now</h3></div>
+        <div class="list">
+          <a class="li" href="#bid"><span class="dot bad"></span><span class="grow">BP-2207 bid/no-bid is overdue by 35 min</span><span class="chip">Sam P.</span></a>
+          <a class="li" href="#triage"><span class="dot warn"></span><span class="grow">INQ-3318 first reply due in 22 min</span><span class="chip">Unassigned</span></a>
+          <a class="li" href="#contractors"><span class="dot warn"></span><span class="grow">Ridgeline Roofing insurance certificate expires in 12 days</span></a>
+          <a class="li" href="#contractors"><span class="dot bad"></span><span class="grow">Cascade HVAC blocked from routing: certificate expired</span></a>
+        </div></div>
+      <div class="card"><div class="card-h"><h3>This week</h3><span class="muted small">sample</span></div>
+        <dl class="kv"><dt>Requests received</dt><dd>9</dd><dt>Jobs closed</dt><dd>2</dd><dt>Response targets met</dt><dd>11 of 12</dd><dt>Bids submitted</dt><dd>3</dd></dl></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= APPROVALS ================= -->
+<section data-screen="approvals">
+  <div class="ph"><div><h1>Approval inbox</h1><p>Everything the system wants to do that affects a customer, a contractor, money or data waits here for a person.</p></div>
+    <div class="opts" data-filter-group="#apprlist"><button class="on" data-f="all">All 6</button><button data-f="msg">Messages</button><button data-f="route">Routing &amp; awards</button><button data-f="money">Money</button><button data-f="data">Data</button></div></div>
+  <div class="gate" style="margin-bottom:14px">Rule: the system matches contractors by fixed rules, fills in approved templates and flags problems. It never contacts a contractor or customer, awards, prices or changes data until someone with the right role approves it here. Every approval is written to the audit log with the draft and the final version. (AI drafting is <b>Later</b>, outside the launch scope; it would feed this same inbox.)</div>
+  <div class="stack" id="apprlist">
+    <div class="card" data-item data-f="route">
+      <div class="row between wrap"><div class="row"><span class="chip rule">Rules: routing suggestion</span><b>REQ-1042 · Ceiling leak repair · Cedar Court Apartments</b></div><span class="chip warn" data-status>Waiting · 18 min</span></div>
+      <div class="grid g2" style="margin-top:10px">
+        <div class="ai-box"><div class="hd">Rules matched: direct award to Evergreen Restoration Co.</div><ul class="pc"><li>Trades match: water mitigation, drywall, paint</li><li>Covers Pierce County · documents valid through job end</li><li>Scorecard 4.8 · 2 open jobs (capacity OK) · ranked first by the routing rules</li><li>Quote $4,350 within the $4,800 not-to-exceed</li></ul></div>
+        <div><div class="small muted">Alternatives considered</div><div class="list" style="border:1px solid var(--line);border-radius:8px;margin-top:6px"><div class="li small"><span class="grow">Pinecrest Drywall &amp; Paint</span><span class="chip">no water mitigation</span></div><div class="li small"><span class="grow">Cascade HVAC Services</span><span class="chip bad">blocked: certificate expired</span></div></div></div>
+      </div>
+      <div class="row wrap" style="margin-top:12px"><button class="btn ok" data-set="Approved · award sent|ok" data-toast="Approved. Evergreen gets the job packet; the customer timeline updates.">Approve award</button><button class="btn line" data-toast="Switched to bid: 3 contractors would be invited (needs approval again)">Send to bid instead</button><button class="btn line" data-toast="Opened in editor (prototype)">Edit</button><button class="btn ghost" data-set="Rejected · back to coordinator|bad">Reject</button><a class="btn ghost" href="#job">Open job →</a></div>
+    </div>
+    <div class="card" data-item data-f="msg">
+      <div class="row between wrap"><div class="row"><span class="chip rule">Reply from template</span><b>Reply to INQ-3316 · Lakeshore Realty Partners</b></div><span class="chip warn" data-status>Waiting · 42 min</span></div>
+      <div class="ai-box" style="margin-top:10px"><div class="hd">Template “Walkthrough offer”, filled in by Dana W. · To: Theo Park (theo.park@lakeshore.example) · email</div><p style="font-size:13px">Hi Theo, thanks for sending the pre-listing punch list for 22 Sample Lane. We can walk the property Tuesday or Wednesday morning and send a fixed-scope quote within the standard window. Which morning works best? — IVO Group</p></div>
+      <div class="row wrap" style="margin-top:12px"><button class="btn ok" data-set="Approved · sent|ok" data-toast="Approved and sent (prototype: nothing actually sent)">Approve &amp; send</button><button class="btn line" data-toast="Opened in editor (prototype)">Edit first</button><button class="btn ghost" data-set="Rejected|bad">Reject</button></div>
+    </div>
+    <div class="card" data-item data-f="money">
+      <div class="row between wrap"><div class="row"><span class="chip gold">Change order</span><b>CO-2 on REQ-1042 · +$620 · ceiling joist sistering</b></div><span class="chip warn" data-status>Customer approved · needs IVO</span></div>
+      <p class="small muted" style="margin-top:6px">Contractor request with 3 photos. Customer (Maya Ortiz) approved in the app. New total $4,970 vs original NTE $4,800 → raises NTE to $4,970.</p>
+      <div class="row wrap" style="margin-top:12px"><button class="btn ok" data-set="Approved · contractor notified|ok">Approve change order</button><button class="btn ghost" data-set="Sent back|bad">Send back</button></div>
+    </div>
+    <div class="card" data-item data-f="route">
+      <div class="row between wrap"><div class="row"><span class="chip rule">Bid invitations</span><b>REQ-1051 · Lobby LED retrofit · invite 3 electricians</b></div><span class="chip warn" data-status>Waiting · 1h 05m</span></div>
+      <p class="small muted" style="margin-top:6px">Packet complete: scope, 6 files, walkthrough Tue 10:00 AM PT, bids due Fri Nov 20, 2:00 PM PT. Invitees matched by rules (trade, county, valid documents, capacity): Northfork Electric, Brightline Electrical, Keystone Power (all sample). Nobody is contacted until you approve.</p>
+      <div class="row wrap" style="margin-top:12px"><button class="btn ok" data-set="Approved · 3 invites sent|ok">Approve &amp; send invites</button><button class="btn line" data-toast="Edit invitee list (prototype)">Change invitees</button></div>
+    </div>
+    <div class="card" data-item data-f="data">
+      <div class="row between wrap"><div class="row"><span class="chip rule">Data cleanup</span><b>Merge 3 duplicate bid packages into BP-2207</b></div><span class="chip warn" data-status>Waiting · 2h</span></div>
+      <p class="small muted" style="margin-top:6px">Same project name, address, sender and due date. All emails and files are kept on the merged record. Reversible for 30 days.</p>
+      <div class="row wrap" style="margin-top:12px"><button class="btn ok" data-set="Approved · merged|ok">Approve merge</button><a class="btn line" href="#bid">Review duplicates</a></div>
+    </div>
+    <div class="card" data-item data-f="msg">
+      <div class="row between wrap"><div class="row"><span class="chip rule">Emergency update from template</span><b>REQ-1053 · “Crew dispatched” email to Dr. Alicia Gomez</b></div><span class="chip warn" data-status>Waiting · 2 min</span></div>
+      <div class="ai-box" style="margin-top:8px;font-size:13px">IVO Group: a crew from Sound Plumbing Partners is on the way to Riverbend Medical Suites, Suite 210. Estimated arrival 8:40 AM. Your coordinator is Dana Whitfield.</div>
+      <p class="tiny muted" style="margin-top:6px">Email plus a phone call from the coordinator. Text updates are <b>Later</b> (SMS is outside the launch scope).</p>
+      <div class="row wrap" style="margin-top:12px"><button class="btn ok" data-set="Approved · email sent|ok">Approve &amp; send</button><button class="btn line" data-toast="Templates can be pre-approved per tier in Settings (owner decision)">Always allow this template</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRIAGE ================= -->
+<section data-screen="triage">
+  <div class="ph"><div><h1>Inquiry triage</h1><p>Every inquiry gets a type, an owner and a status. Rules suggest from the form answers and keywords; a person confirms.</p></div>
+    <div class="opts" data-filter-group="#triagelist"><button class="on" data-f="all">All 5</button><button data-f="req">Customer requests</button><button data-f="bid">Bid invitations</button><button data-f="app">Vendor applications</button></div></div>
+  <div class="ba" style="margin-bottom:14px"><div><h5>Before</h5>238 inquiries, mostly “new” and unassigned. Three duplicate intake forms. No type, no owner, no clock.</div><div><h5>After</h5>One queue, oldest first, with a first-reply timer. One click confirms the rule suggestion and turns the inquiry into a request, a bid package or an application.</div></div>
+  <div class="card pad0 tscroll"><table class="t" id="triagelist"><thead><tr><th>Received</th><th>From</th><th>What they said</th><th>Rule suggestion</th><th>Reply due</th><th></th></tr></thead><tbody>
+    <tr data-item data-f="req"><td class="small">6:48 AM<br><span class="muted">web form</span></td><td><b>Maple Row Townhomes</b><br><span class="small muted">Jordan Reyes · Harborline</span></td><td class="small">“Units 4 and 6 have no heat since last night, tenants have small kids.”</td>
+      <td><span class="chip rule">Service request</span> <span class="chip">HVAC</span> <span class="chip warn">Urgent</span><div class="small muted" style="margin-top:4px">Why: form trade “HVAC” + keyword “no heat” → Urgent · Pierce Co.</div></td><td><span class="sla" data-sla="22"><span class="v"></span></span></td>
+      <td><div class="row"><span class="chip" data-status hidden></span><button class="btn sm ok" data-set="Confirmed → REQ-1058|ok" data-toast="Created REQ-1058 · Urgent · HVAC. Routing suggestion added to Approval inbox.">Confirm</button><button class="btn sm line" data-modal="#editTriage">Edit</button></div></td></tr>
+    <tr data-item data-f="bid"><td class="small">5:30 AM<br><span class="muted">bids@ mailbox</span></td><td><b>Granite Peak Builders</b><br><span class="small muted">GC · sample</span></td><td class="small">“ITB: Alder Point Apartments interior repaint, bids due 11/18 2PM.” 4 attachments</td>
+      <td><span class="chip rule">Bid invitation</span> <span class="chip">Painting</span><div class="small muted" style="margin-top:4px"><span class="chip warn">Possible duplicate of BP-2207</span></div></td><td><span class="sla" data-sla="300"><span class="v"></span></span></td>
+      <td><div class="row"><span class="chip" data-status hidden></span><button class="btn sm ok" data-set="Linked to BP-2207|ok">Link to BP-2207</button><a class="btn sm line" href="#bid">Compare</a></div></td></tr>
+    <tr data-item data-f="req"><td class="small">Yesterday 4:12 PM<br><span class="muted">phone (logged)</span></td><td><b>Lakeshore Realty Partners</b><br><span class="small muted">Theo Park</span></td><td class="small">“Pre-listing repairs at 22 Sample Lane: paint touch-ups, 2 doors, deck boards.”</td>
+      <td><span class="chip rule">Service request</span> <span class="chip">Handyman</span> <span class="chip">Standard</span><div class="small muted" style="margin-top:4px">Template reply waiting in Approval inbox</div></td><td><span class="sla" data-sla="95"><span class="v"></span></span></td>
+      <td><div class="row"><span class="chip" data-status hidden></span><button class="btn sm ok" data-set="Confirmed → REQ-1057|ok">Confirm</button><button class="btn sm line" data-modal="#editTriage">Edit</button></div></td></tr>
+    <tr data-item data-f="app"><td class="small">Yesterday 2:03 PM<br><span class="muted">partner form</span></td><td><b>Bluewater Flooring LLC</b><br><span class="small muted">sample</span></td><td class="small">“We'd like to join your network for LVP and carpet in King and Pierce.”</td>
+      <td><span class="chip rule">Vendor application</span> <span class="chip">Flooring</span><div class="small muted" style="margin-top:4px">Goes to Applications (flow depends on your decision)</div></td><td><span class="sla" data-sla="900"><span class="v"></span></span></td>
+      <td><div class="row"><span class="chip" data-status hidden></span><button class="btn sm ok" data-set="Moved to Applications|ok">Confirm</button></div></td></tr>
+    <tr data-item data-f="req"><td class="small">Yesterday 9:20 AM<br><span class="muted">web form</span></td><td><b>Test Test</b><br><span class="small muted">qa@example.com</span></td><td class="small">“test submission please ignore”</td>
+      <td><span class="chip rule">Looks like a test record</span><div class="small muted" style="margin-top:4px">Will be hidden from lists and counts</div></td><td>—</td>
+      <td><div class="row"><span class="chip" data-status hidden></span><button class="btn sm line" data-set="Flagged as test|">Flag as test</button></div></td></tr>
+  </tbody></table></div>
+  <div class="modal" id="editTriage" role="dialog" aria-label="Edit triage"><div class="box stack">
+    <h2>Edit triage</h2>
+    <div class="field"><label class="f">Type</label><div class="opts"><button class="on">Service request</button><button>Bid invitation</button><button>Vendor application</button><button>Other</button></div></div>
+    <div class="field"><label class="f">Trade</label><select class="inp"><option>HVAC</option><option>Plumbing</option><option>Electrical</option><option>Drywall &amp; paint</option><option>Handyman</option><option>Roofing</option></select></div>
+    <div class="field"><label class="f">Priority</label><div class="opts"><button>Emergency</button><button class="on">Urgent</button><button>Standard</button></div></div>
+    <div class="field"><label class="f">Owner</label><select class="inp"><option>Dana Whitfield · Coordinator</option><option>Sam Patel · Estimator</option><option>Riley Chen · Project manager</option></select></div>
+    <div class="row"><button class="btn" data-close data-toast="Saved. Your correction is logged so the rules can be tuned.">Save &amp; confirm</button><button class="btn ghost" data-close>Cancel</button></div>
+  </div></div>
+</section>
+
+<!-- ================= REQUESTS LIST ================= -->
+<section data-screen="requests">
+  <div class="ph"><div><h1>Requests &amp; jobs</h1><p>Every customer request from intake to closeout, with its tier and next deadline.</p></div><div class="opts"><button class="on">Active 4</button><button>Waiting on customer 1</button><button>Closed 2</button></div></div>
+  <div class="card pad0 tscroll"><table class="t"><thead><tr><th>ID</th><th>Request</th><th>Customer · property</th><th>Tier</th><th>Stage</th><th>Contractor</th><th>NTE</th><th>Next deadline</th></tr></thead><tbody>
+    <tr class="click" onclick="location.hash='job'"><td><b>REQ-1053</b></td><td>Burst pipe above ceiling</td><td>Riverbend Medical Suites · Suite 210, Beaverton OR</td><td><span class="chip bad">Emergency</span></td><td><span class="chip info">Crew dispatched</span></td><td>Sound Plumbing Partners</td><td>$2,500</td><td><span class="sla" data-sla="74" data-warn="60"><span class="v"></span></span></td></tr>
+    <tr class="click" onclick="location.hash='job'"><td><b>REQ-1042</b></td><td>Ceiling leak, drywall &amp; paint</td><td>Harborline · Cedar Court Apts 3B, Tacoma WA</td><td><span class="chip warn">Urgent</span></td><td><span class="chip info">On site</span></td><td>Evergreen Restoration Co.</td><td>$4,800</td><td><span class="sla" data-sla="410"><span class="v"></span></span></td></tr>
+    <tr class="click" onclick="location.hash='job'"><td><b>REQ-1047</b></td><td>Unit turnover (paint, clean, fixtures)</td><td>Harborline · Maple Row #12, Tacoma WA</td><td><span class="chip">Standard</span></td><td><span class="chip">Scheduled</span></td><td>Pinecrest Drywall &amp; Paint</td><td>$3,200</td><td><span class="sla" data-sla="1980"><span class="v"></span></span></td></tr>
+    <tr class="click" onclick="location.hash='bid'"><td><b>REQ-1051</b></td><td>Lobby LED retrofit</td><td>Harborline · Office Plaza, Federal Way WA</td><td><span class="chip">Standard</span></td><td><span class="chip gold">Bidding</span></td><td>3 invited</td><td>—</td><td class="small">Bids due Fri 2:00 PM PT</td></tr>
+  </tbody></table></div>
+</section>
+
+<!-- ================= JOB DETAIL ================= -->
+<section data-screen="job">
+  <div class="row small muted" style="margin-bottom:8px"><a href="#requests">Requests</a> › REQ-1042</div>
+  <div class="ph"><div><div class="row wrap"><h1>Ceiling leak, drywall &amp; paint</h1><span class="chip warn">Urgent</span><span class="chip info">On site</span></div>
+    <p>REQ-1042 · Harborline Property Group · Cedar Court Apartments, Unit 3B · 410 Sample Ave, Tacoma WA (fictional)</p></div>
+    <div class="row"><button class="btn line" data-toast="Message thread opened (prototype)">Message customer</button><button class="btn" data-toast="Status change logged and sent to Approval inbox">Update status</button></div></div>
+  <div class="grid" style="grid-template-columns:1.5fr 1fr">
+    <div class="stack">
+      <div class="card"><div class="card-h"><h3>Response timers</h3><span class="small muted">Urgent tier (proposed): reply 2 business hours · on site 1 business day · fix or plan 2 business days</span></div>
+        <div class="grid g3">
+          <div><div class="small muted">First reply</div><span class="chip ok">Met · 38 min</span></div>
+          <div><div class="small muted">On site</div><span class="chip ok">Met · Tue 9:02 AM</span></div>
+          <div><div class="small muted">Fix or written plan</div><span class="sla" data-sla="410"><span class="v"></span></span></div>
+        </div></div>
+      <div class="card"><div class="card-h"><h3>Status timeline</h3><span class="small muted">The customer sees the same stages in their app</span></div>
+        <ol class="tl">
+          <li class="done"><b>Request received</b> · web app, 4 photos, 1 video<div class="t">Mon 8:12 AM · Maya Ortiz</div></li>
+          <li class="done"><b>Triaged</b> · Urgent · water mitigation + drywall · confirmed by Dana W.<div class="t">Mon 8:40 AM · rule suggestion confirmed</div></li>
+          <li class="done"><b>Scope &amp; NTE approved by customer</b> · $4,800<div class="t">Mon 11:20 AM</div></li>
+          <li class="done"><b>Contractor awarded</b> · Evergreen Restoration Co. · documents verified<div class="t">Mon 1:05 PM · approved by Owner</div></li>
+          <li class="done"><b>On site</b> · GPS check-in, 6 photos<div class="t">Tue 9:02 AM · Ana Kim</div></li>
+          <li class="now"><b>Repair in progress</b> · CO-2 pending (+$620)<div class="t">now</div></li>
+          <li><b>Closeout package</b> · photos, punch list, warranty, lien waiver</li>
+          <li><b>Customer sign-off &amp; invoice</b></li>
+        </ol></div>
+      <div class="card"><div class="card-h"><h3>Photos</h3><span class="chip">10 files</span></div>
+        <div class="thumbs"><div class="thumb" style="background-image:url(../assets/img/ivo-05.webp)"><span>before</span></div><div class="thumb" style="background-image:url(../assets/img/ivo-36.webp)"><span>before</span></div><div class="thumb" style="background-image:url(../assets/img/ivo-51.webp)"><span>on site</span></div><div class="thumb" style="background-image:url(../assets/img/ivo-76.webp)"><span>on site</span></div><div class="thumb" style="background-image:url(../assets/img/ivo-99.webp)"><span>CO-2</span></div></div></div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>Money</h3>
+        <div class="row between small" style="margin:8px 0 4px"><span>Committed $4,350 of $4,800 NTE</span><b>91%</b></div><div class="prog warn"><i style="width:91%"></i></div>
+        <p class="small muted" style="margin-top:8px">CO-2 (+$620) would exceed NTE. Work beyond NTE is blocked until the customer approves (done) and IVO approves (<a class="gold" href="#approvals">waiting</a>).</p></div>
+      <div class="card"><h3>People</h3><dl class="kv" style="margin-top:8px"><dt>Customer</dt><dd>Maya Ortiz · org admin</dd><dt>Coordinator</dt><dd>Dana Whitfield</dd><dt>Contractor</dt><dd>Evergreen Restoration Co.<br><span class="chip ok">Documents verified through Dec 31</span></dd><dt>Crew lead</dt><dd>Ana Kim</dd></dl></div>
+      <div class="card"><h3>Pre-start document check</h3><div class="list small" style="margin-top:6px"><div class="li"><span class="dot ok"></span><span class="grow">State contractor registration</span><span class="chip ok">verified</span></div><div class="li"><span class="dot ok"></span><span class="grow">General liability certificate</span><span class="chip ok">valid</span></div><div class="li"><span class="dot ok"></span><span class="grow">W-9</span><span class="chip ok">on file</span></div><div class="li"><span class="dot ok"></span><span class="grow">Site access agreement (job)</span><span class="chip ok">signed</span></div></div>
+        <p class="tiny muted" style="margin-top:6px">Rechecked at award and on the start date. A failed check blocks the start.</p></div>
+      <div class="card"><h3>Audit</h3><p class="small muted">17 events · every change, approval and message with who and when. <a class="gold" href="#job" data-toast="Audit log (prototype)">View log</a></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BIDS ================= -->
+<section data-screen="bids">
+  <div class="ph"><div><h1>Bid packages</h1><p>Invitations IVO receives from GCs and owners, and packages IVO sends to its contractors.</p></div><div class="opts"><button class="on">Incoming</button><button>Outgoing to contractors</button></div></div>
+  <div class="ba" style="margin-bottom:14px"><div><h5>Before</h5>224 bid packages with no files attached, duplicates like the same project four times, deadlines without a time zone.</div><div><h5>After</h5>A package can't open without at least one file, a deadline with date, time and zone, trades, location and a scope summary. Duplicates are caught on import and merged only with approval.</div></div>
+  <div class="card pad0 tscroll"><table class="t"><thead><tr><th>Package</th><th>From</th><th>Trades</th><th>Files</th><th>Deadline</th><th>Checks</th><th>Status</th></tr></thead><tbody>
+    <tr class="click" onclick="location.hash='bid'"><td><b>BP-2207</b> Alder Point Apartments · interior repaint</td><td>Granite Peak Builders</td><td>Painting</td><td>14</td><td class="small">Wed Nov 18, 2:00 PM <b>PT</b></td><td><span class="chip warn">3 duplicates</span></td><td><span class="chip bad">Bid/no-bid overdue</span></td></tr>
+    <tr class="click" onclick="location.hash='bid'"><td><b>BP-2211</b> Clearwater Library · restroom refresh</td><td>Owner (public, sample)</td><td>Plumbing, tile</td><td>9</td><td class="small">Mon Nov 23, 11:00 AM <b>PT</b></td><td><span class="chip ok">Complete</span></td><td><span class="chip gold">Leveling 2 bids</span></td></tr>
+    <tr class="click" onclick="location.hash='bid'"><td><b>BP-2214</b> Summit Ridge Retail · storefront TI</td><td>Ironwood Construction</td><td>Framing, drywall, electrical</td><td><span class="chip bad">0</span></td><td class="small">Dec 2 · <span class="chip warn">no time zone</span></td><td><span class="chip bad">Can't open: missing files, time zone</span></td><td><span class="chip">Draft</span></td></tr>
+  </tbody></table></div>
+</section>
+
+<section data-screen="bid">
+  <div class="row small muted" style="margin-bottom:8px"><a href="#bids">Bid packages</a> › BP-2207</div>
+  <div class="ph"><div><div class="row wrap"><h1>Alder Point Apartments · interior repaint</h1><span class="chip bad">Bid/no-bid overdue</span></div><p>Invitation from Granite Peak Builders (sample GC) · 240 Example Blvd, Bothell WA (fictional)</p></div>
+    <div class="row"><button class="btn line" data-toast="No-bid reason requested; reply goes to Approval inbox">No-bid</button><button class="btn" data-toast="Bid: invite list sent to Approval inbox">Bid it</button></div></div>
+  <div class="grid" style="grid-template-columns:1.4fr 1fr">
+    <div class="stack">
+      <div class="card" style="border-color:#e9c98f"><div class="card-h"><h3>⚠ Possible duplicates</h3><span class="chip warn">3 matches</span></div>
+        <table class="t"><thead><tr><th>Record</th><th>Received</th><th>Match on</th><th>Files</th></tr></thead><tbody>
+          <tr><td>BP-2207 (keep)</td><td>Nov 9, mailbox</td><td>—</td><td>14</td></tr>
+          <tr><td>BP-2209</td><td>Nov 10, mailbox</td><td>name, address, sender, due date</td><td>14 (same)</td></tr>
+          <tr><td>BP-2212</td><td>Nov 12, BuildingConnected</td><td>name, address, due date</td><td>15 (+1 addendum)</td></tr>
+          <tr><td>INQ-3317</td><td>today, mailbox</td><td>name, sender</td><td>4</td></tr></tbody></table>
+        <div class="row" style="margin-top:10px" data-item><span class="chip" data-status hidden></span><button class="btn sm" data-set="Merge sent to Approval inbox|gold">Propose merge (keeps all emails and files)</button><button class="btn sm ghost" data-set="Marked as not duplicates|">Not duplicates</button></div></div>
+      <div class="card"><div class="card-h"><h3>Files</h3><button class="btn sm line" data-toast="Downloading all 15 files (prototype)">Download all</button></div>
+        <div class="stack s8">
+          <div class="file"><span class="ic">PDF</span><span class="grow">A-series architectural drawings_sample.pdf <span class="muted small">· 42 pages</span></span><span class="chip">v2</span></div>
+          <div class="file"><span class="ic">PDF</span><span class="grow">Finish schedule_sample.pdf <span class="muted small">· 6 pages</span></span></div>
+          <div class="file"><span class="ic">DOC</span><span class="grow">Bid form_sample.docx</span><span class="chip later">AI pre-fill · Later</span></div>
+          <div class="file"><span class="ic">PDF</span><span class="grow">Addendum 1_sample.pdf <span class="muted small">· from BP-2212</span></span><span class="chip gold">new</span></div>
+        </div></div>
+    </div>
+    <div class="stack">
+      <div class="card"><h3>Opening checks</h3><div class="list small" style="margin-top:6px"><div class="li"><span class="dot ok"></span><span class="grow">At least 1 file</span><span class="chip ok">14</span></div><div class="li"><span class="dot ok"></span><span class="grow">Deadline with date, time, zone</span><span class="chip ok">Nov 18 2:00 PM PT</span></div><div class="li"><span class="dot ok"></span><span class="grow">Trades · location · scope summary</span><span class="chip ok">done</span></div><div class="li"><span class="dot ok"></span><span class="grow">Walkthrough</span><span class="chip">Mon 9:00 AM PT, optional</span></div></div></div>
+      <div class="card"><h3>Response timers</h3><p class="small muted">Bids tier (proposed): reply within 1 business day · bid/no-bid within 2.</p><div style="margin-top:8px"><span class="sla" data-sla="-35"><span class="v"></span></span> <span class="small muted">bid/no-bid</span></div></div>
+      <div class="card"><h3>Contractors matched by rules</h3><p class="small muted">Trade: painting · county: Snohomish/King · documents valid · capacity open</p><div class="list small" style="margin-top:6px"><div class="li"><span class="grow">Pinecrest Drywall &amp; Paint</span><span class="chip ok">ready</span></div><div class="li"><span class="grow">Coastline Painting</span><span class="chip ok">ready</span></div></div></div><div class="later"><span class="chip later">Later</span> <b>AI package summary and bid engine</b>: reading drawings and pre-filling bid forms is outside the launch scope.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTRACTORS ================= -->
+<section data-screen="contractors">
+  <div class="ph"><div><h1>Contractor directory</h1><p>Only contractors with valid documents can be routed work. Expired documents block routing automatically.</p></div>
+    <div class="opts" data-filter-group="#ctable"><button class="on" data-f="all">All 6</button><button data-f="ok">Ready</button><button data-f="warn">Expiring</button><button data-f="bad">Blocked</button></div></div>
+  <div class="card pad0 tscroll"><table class="t" id="ctable"><thead><tr><th>Company</th><th>Trades</th><th>Coverage</th><th>Compliance</th><th>Scorecard</th><th>Open jobs</th></tr></thead><tbody>
+    <tr class="click" data-f="ok" onclick="location.hash='contractor'"><td><b>Evergreen Restoration Co.</b><div class="tiny muted">Luis Moreno · sample</div></td><td class="small">Water mitigation, drywall, paint</td><td class="small">Pierce, King, Thurston WA</td><td><span class="chip ok">Ready</span></td><td>4.8</td><td>2</td></tr>
+    <tr class="click" data-f="ok" onclick="location.hash='contractor'"><td><b>Sound Plumbing Partners</b></td><td class="small">Plumbing, drain</td><td class="small">King, Pierce WA · Washington Co. OR</td><td><span class="chip ok">Ready</span></td><td>4.6</td><td>1</td></tr>
+    <tr class="click" data-f="ok" onclick="location.hash='contractor'"><td><b>Pinecrest Drywall &amp; Paint</b></td><td class="small">Drywall, paint, turnovers</td><td class="small">Pierce, King WA</td><td><span class="chip ok">Ready</span></td><td>4.5</td><td>1</td></tr>
+    <tr class="click" data-f="ok" onclick="location.hash='contractor'"><td><b>Northfork Electric</b></td><td class="small">Electrical, lighting</td><td class="small">King, Snohomish WA</td><td><span class="chip ok">Ready</span></td><td>—</td><td>0</td></tr>
+    <tr class="click" data-f="warn" onclick="location.hash='contractor'"><td><b>Ridgeline Roofing</b></td><td class="small">Roofing, gutters</td><td class="small">Ada, Canyon ID</td><td><span class="chip warn">Certificate expires in 12 days</span></td><td>4.2</td><td>0</td></tr>
+    <tr class="click" data-f="bad" onclick="location.hash='contractor'"><td><b>Cascade HVAC Services</b></td><td class="small">HVAC</td><td class="small">Multnomah, Washington OR</td><td><span class="chip bad">Blocked · certificate expired</span></td><td>4.4</td><td>0</td></tr>
+  </tbody></table></div>
+</section>
+
+<section data-screen="contractor">
+  <div class="row small muted" style="margin-bottom:8px"><a href="#contractors">Contractors</a> › Evergreen Restoration Co.</div>
+  <div class="ph"><div><div class="row"><h1>Evergreen Restoration Co.</h1><span class="chip ok">Ready for routing</span></div><p>Sample contractor · owner Luis Moreno · luis@evergreen.example · crew of 3</p></div><a class="btn line" href="../vendor-portal/index.html">See their vendor portal →</a></div>
+  <div class="grid g2">
+    <div class="card"><h3>Compliance documents</h3><table class="t" style="margin-top:6px"><thead><tr><th>Document</th><th>Status</th><th>Expires</th></tr></thead><tbody>
+      <tr><td>State contractor registration (WA)</td><td><span class="chip ok">Verified with state lookup</span></td><td>Aug 2027</td></tr>
+      <tr><td>General liability certificate</td><td><span class="chip ok">Valid · IVO named</span></td><td>Dec 31, 2026</td></tr>
+      <tr><td>Workers' comp</td><td><span class="chip ok">Valid</span></td><td>Mar 2027</td></tr>
+      <tr><td>W-9</td><td><span class="chip ok">On file</span></td><td>—</td></tr>
+      <tr><td>Signed subcontractor agreement</td><td><span class="chip ok">Signed</span></td><td>—</td></tr></tbody></table>
+      <p class="tiny muted" style="margin-top:8px">Reminders go to the contractor 30, 14 and 7 days before expiry. Registration numbers are stored privately, never shown to customers.</p></div>
+    <div class="card"><h3>Scorecard (per job)</h3><dl class="kv" style="margin-top:8px"><dt>Jobs completed</dt><dd>7 (sample)</dd><dt>On-time arrival</dt><dd>6 of 7</dd><dt>Punch items reopened</dt><dd>1</dd><dt>Customer rating</dt><dd>4.8</dd><dt>Change orders</dt><dd>2 approved, 0 rejected</dd></dl>
+      <div class="note" style="margin-top:10px">Scorecards feed routing suggestions, but a person still approves every award.</div></div>
+  </div>
+</section>
+
+<!-- ================= APPLICATIONS ================= -->
+<section data-screen="applications">
+  <div class="ph"><div><h1>Contractor applications</h1><p>How contractors join depends on the flow you choose. <a class="gold" href="../apply/index.html">Compare the options →</a></p></div></div>
+  <div class="ba" style="margin-bottom:14px"><div><h5>Before</h5>Approval badge said 1; the queue had 12 plus 6 applications not linked to any account.</div><div><h5>After</h5>Every application has an account, a status and a next step. The badge, this list and the overview all show the same number.</div></div>
+  <div class="card pad0 tscroll"><table class="t"><thead><tr><th>Company</th><th>Trades · region</th><th>Step</th><th>Documents</th><th>Next</th></tr></thead><tbody>
+    <tr data-item><td><b>Bluewater Flooring LLC</b></td><td class="small">Flooring · King, Pierce WA</td><td><span class="chip info">Documents check</span></td><td><span class="chip ok">Certificate</span> <span class="chip ok">W-9</span> <span class="chip warn">References 1 of 2</span></td><td><span class="chip" data-status hidden></span><button class="btn sm line" data-set="Reminder queued for approval|gold">Remind</button></td></tr>
+    <tr data-item><td><b>Brightline Electrical</b></td><td class="small">Electrical · King WA</td><td><span class="chip gold">Ready for approval</span></td><td><span class="chip ok">All verified</span></td><td><span class="chip" data-status hidden></span><button class="btn sm ok" data-set="Approved · onboarding invite sent|ok">Approve</button></td></tr>
+    <tr data-item><td><b>Keystone Power</b></td><td class="small">Electrical · Ada ID</td><td><span class="chip">Trial job</span></td><td><span class="chip ok">All verified</span></td><td><span class="chip" data-status hidden></span><button class="btn sm line" data-toast="Trial job REQ-1049 opened (prototype)">View trial job</button></td></tr>
+  </tbody></table></div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section data-screen="team">
+  <div class="ph"><div><h1>Team &amp; roles</h1><p>Roles are checked on the server for every page and action. Changes are logged.</p></div><button class="btn" data-modal="#invite">Invite team member</button></div>
+  <div class="ba" style="margin-bottom:14px"><div><h5>Before</h5>The team page was owner-only text. No invites, no enforced roles.</div><div><h5>After</h5>Named roles, invites by email code, 2-step sign-in for all staff, and two-person approval for risky admin actions.</div></div>
+  <div class="grid" style="grid-template-columns:1.3fr 1fr">
+    <div class="card pad0 tscroll"><table class="t"><thead><tr><th>Person</th><th>Role</th><th>Region</th><th>2-step</th><th>Last active</th></tr></thead><tbody>
+      <tr><td><b>Owner (you)</b><div class="tiny muted">owner@ivo.example</div></td><td><span class="chip navy">Owner</span></td><td>All</td><td><span class="chip ok">On</span></td><td>now</td></tr>
+      <tr><td><b>Dana Whitfield</b><div class="tiny muted">dana@ivo.example</div></td><td><span class="chip">Coordinator / dispatcher</span></td><td>Puget Sound</td><td><span class="chip ok">On</span></td><td>4 min ago</td></tr>
+      <tr><td><b>Sam Patel</b><div class="tiny muted">sam@ivo.example</div></td><td><span class="chip">Estimator</span></td><td>All</td><td><span class="chip ok">On</span></td><td>1 h ago</td></tr>
+      <tr><td><b>Riley Chen</b><div class="tiny muted">riley@ivo.example</div></td><td><span class="chip">Project manager</span></td><td>Portland metro</td><td><span class="chip warn">Invite pending</span></td><td>—</td></tr>
+      <tr><td><b>Second admin</b><div class="tiny muted">not named yet</div></td><td><span class="chip">Admin</span></td><td>—</td><td>—</td><td><span class="chip warn">Owner decision</span></td></tr>
+    </tbody></table></div>
+    <div class="card"><h3>What each role can approve</h3><table class="t small" style="margin-top:6px"><thead><tr><th></th><th>Owner</th><th>Admin</th><th>Coord.</th><th>Est.</th><th>PM</th></tr></thead><tbody>
+      <tr><td>Outgoing messages</td><td>✓</td><td>✓</td><td>✓</td><td>—</td><td>✓</td></tr>
+      <tr><td>Routing &amp; awards</td><td>✓</td><td>✓</td><td>✓</td><td>—</td><td>—</td></tr>
+      <tr><td>Bids &amp; prices</td><td>✓</td><td>—</td><td>—</td><td>✓</td><td>—</td></tr>
+      <tr><td>Change orders</td><td>✓</td><td>✓</td><td>—</td><td>—</td><td>✓</td></tr>
+      <tr><td>Contractor approval</td><td>✓</td><td>✓</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>Bulk data changes</td><td>✓ + 2nd</td><td>✓ + 2nd</td><td>—</td><td>—</td><td>—</td></tr></tbody></table>
+      <p class="tiny muted" style="margin-top:8px">Sample matrix for you to adjust. “+ 2nd” means a second person must also approve.</p></div>
+  </div>
+  <div class="modal" id="invite" role="dialog" aria-label="Invite"><div class="box stack"><h2>Invite team member</h2>
+    <div class="field"><label class="f">Work email</label><input class="inp" value="new.person@ivo.example"></div>
+    <div class="field"><label class="f">Role</label><select class="inp"><option>Coordinator / dispatcher</option><option>Estimator</option><option>Project manager</option><option>Sales</option><option>Viewer</option><option>Admin</option></select></div>
+    <p class="small muted">They sign in with a one-time email code and must turn on 2-step before first use.</p>
+    <div class="row"><button class="btn" data-close data-toast="Invite prepared (prototype: nothing sent)">Send invite</button><button class="btn ghost" data-close>Cancel</button></div></div></div>
+</section>
+
+  </div>
+</div>
+</div>
+
+<script src="../assets/js/app.js"></script>
+</body></html>

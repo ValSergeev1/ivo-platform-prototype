@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="googlebot" content="noindex,nofollow">
+<meta name="theme-color" content="#061d2a">
+<title>Contractor app · IVO Platform prototype (sample data)</title>
+<link rel="icon" href="../assets/img/favicon.png"><link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/app.css">
+</head><body class="">
+<div class="proto-banner"><b>Prototype – sample data</b><span>V01 · fictional companies and people · nothing is sent or saved</span><a href="../index.html">All screens</a></div>
+<div class="phone-page">
+<nav class="phone-index" aria-label="Screens">
+  <div class="eyebrow">Contractor app · phone</div><h1>Evergreen Restoration Co.</h1><p class="small muted">Signed in as Luis Moreno (sample), owner.</p>
+  <div class="grp">Getting in</div><a class="nav" href="#signin">1 · Sign in with email code</a>
+  <div class="grp">New work</div><a class="nav" href="#opps">2 · Opportunities feed</a><a class="nav" href="#opp">3 · Opportunity packet</a><a class="nav" href="#bid">4 · Submit a bid</a><a class="nav" href="#bid-sent">5 · Bid sent</a>
+  <div class="grp">On the job</div><a class="nav" href="#jobs">6 · My jobs &amp; schedule</a><a class="nav" href="#job">7 · Job detail</a><a class="nav" href="#checkin">8 · On-site check-in</a><a class="nav" href="#punch">9 · Punch list</a><a class="nav" href="#co">10 · Change-order request</a><a class="nav" href="#closeout">11 · Closeout upload</a>
+  <div class="grp">Business</div><a class="nav" href="#compliance">12 · Compliance documents</a><a class="nav" href="#payouts">13 · Payouts (Later)</a><a class="nav" href="#profile">14 · Company &amp; crew</a>
+  <p style="margin-top:16px"><a class="btn line sm" href="../vendor-portal/index.html">Desktop vendor portal →</a></p>
+</nav>
+<div class="phone"><div class="notch"></div><div data-router>
+
+<!-- 1 sign in -->
+<section class="app" data-screen="signin"><div class="app-b np"><div class="splash" style="padding:24px 22px 28px;background-image:url(../assets/img/ivo-113.webp)">
+  <img src="../assets/img/ivo-mark-white.png" alt="IVO" style="width:52px;margin-bottom:auto;margin-top:30px">
+  <div class="eyebrow" style="color:var(--gold-l)">IVO contractor network</div>
+  <h2>Sign in to see your jobs and opportunities.</h2>
+  <div class="field" style="margin-top:16px"><input class="inp" value="luis@evergreen.example" aria-label="Email"></div>
+  <p class="small" style="color:#cfdbe3;margin:12px 0 6px">Code sent. Enter it below:</p>
+  <div class="otp" id="kotp" data-then="opps"><input inputmode="numeric" aria-label="Digit 1"><input inputmode="numeric" aria-label="Digit 2"><input inputmode="numeric" aria-label="Digit 3"><input inputmode="numeric" aria-label="Digit 4"><input inputmode="numeric" aria-label="Digit 5"><input inputmode="numeric" aria-label="Digit 6"></div>
+  <button class="btn block lg" style="margin-top:16px" data-fill-otp="#kotp">Use sample code 204816</button>
+  <p class="tiny" style="color:#8fa4b2;margin-top:12px;text-align:center">Not in the network yet? <a class="gold" href="../apply/index.html">How contractors join</a></p>
+</div></div></section>
+
+<!-- 2 opps -->
+<section class="app" data-screen="opps"><header class="app-h"><img src="../assets/img/ivo-mark-white.png" alt=""><h2>Opportunities</h2><span class="ib">3 new</span></header><div class="app-b">
+  <div class="opts" style="margin-bottom:12px"><button class="on">All</button><button>Direct offers</button><button>Bids</button><button>Emergency</button></div>
+  <a class="job" href="#opp" style="border-left:4px solid #c7414d"><div class="top"><h4>Active water leak · 2nd floor</h4><span class="chip bad">Emergency</span></div><p class="small muted">Tacoma (Pierce Co.) · water mitigation</p><div class="row between" style="margin-top:8px"><span class="sla" data-sla="14" data-warn="10"><span class="v"></span></span><span class="tiny muted">respond to accept</span></div></a>
+  <a class="job" href="#opp"><div class="top"><h4>Hallway ceiling repair</h4><span class="chip gold">Direct offer</span></div><p class="small muted">Tacoma (Pierce Co.) · drywall &amp; paint · NTE $2,500</p><div class="row wrap" style="margin-top:8px;gap:6px"><span class="chip">📎 3 files</span><span class="chip">📷 2 photos</span><span class="chip info">Respond by Fri Nov 20, 5:00 PM PT</span></div></a>
+  <a class="job" href="#opp"><div class="top"><h4>Water damage rebuild · office suite</h4><span class="chip">Bid</span></div><p class="small muted">Federal Way (King Co.) · mitigation, drywall, paint, flooring</p><div class="row wrap" style="margin-top:8px;gap:6px"><span class="chip">📎 5 files · 38 pages</span><span class="chip">Walkthrough Thu 10:00 AM PT</span><span class="chip info">Bids due Mon Nov 23, 2:00 PM PT</span></div></a>
+  <p class="tiny muted" style="margin-top:12px">You only see work that matches your trades, your coverage area and valid documents.</p>
+</div></section>
+
+<!-- 3 opp packet -->
+<section class="app" data-screen="opp"><header class="app-h"><a class="back" href="#opps">‹</a><h2>Opportunity packet</h2></header><div class="app-b" data-tabset>
+  <div class="sheet"><div class="row between"><span class="chip">Bid</span><span class="chip info">Due Mon Nov 23 · 2:00 PM PT</span></div><h3 style="margin:8px 0 2px">Water damage rebuild · office suite</h3><p class="small muted">OPP-3121 · for IVO Group · Federal Way, WA (exact address after you accept the invite or sign the NDA)</p></div>
+  <div class="opts" style="margin:12px 0"><button data-tab="scope" class="on">Scope</button><button data-tab="files">Files (5)</button><button data-tab="q">Questions</button></div>
+  <div data-pane="scope"><div class="sheet small stack s8">
+    <p><b>Summary.</b> Rebuild after a supply-line leak in a 2,400 sq ft office suite. Mitigation is done; moisture readings attached.</p>
+    <dl class="kv" style="grid-template-columns:110px 1fr"><dt>Trades</dt><dd>Drywall, paint, LVP flooring, base</dd><dt>Size</dt><dd>~1,100 sq ft drywall · 1,800 sq ft LVP</dd><dt>Schedule</dt><dd>Start week of Dec 7 · 10 working days</dd><dt>Site access</dt><dd>Weekdays 7–6, badge from building office</dd><dt>Walkthrough</dt><dd>Thu Nov 19, 10:00 AM PT (optional)</dd><dt>Deadline</dt><dd><b>Mon Nov 23, 2:00 PM Pacific Time</b></dd><dt>Required docs</dt><dd><span class="chip ok">Yours are valid</span></dd></dl></div></div>
+  <div data-pane="files" hidden><div class="stack s8"><div class="file"><span class="ic">PDF</span><span class="grow">Floor plan_sample.pdf<br><span class="tiny muted">4 pages</span></span></div><div class="file"><span class="ic">PDF</span><span class="grow">Moisture map_sample.pdf<br><span class="tiny muted">6 pages</span></span></div><div class="file"><span class="ic">PDF</span><span class="grow">Finish spec_sample.pdf<br><span class="tiny muted">22 pages</span></span></div><div class="file"><span class="ic">IMG</span><span class="grow">Site photos (14)</span></div><div class="file"><span class="ic">DOC</span><span class="grow">IVO bid form_sample.docx<br><span class="tiny muted">6 pages</span></span></div></div><button class="btn block line" style="margin-top:10px" data-toast="All 5 files downloading (prototype)">Download all</button></div>
+  <div data-pane="q" hidden><div class="stack s8"><div class="bubble">Is the existing base to stay or be replaced?<span class="t">Another bidder · answered for all</span></div><div class="bubble">Replace all base. Spec section 09 65 13.<span class="t">IVO · Wed 3:10 PM</span></div></div><div class="row" style="margin-top:10px"><input class="inp" placeholder="Ask IVO a question…"><button class="btn" data-toast="Question sent. Answers are shared with all bidders.">Ask</button></div></div>
+  <div class="stack s8" style="margin-top:14px"><a class="btn block lg" href="#bid">Submit a bid</a><button class="btn block line" data-toast="For direct offers this button reads “Accept job”. Accepting a direct offer is confirmed by IVO." >Accept job (direct offers)</button><button class="btn block ghost" data-toast="Declined. Thanks for letting IVO know.">Decline · not a fit</button></div>
+</div></section>
+
+<!-- 4 bid wizard -->
+<section class="app" data-screen="bid"><div data-wizard data-reset data-finish="bid-sent" style="display:flex;flex-direction:column;flex:1;min-height:0">
+<header class="app-h"><a class="back" href="#opp">‹</a><h2>Bid · OPP-3121</h2><span class="ib" data-count></span></header>
+<div class="app-b"><div class="steps" style="margin-bottom:14px"></div>
+  <div class="wstep"><h3>Line items</h3><div class="sheet" style="padding:0;margin-top:10px"><table class="t small"><tbody>
+    <tr><td>Drywall hang, tape, texture (1,100 sf)</td><td style="width:90px"><input class="inp" value="$6,820" style="padding:6px"></td></tr>
+    <tr><td>Prime &amp; paint, 2 coats</td><td><input class="inp" value="$3,150" style="padding:6px"></td></tr>
+    <tr><td>LVP flooring incl. material (1,800 sf)</td><td><input class="inp" value="$11,700" style="padding:6px"></td></tr>
+    <tr><td>Base, remove &amp; replace</td><td><input class="inp" value="$1,480" style="padding:6px"></td></tr>
+    <tr><td><b>Total</b></td><td><b>$23,150</b></td></tr></tbody></table></div><button class="btn sm line" style="margin-top:8px" data-toast="Line added (prototype)">+ Add line</button></div>
+  <div class="wstep"><h3>Terms</h3><div class="field" style="margin-top:10px"><label class="f">Inclusions</label><textarea class="inp">All labor, materials, daily cleanup, disposal.</textarea></div><div class="field"><label class="f">Exclusions</label><textarea class="inp">After-hours work, asbestos testing, furniture moving.</textarea></div><div class="grid g2"><div class="field"><label class="f">Can start</label><input class="inp" value="Dec 7"></div><div class="field"><label class="f">Duration</label><input class="inp" value="9 working days"></div></div><div class="field"><label class="f">Bid valid for</label><select class="inp"><option>30 days</option><option>60 days</option></select></div></div>
+  <div class="wstep"><h3>Attachments &amp; review</h3><button class="drop" style="width:100%;margin-top:10px" data-add-file="#kbfiles">⇪ Attach your bid form or proposal</button><div class="stack s8" id="kbfiles" style="margin-top:8px"><div class="file"><span class="ic">PDF</span><span class="grow">Evergreen proposal OPP-3121_sample.pdf</span><span class="chip ok">Uploaded</span></div></div>
+    <div class="note" style="margin-top:12px">Your bid goes to IVO, not to the customer. IVO reviews all bids; a person at IVO approves the award. You'll hear back by the date in the packet.</div></div>
+  <div class="row" style="margin-top:18px"><button class="btn line" data-prev>Back</button><button class="btn grow" data-next data-last-label="Submit bid $23,150">Continue</button></div>
+</div></div></section>
+
+<!-- 5 bid sent -->
+<section class="app" data-screen="bid-sent"><header class="app-h"><h2>Bid submitted</h2></header><div class="app-b" style="padding:28px 20px">
+  <div style="width:64px;height:64px;border-radius:50%;background:var(--ok-bg);color:var(--ok);display:grid;place-items:center;font-size:30px;margin:10px auto 14px">✓</div>
+  <h2 style="text-align:center">$23,150 bid sent to IVO</h2><p class="muted" style="text-align:center;margin:6px 0 18px">OPP-3121 · you can revise until Mon Nov 23, 2:00 PM PT.</p>
+  <a class="btn block" href="#opps">Back to opportunities</a><a class="btn block line" style="margin-top:8px" href="#jobs">My jobs</a>
+</div></section>
+
+<!-- 6 jobs & schedule -->
+<section class="app" data-screen="jobs"><header class="app-h"><h2>My jobs</h2><span class="ib">This week</span></header><div class="app-b">
+  <div class="row" style="gap:6px;margin-bottom:12px;overflow-x:auto">
+    <div class="sheet" style="padding:8px 10px;text-align:center;min-width:52px"><div class="tiny muted">Mon</div><b>16</b><div class="dot ok" style="margin:4px auto 0"></div></div>
+    <div class="sheet" style="padding:8px 10px;text-align:center;min-width:52px;border-color:var(--gold);background:var(--gold-bg)"><div class="tiny muted">Tue</div><b>17</b><div class="dot warn" style="margin:4px auto 0"></div></div>
+    <div class="sheet" style="padding:8px 10px;text-align:center;min-width:52px"><div class="tiny muted">Wed</div><b>18</b><div class="dot warn" style="margin:4px auto 0"></div></div>
+    <div class="sheet" style="padding:8px 10px;text-align:center;min-width:52px"><div class="tiny muted">Thu</div><b>19</b><div class="dot" style="margin:4px auto 0"></div></div>
+    <div class="sheet" style="padding:8px 10px;text-align:center;min-width:52px"><div class="tiny muted">Fri</div><b>20</b></div>
+  </div>
+  <div class="sec-t">Today · Tue</div>
+  <a class="job" href="#job"><div class="top"><h4>Ceiling leak, drywall &amp; paint</h4><span class="chip info">In progress</span></div><p class="small muted">REQ-1042 · Cedar Court Apts 3B · 410 Sample Ave, Tacoma</p><p class="tiny muted" style="margin-top:4px">Crew: Ana Kim, Ben Okafor · 9:00 AM–3:00 PM</p></a>
+  <div class="sec-t">Thu 19</div>
+  <a class="job" href="#opp"><div class="top"><h4>Walkthrough · OPP-3121</h4><span class="chip">Bid</span></div><p class="small muted">Federal Way · 10:00 AM PT</p></a>
+  <div class="sec-t">Next week</div>
+  <a class="job" href="#job"><div class="top"><h4>Hallway ceiling repair</h4><span class="chip">Scheduled</span></div><p class="small muted">REQ-1059 · Cedar Court Bldg B · Mon 8:00 AM</p></a>
+</div></section>
+
+<!-- 7 job detail -->
+<section class="app" data-screen="job"><header class="app-h"><a class="back" href="#jobs">‹</a><h2>REQ-1042</h2><span class="chip info">In progress</span></header><div class="app-b">
+  <div class="sheet"><h3>Ceiling leak, drywall &amp; paint</h3><p class="small muted">Cedar Court Apartments, Unit 3B · 410 Sample Ave, Tacoma WA</p><p class="small" style="margin-top:6px">Access: lockbox 2291 (sample) · tenant notified · quiet hours after 6 PM</p></div>
+  <div class="sheet"><div class="row between small"><span>Approved (NTE)</span><b>$4,800</b></div><div class="prog warn" style="margin:6px 0"><i style="width:91%"></i></div><div class="row between tiny muted"><span>Your quote $4,350</span><span>CO-2 +$620 pending</span></div></div>
+  <div class="grid g2" style="margin-top:10px">
+    <a class="btn line" href="#checkin">📍 Check in</a><a class="btn line" href="#punch">☑ Punch list</a><a class="btn line" href="#co">± Change order</a><a class="btn line" href="#closeout">⇪ Closeout</a>
+  </div>
+  <div class="sec-t">Scope</div><div class="sheet small">Open ceiling, dry and verify moisture, replace ~40 sf drywall, texture match, prime &amp; paint hallway ceiling. Protect flooring. Daily photos.</div>
+  <div class="sec-t">Messages with IVO</div><div class="stack s8"><div class="bubble">Customer approved scope. Please send photos when the ceiling is open.<span class="t">Dana · IVO · Mon 1:10 PM</span></div><div class="bubble me">Ceiling open, found a cracked joist. Sending CO.<span class="t">You · Tue 10:52 AM</span></div></div>
+</div></section>
+
+<!-- 8 check-in -->
+<section class="app" data-screen="checkin"><header class="app-h"><a class="back" href="#job">‹</a><h2>Check in · REQ-1042</h2></header><div class="app-b" data-item>
+  <div class="sheet" style="padding:0;overflow:hidden"><div style="height:150px;background:linear-gradient(135deg,#dfe7eb,#c8d5dc);position:relative"><div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:16px;height:16px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 8px #b38a5544"></div><span class="chip ok" style="position:absolute;left:10px;bottom:10px">📍 At site · within 40 m</span></div>
+    <div style="padding:12px"><b>Cedar Court Apartments</b><p class="small muted">Tue Nov 17 · 9:02 AM PT</p></div></div>
+  <div class="sec-t">Who's on site</div><div class="opts" data-multi><button class="on">Ana Kim</button><button class="on">Ben Okafor</button><button>Luis Moreno</button></div>
+  <div class="sec-t">Arrival photos (required)</div><div class="grid g2"><button class="drop" data-add-thumb="#kthumbs" data-base="../">📷 Area before work</button><button class="drop" data-add-thumb="#kthumbs" data-base="../">📷 Protection in place</button></div><div class="thumbs" id="kthumbs"><div class="thumb" style="background-image:url(../assets/img/ivo-51.webp)"><span>9:03</span></div></div>
+  <div data-done hidden class="sheet" style="margin-top:12px;border-color:var(--ok);background:var(--ok-bg);color:var(--ok)"><b>Checked in 9:02 AM.</b> The customer's tracker now shows “On site”.</div>
+  <button class="btn block lg" style="margin-top:14px" data-set="Checked in|ok">Check in now</button><span class="chip" data-status hidden></span>
+  <p class="tiny muted" style="margin-top:8px;text-align:center">Works without signal; it syncs when you're back online.</p>
+</div></section>
+
+<!-- 9 punch -->
+<section class="app" data-screen="punch"><header class="app-h"><a class="back" href="#job">‹</a><h2>Punch list</h2><span class="ib">2 of 5 done</span></header><div class="app-b">
+  <div class="sheet" style="padding:0"><div class="list">
+    <label class="li"><input type="checkbox" checked> <span class="grow">Moisture reading below 15% before close-up<br><span class="tiny muted">photo attached</span></span></label>
+    <label class="li"><input type="checkbox" checked> <span class="grow">Replace drywall, tape &amp; mud</span></label>
+    <label class="li"><input type="checkbox"> <span class="grow">Texture match to existing</span></label>
+    <label class="li"><input type="checkbox"> <span class="grow">Prime &amp; 2 coats ceiling white</span></label>
+    <label class="li"><input type="checkbox"> <span class="grow">Clean up, remove protection<br><span class="tiny muted">added by IVO</span></span></label>
+  </div></div>
+  <button class="btn block line" style="margin-top:12px" data-toast="Item added (prototype)">+ Add item</button>
+  <p class="tiny muted" style="margin-top:8px">The customer can add items at closeout if something isn't right. Reopened items count on your scorecard.</p>
+</div></section>
+
+<!-- 10 change order -->
+<section class="app" data-screen="co"><header class="app-h"><a class="back" href="#job">‹</a><h2>Change-order request</h2></header><div class="app-b" data-item>
+  <div class="field"><label class="f">What changed?</label><textarea class="inp">Cracked ceiling joist found next to the leak. Sister with 2x8, 6 ft, before closing the ceiling.</textarea></div>
+  <div class="field"><label class="f">Photos</label><div class="thumbs"><div class="thumb" style="background-image:url(../assets/img/ivo-99.webp)"><span>joist</span></div><button class="thumb drop" style="padding:0" data-add-thumb="#cothumbs" data-base="../">+</button></div><div class="thumbs" id="cothumbs"></div></div>
+  <div class="field" data-nte="4800" data-spent="4350"><label class="f">Extra amount</label><input class="inp" value="620" inputmode="numeric"><div class="prog" style="margin:10px 0 6px"><i></i></div><p class="small" data-nte-out></p></div>
+  <div class="field"><label class="f">Extra time</label><select class="inp"><option>+0.5 day</option><option>+1 day</option><option>None</option></select></div>
+  <div data-done hidden class="sheet" style="border-color:var(--ok);background:var(--ok-bg);color:var(--ok)"><b>Sent.</b> The customer approves first, then IVO. Don't do the extra work until both approve.</div>
+  <button class="btn block lg" style="margin-top:12px" data-set="Sent for approval|gold">Send for approval</button><span class="chip" data-status hidden></span>
+</div></section>
+
+<!-- 11 closeout -->
+<section class="app" data-screen="closeout"><header class="app-h"><a class="back" href="#job">‹</a><h2>Closeout · REQ-1042</h2></header><div class="app-b" data-item>
+  <div class="sheet" style="padding:0"><div class="list">
+    <div class="li"><span class="dot ok"></span><span class="grow">Punch list complete</span><span class="chip warn">3 open</span></div>
+    <div class="li"><span class="dot warn"></span><span class="grow">After photos (min. 4)</span><button class="btn sm line" data-add-thumb="#kcthumbs" data-base="../">Add</button></div>
+    <div class="li"><span class="dot warn"></span><span class="grow">Completion notes</span></div>
+    <div class="li"><span class="dot warn"></span><span class="grow">Lien waiver (conditional)</span><button class="btn sm line" data-add-file="#kcfiles">Upload</button></div>
+    <div class="li"><span class="dot ok"></span><span class="grow">Warranty: 1 year workmanship</span><span class="chip ok">set</span></div>
+  </div></div>
+  <div class="thumbs" id="kcthumbs"></div><div class="stack s8" id="kcfiles" style="margin-top:8px"></div>
+  <div class="field" style="margin-top:12px"><label class="f">Completion notes</label><textarea class="inp">Ceiling repaired and painted. Joist sistered per CO-2. Moisture 11% at close-up.</textarea></div>
+  <div data-done hidden class="sheet" style="margin-top:10px;border-color:var(--ok);background:var(--ok-bg);color:var(--ok)"><b>Submitted to IVO.</b> IVO checks it, then the customer signs off. Payment handling is Later (outside launch scope).</div>
+  <button class="btn block lg" style="margin-top:12px" data-set="Submitted|ok">Submit closeout</button><span class="chip" data-status hidden></span>
+</div></section>
+
+<!-- 12 compliance -->
+<section class="app" data-screen="compliance"><header class="app-h"><h2>Compliance documents</h2></header><div class="app-b">
+  <div class="sheet" style="border-color:#e9c98f;background:#fffaf2"><b>1 document expires soon</b><p class="small muted">Expired documents pause new work until they're renewed.</p></div>
+  <div class="stack s8" style="margin-top:12px">
+    <div class="file" data-item><span class="ic">✓</span><span class="grow">State contractor registration (WA)<br><span class="tiny muted">verified by IVO · Aug 2027</span></span><span class="chip ok" data-status>Valid</span></div>
+    <div class="file" data-item><span class="ic">!</span><span class="grow">Workers' comp certificate<br><span class="tiny muted">expires Dec 1 · in 18 days</span></span><span class="chip warn" data-status>Expiring</span><button class="btn sm" data-set="Uploaded · IVO reviewing|info">Renew</button></div>
+    <div class="file" data-item><span class="ic">✓</span><span class="grow">General liability (IVO named)<br><span class="tiny muted">Dec 31, 2026</span></span><span class="chip ok" data-status>Valid</span></div>
+    <div class="file" data-item><span class="ic">✓</span><span class="grow">W-9<br><span class="tiny muted">on file</span></span><span class="chip ok" data-status>Valid</span></div>
+    <div class="file" data-item><span class="ic">✓</span><span class="grow">Subcontractor agreement<br><span class="tiny muted">signed Oct 2</span></span><span class="chip ok" data-status>Signed</span></div>
+  </div>
+  <p class="tiny muted" style="margin-top:10px">Reminders at 30, 14 and 7 days. IVO checks each upload before it counts.</p>
+</div></section>
+
+<!-- 13 payouts -->
+<section class="app" data-screen="payouts"><header class="app-h"><h2>Payouts</h2></header><div class="app-b">
+  <div class="later" style="margin-bottom:12px"><span class="chip later">Later</span> <b>Payouts</b> are outside the launch scope (no payments at launch). This greyed screen only shows where they would go.</div><div class="dimmed">
+  <div class="grid g2"><div class="sheet"><div class="tiny muted">Approved, not paid</div><b style="font-size:20px">$2,180</b></div><div class="sheet"><div class="tiny muted">Paid this month</div><b style="font-size:20px">$5,940</b></div></div>
+  <div class="sec-t">Recent</div>
+  <div class="stack s8">
+    <div class="file"><span class="ic">$</span><span class="grow">REQ-1031 · Gutter cleaning<br><span class="tiny muted">signed off Nov 2 · approved by IVO</span></span><b>$980</b><span class="chip info">Scheduled Nov 20</span></div>
+    <div class="file"><span class="ic">$</span><span class="grow">REQ-1036 · Water mitigation<br><span class="tiny muted">signed off Nov 6</span></span><b>$1,200</b><span class="chip warn">Waiting on lien waiver</span></div>
+    <div class="file"><span class="ic">$</span><span class="grow">REQ-1024 · Door closer<br><span class="tiny muted">paid Oct 28</span></span><b>$260</b><span class="chip ok">Paid</span></div>
+  </div>
+  <p class="tiny muted" style="margin-top:10px">Payouts are capped at the approved amount (NTE + approved change orders) and need IVO approval. Payment method setup is out of scope for the first build.</p>
+</div></div></section>
+
+<!-- 14 profile -->
+<section class="app" data-screen="profile"><header class="app-h"><h2>Company &amp; crew</h2></header><div class="app-b">
+  <div class="sheet row"><span class="av">ER</span><div class="grow"><b>Evergreen Restoration Co.</b><div class="tiny muted">Luis Moreno · owner · luis@evergreen.example</div></div></div>
+  <div class="sec-t">Trades</div><div class="opts" data-multi><button class="on">Water mitigation</button><button class="on">Drywall</button><button class="on">Paint</button><button>Flooring</button><button>Carpentry</button></div>
+  <div class="sec-t">Coverage</div><div class="opts" data-multi><button class="on">Pierce Co.</button><button class="on">King Co.</button><button class="on">Thurston Co.</button><button>Kitsap Co.</button></div>
+  <div class="sec-t">Capacity</div><div class="sheet small row between"><span>Jobs at once</span><b>3</b></div>
+  <div class="sec-t">Crew</div>
+  <div class="sheet" style="padding:0"><div class="list"><div class="li"><span class="av navy sm">AK</span><span class="grow">Ana Kim<br><span class="tiny muted">Lead tech · app access</span></span></div><div class="li"><span class="av navy sm">BO</span><span class="grow">Ben Okafor<br><span class="tiny muted">Tech · app access</span></span></div><div class="li"><span class="av sm">LM</span><span class="grow">Luis Moreno<br><span class="tiny muted">Owner · estimator</span></span></div></div></div>
+  <button class="btn block line" style="margin-top:10px" data-toast="Crew invite prepared (prototype)">+ Add crew member</button>
+  <p class="tiny muted" style="margin-top:8px">Changes to trades and coverage are reviewed by IVO before routing uses them.</p>
+</div></section>
+
+</div></div>
+<aside class="phone-notes">
+  <div class="notes-card"><h3>Design notes</h3>
+    <ul data-note="signin"><li>Same email-code sign-in as customers. Crew members get their own access from the owner.</li></ul>
+    <ul data-note="opps opp" hidden><li>Every opportunity is a complete packet: scope, trades, files with page counts, deadline with date, time <b>and</b> time zone, questions. IVO can't send an invite if any of these is missing.</li><li>Exact address only after accepting (or NDA).</li><li>Questions are answered for every bidder at once.</li></ul>
+    <ul data-note="bid bid-sent" hidden><li>Bids go to IVO, never straight to the customer. A person at IVO approves every award.</li></ul>
+    <ul data-note="jobs job checkin punch" hidden><li>Check-in uses GPS and time-stamped photos, and works offline.</li><li>The customer's tracker updates from these actions.</li></ul>
+    <ul data-note="co closeout" hidden><li>Change orders show the effect on the not-to-exceed live. Work beyond NTE needs the customer and IVO to approve.</li><li>Closeout has a checklist; IVO checks it, then the customer signs off.</li></ul>
+    <ul data-note="compliance payouts profile" hidden><li>Expiring documents warn at 30/14/7 days; expired ones pause new work automatically.</li><li>Payouts are <b>Later</b> (payments are outside the launch scope).</li></ul>
+  </div>
+  <div class="notes-card" style="margin-top:12px"><h3>Try it</h3><ul><li>Open the bid opportunity → Submit a bid (3 steps).</li><li>My jobs → Check in → Change order (type an amount).</li><li>Documents → Renew the expiring certificate.</li></ul></div>
+</aside>
+</div>
+
+<script src="../assets/js/app.js"></script>
+</body></html>

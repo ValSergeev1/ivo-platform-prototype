@@ -1,0 +1,113 @@
+<!--meta title="Vendor portal (desktop)" out="vendor-portal/index.html"-->
+<div class="shell">
+<aside class="side" aria-label="Portal navigation">
+  <a class="brand" href="#overview"><img src="{R}assets/img/ivo-mark-white.png" alt=""><div><b>IVO</b><span>Vendor portal</span></div></a>
+  <div class="grp">Evergreen Restoration Co.</div>
+  <a class="nav" href="#overview">▦ Overview</a>
+  <a class="nav" href="#opps" data-match="packet">◈ Opportunities <span class="n">3</span></a>
+  <a class="nav" href="#bids">▧ My bids</a>
+  <a class="nav" href="#jobs" data-match="job">▤ Jobs &amp; schedule</a>
+  <a class="nav" href="#compliance">▣ Compliance <span class="n">1</span></a>
+  <a class="nav" href="#company">◉ Company &amp; crew</a>
+  <a class="nav" href="#payouts">$ Payouts · Later</a>
+  <div class="foot">Luis Moreno · owner<br>luis@evergreen.example<br><a href="{R}contractor/index.html" style="color:var(--gold-l)">Phone app view →</a><br><a href="{R}index.html" style="color:var(--gold-l)">← Prototype home</a></div>
+</aside>
+<div class="main">
+  <div class="topb"><button class="menu-btn" aria-label="Menu">☰</button><input class="inp search" placeholder="Search jobs, opportunities, documents…" aria-label="Search"><div class="who"><span class="chip ok hide-m">Ready for new work</span><span class="av">LM</span></div></div>
+  <div class="content" data-router>
+
+<section data-screen="overview">
+  <div class="ph"><div><h1>Evergreen Restoration Co.</h1><p>Water mitigation · drywall · paint · Pierce, King and Thurston counties</p></div></div>
+  <div class="grid g4">
+    <a class="metric" href="#opps"><div class="l">New opportunities</div><div class="v">3</div><div class="src">1 emergency · respond fast</div></a>
+    <a class="metric" href="#jobs"><div class="l">Active jobs</div><div class="v">2</div></a>
+    <a class="metric" href="#bids"><div class="l">Bids awaiting IVO decision</div><div class="v">1</div></a>
+    <a class="metric" href="#compliance"><div class="l">Documents expiring</div><div class="v">1</div><div class="src">Workers' comp · 18 days</div></a>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card"><h3>Scorecard</h3><dl class="kv" style="margin-top:8px"><dt>Jobs completed</dt><dd>7</dd><dt>On-time arrival</dt><dd>6 of 7</dd><dt>Punch items reopened</dt><dd>1</dd><dt>Customer rating</dt><dd>4.8</dd></dl><p class="tiny muted" style="margin-top:8px">Your scorecard is one of the routing rules. IVO staff still approve every award.</p></div>
+    <div class="card"><h3>This week</h3><div class="list small"><a class="li" href="#job"><span class="grow">Tue–Wed · REQ-1042 Cedar Court 3B</span><span class="chip info">in progress</span></a><a class="li" href="#packet"><span class="grow">Thu 10:00 AM PT · walkthrough OPP-3121</span></a><a class="li" href="#job"><span class="grow">Mon · REQ-1059 Cedar Court Bldg B</span><span class="chip">scheduled</span></a></div></div>
+  </div>
+</section>
+
+<section data-screen="opps">
+  <div class="ph"><div><h1>Opportunities</h1><p>Only work that matches your trades, coverage and valid documents.</p></div></div>
+  <div class="card pad0 tscroll"><table class="t"><thead><tr><th>Opportunity</th><th>Type</th><th>Area</th><th>Files</th><th>Respond by</th><th></th></tr></thead><tbody>
+    <tr><td><b>Active water leak · 2nd floor</b><div class="tiny muted">OPP-3125</div></td><td><span class="chip bad">Emergency</span></td><td>Tacoma, Pierce</td><td>2 photos</td><td><span class="sla" data-sla="14" data-warn="10"><span class="v"></span></span></td><td><button class="btn sm" data-toast="Accepted. IVO confirms and sends the address.">Accept</button></td></tr>
+    <tr><td><b>Hallway ceiling repair</b><div class="tiny muted">OPP-3123 · NTE $2,500</div></td><td><span class="chip gold">Direct offer</span></td><td>Tacoma, Pierce</td><td>3 files</td><td class="small">Fri Nov 20, 5:00 PM PT</td><td><a class="btn sm line" href="#packet">Open</a></td></tr>
+    <tr class="click" onclick="location.hash='packet'"><td><b>Water damage rebuild · office suite</b><div class="tiny muted">OPP-3121</div></td><td><span class="chip">Bid</span></td><td>Federal Way, King</td><td>5 · 38 pages</td><td class="small">Mon Nov 23, 2:00 PM PT</td><td><a class="btn sm line" href="#packet">Open</a></td></tr>
+  </tbody></table></div>
+</section>
+
+<section data-screen="packet">
+  <div class="row small muted" style="margin-bottom:8px"><a href="#opps">Opportunities</a> › OPP-3121</div>
+  <div class="ph"><div><div class="row"><h1>Water damage rebuild · office suite</h1><span class="chip">Bid</span></div><p>Federal Way, WA (exact address after you accept) · bids due <b>Mon Nov 23, 2:00 PM Pacific Time</b></p></div><div class="row"><button class="btn line" data-toast="Declined">Decline</button><button class="btn" data-modal="#vbid">Submit bid</button></div></div>
+  <div class="grid" style="grid-template-columns:1.3fr 1fr">
+    <div class="card"><h3>Scope</h3><p class="small" style="margin:6px 0 10px">Rebuild after a supply-line leak in a 2,400 sq ft office suite. Mitigation is done; moisture readings attached.</p><dl class="kv"><dt>Trades</dt><dd>Drywall, paint, LVP flooring, base</dd><dt>Size</dt><dd>~1,100 sf drywall · 1,800 sf LVP</dd><dt>Schedule</dt><dd>Start week of Dec 7 · 10 working days</dd><dt>Access</dt><dd>Weekdays 7–6, badge from building office</dd><dt>Walkthrough</dt><dd>Thu Nov 19, 10:00 AM PT</dd></dl></div>
+    <div class="card"><div class="card-h"><h3>Files</h3><button class="btn sm line" data-toast="Downloading 5 files (prototype)">Download all</button></div><div class="stack s8"><div class="file"><span class="ic">PDF</span><span class="grow">Floor plan_sample.pdf · 4 p</span></div><div class="file"><span class="ic">PDF</span><span class="grow">Moisture map_sample.pdf · 6 p</span></div><div class="file"><span class="ic">PDF</span><span class="grow">Finish spec_sample.pdf · 22 p</span></div><div class="file"><span class="ic">IMG</span><span class="grow">Site photos (14)</span></div><div class="file"><span class="ic">DOC</span><span class="grow">IVO bid form_sample.docx · 6 p</span></div></div></div>
+  </div>
+  <div class="modal" id="vbid"><div class="box stack" style="max-width:560px"><h2>Submit bid · OPP-3121</h2>
+    <table class="t small"><tbody><tr><td>Drywall</td><td><input class="inp" value="$6,820"></td></tr><tr><td>Paint</td><td><input class="inp" value="$3,150"></td></tr><tr><td>LVP flooring</td><td><input class="inp" value="$11,700"></td></tr><tr><td>Base</td><td><input class="inp" value="$1,480"></td></tr><tr><td><b>Total</b></td><td><b>$23,150</b></td></tr></tbody></table>
+    <div class="field"><label class="f">Exclusions</label><input class="inp" value="After-hours work, asbestos testing"></div>
+    <button class="drop" data-add-file="#vbfiles">⇪ Attach proposal</button><div class="stack s8" id="vbfiles"></div>
+    <p class="small muted">Your bid goes to IVO. A person at IVO approves every award.</p>
+    <div class="row"><button class="btn" data-close data-toast="Bid submitted to IVO" data-go="#bids">Submit $23,150</button><button class="btn ghost" data-close>Cancel</button></div></div></div>
+</section>
+
+<section data-screen="bids">
+  <div class="ph"><div><h1>My bids</h1></div></div>
+  <div class="card pad0 tscroll"><table class="t"><thead><tr><th>Opportunity</th><th>Amount</th><th>Submitted</th><th>Status</th></tr></thead><tbody>
+    <tr><td>OPP-3121 Water damage rebuild</td><td>$23,150</td><td>today</td><td><span class="chip info">With IVO · decision after Nov 23</span></td></tr>
+    <tr><td>OPP-3098 Retail suite repaint</td><td>$7,400</td><td>Oct 28</td><td><span class="chip ok">Awarded</span></td></tr>
+    <tr><td>OPP-3090 Clinic flooring</td><td>$12,900</td><td>Oct 20</td><td><span class="chip">Not selected</span></td></tr>
+  </tbody></table></div>
+</section>
+
+<section data-screen="jobs">
+  <div class="ph"><div><h1>Jobs &amp; schedule</h1></div></div>
+  <div class="card pad0 tscroll"><table class="t"><thead><tr><th></th><th>Mon 16</th><th>Tue 17</th><th>Wed 18</th><th>Thu 19</th><th>Fri 20</th></tr></thead><tbody>
+    <tr><td><b>Ana Kim</b></td><td></td><td><a class="chip info" href="#job">REQ-1042</a></td><td><a class="chip info" href="#job">REQ-1042</a></td><td></td><td></td></tr>
+    <tr><td><b>Ben Okafor</b></td><td></td><td><a class="chip info" href="#job">REQ-1042</a></td><td></td><td></td><td></td></tr>
+    <tr><td><b>Luis Moreno</b></td><td></td><td></td><td></td><td><a class="chip" href="#packet">Walkthrough 10 AM</a></td><td></td></tr>
+  </tbody></table></div>
+  <div class="card pad0 tscroll" style="margin-top:14px"><table class="t"><thead><tr><th>Job</th><th>Property</th><th>Stage</th><th>Approved</th><th>Next step</th></tr></thead><tbody>
+    <tr class="click" onclick="location.hash='job'"><td><b>REQ-1042</b> Ceiling leak repair</td><td>Cedar Court 3B, Tacoma</td><td><span class="chip info">In progress</span></td><td>$4,800 NTE</td><td>CO-2 pending · closeout</td></tr>
+    <tr class="click" onclick="location.hash='job'"><td><b>REQ-1059</b> Hallway ceiling</td><td>Cedar Court Bldg B</td><td><span class="chip">Scheduled Mon</span></td><td>$2,500 NTE</td><td>Pre-start document check ✓</td></tr>
+  </tbody></table></div>
+</section>
+
+<section data-screen="job">
+  <div class="row small muted" style="margin-bottom:8px"><a href="#jobs">Jobs</a> › REQ-1042</div>
+  <div class="ph"><div><div class="row"><h1>Ceiling leak, drywall &amp; paint</h1><span class="chip info">In progress</span></div><p>Cedar Court Apartments, Unit 3B · 410 Sample Ave, Tacoma WA</p></div><a class="btn line" href="{R}contractor/index.html#closeout">Closeout (phone)</a></div>
+  <div class="grid g2">
+    <div class="card"><h3>Punch list · 2 of 5</h3><div class="list small"><label class="li"><input type="checkbox" checked> Moisture below 15%</label><label class="li"><input type="checkbox" checked> Replace drywall</label><label class="li"><input type="checkbox"> Texture match</label><label class="li"><input type="checkbox"> Prime &amp; 2 coats</label><label class="li"><input type="checkbox"> Clean up</label></div></div>
+    <div class="card" data-nte="4800" data-spent="4350"><h3>Change-order request</h3><label class="f" style="margin-top:8px">Extra amount</label><input class="inp" value="620"><div class="prog" style="margin:10px 0 6px"><i></i></div><p class="small" data-nte-out></p><div data-item><span class="chip" data-status hidden></span><button class="btn sm" style="margin-top:8px" data-set="Sent for approval|gold">Send for approval</button></div></div>
+  </div>
+</section>
+
+<section data-screen="compliance">
+  <div class="ph"><div><h1>Compliance documents</h1><p>Expired documents pause new work automatically. IVO checks every upload.</p></div></div>
+  <div class="card pad0 tscroll"><table class="t"><thead><tr><th>Document</th><th>Status</th><th>Expires</th><th></th></tr></thead><tbody>
+    <tr data-item><td>State contractor registration (WA)</td><td><span class="chip ok" data-status>Verified</span></td><td>Aug 2027</td><td></td></tr>
+    <tr data-item><td>Workers' comp certificate</td><td><span class="chip warn" data-status>Expires in 18 days</span></td><td>Dec 1, 2026</td><td><button class="btn sm" data-set="Uploaded · IVO reviewing|info">Upload renewal</button></td></tr>
+    <tr data-item><td>General liability (IVO named)</td><td><span class="chip ok" data-status>Valid</span></td><td>Dec 31, 2026</td><td></td></tr>
+    <tr data-item><td>W-9</td><td><span class="chip ok" data-status>On file</span></td><td>—</td><td></td></tr>
+    <tr data-item><td>Subcontractor agreement</td><td><span class="chip ok" data-status>Signed</span></td><td>—</td><td></td></tr>
+  </tbody></table></div>
+</section>
+
+<section data-screen="company">
+  <div class="ph"><div><h1>Company &amp; crew</h1><p>Changes to trades and coverage are reviewed by IVO before routing uses them.</p></div></div>
+  <div class="grid g2">
+    <div class="card"><h3>Profile</h3><dl class="kv" style="margin-top:8px"><dt>Legal name</dt><dd>Evergreen Restoration Co. (sample)</dd><dt>Trades</dt><dd>Water mitigation, drywall, paint</dd><dt>Coverage</dt><dd>Pierce, King, Thurston WA</dd><dt>Capacity</dt><dd>3 jobs at once</dd><dt>Emergency on-call</dt><dd>Yes, 24/7</dd></dl><button class="btn sm line" style="margin-top:10px" data-toast="Change sent to IVO for review">Request a change</button></div>
+    <div class="card"><div class="card-h"><h3>Crew</h3><button class="btn sm" data-toast="Crew invite prepared (prototype)">+ Add</button></div><div class="list"><div class="li"><span class="av navy sm">AK</span><span class="grow">Ana Kim · lead tech</span><span class="chip ok">app</span></div><div class="li"><span class="av navy sm">BO</span><span class="grow">Ben Okafor · tech</span><span class="chip ok">app</span></div><div class="li"><span class="av sm">LM</span><span class="grow">Luis Moreno · owner</span><span class="chip navy">admin</span></div></div></div>
+  </div>
+</section>
+
+<section data-screen="payouts">
+  <div class="ph"><div><h1>Payouts <span class="chip later">Later</span></h1></div></div>
+  <div class="later" style="max-width:720px"><span class="chip later">Later</span> <b>Payouts and payments</b> are outside the launch scope. At launch, IVO pays contractors the way it does today; this page is a placeholder for a later phase.</div>
+</section>
+
+  </div>
+</div></div>
