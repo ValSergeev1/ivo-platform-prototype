@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="googlebot" content="noindex,nofollow">
+<meta name="theme-color" content="#061d2a">
+<title>Start here · IVO Platform prototype V02 (sample data)</title>
+<link rel="icon" href="assets/img/favicon.png"><link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/app.css">
+</head><body class="">
+<a class="tiny" href="#main" style="position:absolute;left:-999px;top:auto">Skip to content</a>
+<div class="proto-banner"><b>Prototype – sample data</b><span class="hide-narrow">V02 · fictional companies and people · nothing is sent or saved</span>
+<nav class="ver-switch" aria-label="Prototype version"><a href="../index.html">V01</a><span class="on">V02</span></nav>
+<span class="grow"></span>
+<button class="search-pill" type="button" data-cmd-open style="min-width:auto;padding:4px 10px">Search or jump <span class="kbd">⌘K</span></button>
+<button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to light mode" title="Light or dark mode">◐</button>
+<a href="index.html">All screens</a></div>
+
+<header class="land-h">
+  <div class="wrap">
+    <div class="row between wrap" style="margin-bottom:20px">
+      <div class="brand" style="margin:0"><img src="assets/img/ivo-mark-white.png" alt=""><div><b>IVO</b><span>GROUP · PLATFORM PROTOTYPE V02</span></div></div>
+      <nav class="ver-switch" aria-label="Prototype version"><a href="../index.html">V01</a><span class="on">V02</span></nav>
+    </div>
+    <div class="eyebrow" style="color:#e1c395">A bolder design on the same locked launch scope</div>
+    <h1>The IVO system, built to feel <em>inevitable</em>.</h1>
+    <p style="max-width:680px;margin-top:14px;font-size:16px;color:#cfdbe3">One command bar. One live timeline per job. A map of the network. Dark glass, light mode, and a primary action on every screen — so staff, customers and contractors can move without hunting. Sample data only.</p>
+    <div class="row wrap" style="margin-top:22px">
+      <a class="btn lg" href="console/index.html">Open the staff console</a>
+      <button class="btn lg ghost" type="button" data-cmd-open style="color:#fff;border-color:#ffffff55">Try the command bar <span class="kbd">⌘K</span></button>
+    </div>
+  </div>
+</header>
+<div class="wrap" id="main" style="padding:28px 16px 72px">
+  <div class="eyebrow">Follow one job</div>
+  <div class="flow">
+    <a class="glass" href="customer/index.html#new"><span class="n">1 · CUSTOMER</span><b>Submit a request</b></a>
+    <a class="glass" href="console/index.html#triage"><span class="n">2 · STAFF</span><b>Triage, with reasons</b></a>
+    <a class="glass" href="console/index.html#approvals"><span class="n">3 · OWNER</span><b>Approve routing</b></a>
+    <a class="glass" href="contractor/index.html#opp"><span class="n">4 · CONTRACTOR</span><b>Swipe to accept</b></a>
+    <a class="glass" href="contractor/index.html#checkin"><span class="n">5 · FIELD</span><b>Camera check-in</b></a>
+    <a class="glass" href="customer/index.html#approve"><span class="n">6 · CUSTOMER</span><b>Approve in one tap</b></a>
+    <a class="glass" href="contractor/index.html#closeout"><span class="n">7 · CLOSEOUT</span><b>Photos and punch</b></a>
+    <a class="glass" href="customer/index.html#closeout"><span class="n">8 · SIGN-OFF</span><b>Done</b></a>
+  </div>
+  <div class="eyebrow" style="margin-top:36px">The network, at a glance</div>
+  
+<div class="map-wrap glass" id="coverage-map">
+<svg viewBox="0 0 400 420" role="img" aria-label="Map of job sites and contractors across Washington, Oregon, Idaho and Northern California">
+  <title>Coverage map: Washington, Oregon, Idaho and Northern California</title>
+  <text x="16" y="22" fill="currentColor" font-size="11" letter-spacing="1.6" font-weight="600">WA · OR · ID · NORTHERN CA</text>
+  <g fill="var(--map-fill)" stroke="var(--map-stroke)" stroke-width="1.2">
+    <path d="M48 40 h128 l10 18 -6 66 -34 10 H52 l-12 -28 8-48 z"/>
+    <path d="M48 136 h96 l36 -10 14 16 v76 l-18 12 H50 l6-40 z"/>
+    <path d="M186 40 h88 l12 38 -28 22 8 48 -18 78 -42 8 -14-78 6-28 -8-80 z"/>
+    <path d="M50 252 h120 l22 -10 12 28 -38 68 -78 18 -26-38 8-48 z"/>
+    <path d="M62 352 128 372 148 404 54 414 z" opacity=".35" stroke="none"/>
+  </g>
+  <g fill="currentColor" opacity=".7" font-size="12" font-weight="600">
+    <text x="92" y="96">WA</text><text x="92" y="206">OR</text><text x="226" y="150">ID</text><text x="88" y="314">N. CA</text>
+  </g>
+  <g class="map-pin urgent" data-map-go="console/index.html#job" tabindex="0" role="link" aria-label="Tacoma: Unit 3B ceiling leak, on site">
+    <circle cx="108" cy="108" r="6"/><text class="lbl" x="118" y="104">Tacoma · REQ-1042 on site</text>
+  </g>
+  <g class="map-pin" data-map-go="console/index.html#job" tabindex="0" role="link" aria-label="Lynnwood: supply line leak, waiting on contractor">
+    <circle cx="100" cy="58" r="5"/><text class="lbl" x="110" y="54">Lynnwood · plumbing offer</text>
+  </g>
+  <g class="map-pin" tabindex="0" role="img" aria-label="Bellevue: lobby door closer, scheduled">
+    <circle cx="122" cy="70" r="5"/><text class="lbl" x="132" y="84">Bellevue · scheduled</text>
+  </g>
+  <g class="map-pin" tabindex="0" role="img" aria-label="Portland coverage, 2 contractors">
+    <circle cx="96" cy="196" r="5"/><text class="lbl" x="106" y="192">Portland · 2 contractors</text>
+  </g>
+  <g class="map-pin" tabindex="0" role="img" aria-label="Boise coverage, 1 contractor">
+    <circle cx="236" cy="168" r="5"/><text class="lbl" x="246" y="164">Boise · 1 contractor</text>
+  </g>
+  <g class="map-pin" tabindex="0" role="img" aria-label="Redding coverage, ready to route">
+    <circle cx="86" cy="300" r="5"/><text class="lbl" x="96" y="296">Redding · coverage</text>
+  </g>
+</svg>
+<div class="map-legend"><span class="chip bad">On site / urgent</span><span class="chip gold">Active job</span><span class="chip">Coverage only</span></div>
+</div>
+
+  <div class="eyebrow" style="margin-top:36px">Every part</div>
+  <div class="grid g3"><a class="tile glass" href="console/index.html"><div class="im" style="background-image:url(assets/img/ivo-113.webp)"><span class="chip navy">Desktop</span></div><div class="bd"><h3>Staff console</h3><p class="small muted">Triage board with keyboard shortcuts, a live job timeline, a coverage map, and a clear reason for every routing pick.</p><span class="btn sm line" style="align-self:flex-start;margin-top:8px">Open →</span></div></a><a class="tile glass" href="customer/index.html"><div class="im" style="background-image:url(assets/img/ivo-04.webp)"><span class="chip navy">Phone app</span></div><div class="bd"><h3>Customer app</h3><p class="small muted">A “What’s happening now” card, a status line you can read in three seconds, and one-tap change-order approval.</p><span class="btn sm line" style="align-self:flex-start;margin-top:8px">Open →</span></div></a><a class="tile glass" href="customer-portal/index.html"><div class="im" style="background-image:url(assets/img/ivo-21.webp)"><span class="chip navy">Desktop</span></div><div class="bd"><h3>Customer portal</h3><p class="small muted">The same workspace on a computer, with the command bar and the job timeline in the middle.</p><span class="btn sm line" style="align-self:flex-start;margin-top:8px">Open →</span></div></a><a class="tile glass" href="contractor/index.html"><div class="im" style="background-image:url(assets/img/ivo-51.webp)"><span class="chip navy">Phone app</span></div><div class="bd"><h3>Contractor app</h3><p class="small muted">Swipe to accept or decline, camera-first check-in, and an earnings glance marked tracking-only.</p><span class="btn sm line" style="align-self:flex-start;margin-top:8px">Open →</span></div></a><a class="tile glass" href="vendor-portal/index.html"><div class="im" style="background-image:url(assets/img/ivo-76.webp)"><span class="chip navy">Desktop</span></div><div class="bd"><h3>Vendor portal</h3><p class="small muted">Office view of opportunities, compliance and the same job timeline.</p><span class="btn sm line" style="align-self:flex-start;margin-top:8px">Open →</span></div></a><a class="tile glass" href="apply/index.html"><div class="im" style="background-image:url(assets/img/ivo-99.webp)"><span class="chip navy">Recorded</span></div><div class="bd"><h3>Join process</h3><p class="small muted">Contractors: option A. Customers: option 1. Already approved by the owner.</p><span class="btn sm line" style="align-self:flex-start;margin-top:8px">Open →</span></div></a></div>
+  <div class="eyebrow" style="margin-top:36px" id="decisions">Join process, already recorded</div>
+  <div class="grid g2">
+    <a class="decision rec" href="apply/index.html"><h3>Contractors · option A</h3><p class="small" style="margin-top:6px"><span class="chip ok">Approved by owner 2026-11-13</span></p><p class="small muted" style="margin-top:8px">Invite-only after staff vetting, with a watched trial first job. The Partner with IVO form feeds Triage. B and C were not chosen.</p></a>
+    <a class="decision rec" href="onboarding/index.html"><h3>Customers · option 1</h3><p class="small" style="margin-top:6px"><span class="chip ok">Approved by owner 2026-11-13</span></p><p class="small muted" style="margin-top:8px">Request first, invite after IVO review. Option 2 is allowed for existing accounts. Option 3 stays Later.</p></a>
+  </div>
+  <div class="later" style="margin-top:20px"><span class="chip later">Later</span> Teasers only, not in this build: AI bid engine and drafting, automated outreach, payments, text messages, and public self-serve access.</div>
+  <p class="tiny muted" style="margin-top:28px">IVO Platform prototype V02 · static HTML, CSS and JS on GitHub Pages · not indexed · all names, companies, addresses, emails and amounts are fictional. V01 remains at the original URLs.</p>
+</div>
+
+<div id="cmdk" class="cmdk" role="dialog" aria-modal="true" aria-label="Command bar">
+  <div class="box">
+    <input type="search" placeholder="Search jobs, people, actions…" aria-label="Command bar" autocomplete="off">
+    <div class="res" id="cmdk-results"><button type="button" data-cmd="Open the staff console" data-href="console/index.html"><span>Open the staff console</span><small>Desktop</small></button>
+<button type="button" data-cmd="Open the customer app" data-href="customer/index.html#home"><span>Open the customer app</span><small>What's happening now</small></button>
+<button type="button" data-cmd="Open the contractor app" data-href="contractor/index.html#opps"><span>Open the contractor app</span><small>Swipe to accept</small></button>
+<button type="button" data-cmd="Coverage map" data-href="console/index.html#map"><span>Coverage map</span><small>WA OR ID N-CA</small></button>
+<button type="button" data-cmd="Contractor join decision" data-href="apply/index.html"><span>Contractor join decision</span><small>Option A approved</small></button>
+<button type="button" data-cmd="Customer join decision" data-href="onboarding/index.html"><span>Customer join decision</span><small>Option 1 approved</small></button>
+<button type="button" data-cmd="Back to V01" data-href="../index.html"><span>Back to V01</span><small>Original prototype</small></button></div>
+  </div>
+</div>
+<script src="assets/js/app.js"></script>
+</body></html>

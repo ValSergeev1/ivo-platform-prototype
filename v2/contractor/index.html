@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="googlebot" content="noindex,nofollow">
+<meta name="theme-color" content="#061d2a">
+<title>Contractor app · IVO Platform prototype V02 (sample data)</title>
+<link rel="icon" href="../assets/img/favicon.png"><link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/app.css"><link rel="manifest" href="manifest.webmanifest">
+</head><body class="">
+<a class="tiny" href="#main" style="position:absolute;left:-999px;top:auto">Skip to content</a>
+<div class="proto-banner"><b>Prototype – sample data</b><span class="hide-narrow">V02 · fictional companies and people · nothing is sent or saved</span>
+<nav class="ver-switch" aria-label="Prototype version"><a href="../../index.html">V01</a><span class="on">V02</span></nav>
+<span class="grow"></span>
+<button class="search-pill" type="button" data-cmd-open style="min-width:auto;padding:4px 10px">Search or jump <span class="kbd">⌘K</span></button>
+<button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to light mode" title="Light or dark mode">◐</button>
+<a href="../index.html">All screens</a></div>
+<div class="phone-page" id="main">
+<nav class="phone-index" aria-label="Screens">
+  <div class="eyebrow">Contractor app · phone</div><h1>Bluewater Flooring LLC</h1><p class="small muted">Signed in as Sam Rivera (sample), owner.</p>
+  <div class="grp">Getting in</div><a class="nav" href="#signin">1 · Sign in</a>
+  <div class="grp">Work</div><a class="nav" href="#opps">2 · Opportunities</a><a class="nav" href="#opp">3 · Packet</a><a class="nav" href="#bid">4 · Submit a bid</a><a class="nav" href="#bid-sent">5 · Bid sent</a>
+  <div class="grp">On site</div><a class="nav" href="#jobs">6 · My jobs &amp; schedule</a><a class="nav" href="#job">7 · Job</a><a class="nav" href="#checkin">8 · Camera check-in</a><a class="nav" href="#punch">9 · Punch list</a><a class="nav" href="#co">10 · Change-order request</a><a class="nav" href="#closeout">11 · Closeout</a>
+  <div class="grp">Company</div><a class="nav" href="#compliance">12 · Compliance</a><a class="nav" href="#payouts">13 · Earnings (tracking only)</a><a class="nav" href="#profile">14 · Company &amp; crew</a>
+  <p style="margin-top:16px"><a class="btn line sm" href="../vendor-portal/index.html">Desktop portal view →</a></p>
+</nav>
+<div class="phone"><div class="notch"></div><div data-router>
+
+<section class="app" data-screen="signin"><div class="app-b" style="padding:48px 22px">
+  <img src="../assets/img/ivo-mark-navy.png" alt="IVO" style="width:48px;margin:0 auto 16px">
+  <h2 style="text-align:center">Check your email</h2>
+  <p class="small muted" style="text-align:center;margin:8px 0 16px">Code sent to sam@bluewater.example</p>
+  <div class="otp" id="kotp" data-then="#opps"><input inputmode="numeric"><input inputmode="numeric"><input inputmode="numeric"><input inputmode="numeric"><input inputmode="numeric"><input inputmode="numeric"></div>
+  <button class="btn block" style="margin-top:18px" data-fill-otp="#kotp">Use sample code 204816</button>
+</div></section>
+
+<section class="app" data-screen="opps"><header class="app-h"><div class="grow"><b>Opportunities</b><div class="tiny muted">Swipe right to accept, left to decline</div></div><span class="chip offline">Offline-ready</span></header>
+<div class="app-b">
+  <div class="card" style="margin-bottom:12px">
+    <div class="eyebrow">Earnings &amp; pipeline</div>
+    <div class="row between"><div><div class="tiny muted">This month (tracking)</div><b style="font-size:22px">$6,430</b></div><div style="text-align:right"><div class="tiny muted">In pipeline</div><b>$2,500</b></div></div>
+    <p class="tiny muted" style="margin-top:8px">Tracking only — payouts are not in the launch build. <span class="chip later">Later</span></p>
+  </div>
+  <div class="swipe-deck">
+    <article class="swipe-card" data-swipe data-swipe-yes="Accepted. Opening the packet." data-swipe-no="Declined (prototype)." data-go-yes="opp">
+      <span class="swipe-hint yes">ACCEPT</span><span class="swipe-hint no">DECLINE</span>
+      <div class="row between"><h3>Hallway ceiling repair</h3><span class="chip gold">Direct offer</span></div>
+      <p class="small muted">Tacoma (Pierce) · drywall &amp; paint · NTE $2,500</p>
+      <div class="row wrap" style="margin-top:8px"><span class="chip">3 files</span><span class="chip">2 photos</span><span class="chip info">Respond by Fri Nov 20, 5:00 PM PT</span></div>
+      <div class="row" style="margin-top:14px"><a class="btn grow" href="#opp">Review packet</a></div>
+    </article>
+  </div>
+  <p class="tiny muted" style="margin-top:10px">Prefer buttons? Open the packet and use Accept there. Address is hidden until you accept.</p>
+</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="active" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+
+<section class="app" data-screen="opp"><header class="app-h"><a href="#opps">‹</a><h2>Packet</h2></header>
+<div class="app-b">
+  <h3>Hallway ceiling repair</h3>
+  <p class="small muted">REQ-1059 · Cedar Court Bldg B · exact address after you accept</p>
+  <div class="list"><div class="li"><span class="dot ok"></span>Scope, 3 files, 2 photos</div><div class="li"><span class="dot ok"></span>Deadline Fri Nov 20, 5:00 PM PT</div><div class="li"><span class="dot warn"></span>Address locked until accept</div></div>
+  <div class="row" style="margin-top:16px"><a class="btn grow" href="#jobs" data-toast="Accepted (prototype).">Accept</a><a class="btn line grow" href="#bid">Bid</a></div>
+  <button class="btn bad block" style="margin-top:8px" data-toast="Declined (prototype).">Decline</button>
+</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="active" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+
+<section class="app" data-screen="bid"><header class="app-h"><a href="#opp">‹</a><h2>Submit a bid</h2></header>
+<div class="app-b" data-wizard data-finish="bid-sent" data-reset>
+  <div class="row between"><span class="tiny muted" data-count></span><span class="tiny gold" data-step-label></span></div><div class="steps" style="margin:8px 0 14px"></div>
+  <div class="wstep" data-label="Price"><h3>Your price</h3><div class="field"><label class="f">Bid amount</label><input class="inp" value="2350" inputmode="numeric"></div></div>
+  <div class="wstep" data-label="Schedule"><h3>When can you start?</h3><input class="inp" value="Mon Nov 23, 8:00 AM PT"></div>
+  <div class="wstep" data-label="Notes"><h3>Exclusions &amp; notes</h3><textarea class="inp" rows="3">Paint color to match existing. No wallpaper.</textarea>
+    <button class="drop" style="margin-top:8px" data-add-file="#kbfiles">⇪ Attach a file</button><div id="kbfiles" class="stack s8" style="margin-top:8px"></div></div>
+  <div class="wstep" data-label="Review"><h3>Review bid</h3><div class="sheet"><dl class="kv" style="grid-template-columns:90px 1fr"><dt>Amount</dt><dd>$2,350</dd><dt>Start</dt><dd>Mon Nov 23</dd></dl></div></div>
+  <div class="row" style="margin-top:16px"><button class="btn line" data-prev>Back</button><button class="btn grow" data-next data-last-label="Send bid">Continue</button></div>
+</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="active" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+
+<section class="app" data-screen="bid-sent"><div class="app-b" style="padding:40px 22px;text-align:center"><div class="eyebrow">Sent</div><h2>Bid submitted</h2><p class="small muted" style="margin:10px 0 18px">IVO will compare bids and approve any award before you’re contacted with a decision.</p><a class="btn block" href="#opps">Back to opportunities</a></div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="active" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+
+<section class="app" data-screen="jobs"><header class="app-h"><h2>Jobs &amp; schedule</h2></header>
+<div class="app-b"><div class="stack">
+  <a class="card" href="#job"><div class="row between"><b>Ceiling leak, drywall &amp; paint</b><span class="chip info">In progress</span></div><p class="tiny muted">REQ-1042 · Cedar Court Unit 3B · today 9:00 AM–3:00 PM</p></a>
+  <a class="card" href="#job"><div class="row between"><b>Hallway ceiling repair</b><span class="chip">Scheduled</span></div><p class="tiny muted">REQ-1059 · Mon 8:00 AM</p></a>
+</div></div><nav class="tabbar" aria-label="Main"><a class="active" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+
+<section class="app" data-screen="job"><header class="app-h"><a href="#jobs">‹</a><h2>REQ-1042</h2></header>
+<div class="app-b">
+  <h3>Ceiling leak, drywall &amp; paint</h3>
+  <p class="small muted">Cedar Court Apartments, Unit 3B · 410 Sample Ave, Tacoma WA</p>
+  <div class="card" style="margin:10px 0"><div class="row between"><span>Approved (NTE)</span><b>$4,800</b></div><div class="prog warn" style="margin:6px 0"><i style="width:91%"></i></div><p class="tiny muted">Your quote $4,350 · CO-2 +$620 pending</p></div>
+  <div class="tlive"><div class="tev"><div class="m appr"></div><div><div class="row between"><b>Request received</b><span class="when">Mon 8:12 AM</span></div><p class="small muted">Maya Ortiz submitted photos and a $4,800 not-to-exceed.</p><span class="chip">REQ-1042</span></div></div><div class="tev"><div class="m msg"></div><div><div class="row between"><b>IVO reviewed</b><span class="when">Mon 8:40 AM</span></div><p class="small muted">Dana confirmed drywall & paint, Urgent tier. Rules suggested Bluewater Flooring.</p><span class="chip">Review</span></div></div><div class="tev"><div class="m appr"></div><div><div class="row between"><b>Contractor confirmed</b><span class="when">Mon 1:05 PM</span></div><p class="small muted">Sam Rivera accepted the packet. Address released after accept.</p><span class="chip">Award</span></div></div><div class="tev"><div class="m photo"></div><div><div class="row between"><b>On site</b><span class="when">Tue 9:02 AM</span></div><p class="small muted">Ana Kim checked in with GPS and a photo of the ceiling.</p><span class="chip">Check-in</span></div></div><div class="tev"><div class="m co"></div><div><div class="row between"><b>Change order CO-2</b><span class="when">Tue 11:20 AM</span></div><p class="small muted">Sistering a joist, +$620. Maya can approve in one tap. Waiting.</p><span class="chip">Needs approval</span></div></div><div class="tev" style="opacity:.55"><div class="m msg"></div><div><div class="row between"><b>Closeout and invoice</b><span class="when">—</span></div><p class="small muted">Later, after punch and sign-off.</p><span class="chip">Later</span></div></div></div>
+  <a class="btn block" style="margin-top:12px" href="#checkin">Open camera check-in</a>
+</div><nav class="tabbar" aria-label="Main"><a class="active" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+
+<section class="app" data-screen="checkin"><header class="app-h"><a href="#job">‹</a><h2>Check in</h2><span class="chip offline">Works offline</span></header>
+<div class="app-b" data-item>
+  <div class="viewfinder" style="background-image:url(../assets/img/ivo-36.webp)"><div class="cross"></div></div>
+  <p class="small muted" style="text-align:center;margin:10px 0">GPS: Cedar Court Apartments · Tue Nov 17, 9:02 AM PT (sample)</p>
+  <button class="shutter" type="button" data-add-thumb="#kthumbs" data-toast="Photo captured (sample)." aria-label="Take check-in photo"></button>
+  <div class="thumbs" id="kthumbs" style="margin:12px 0"></div>
+  <button class="btn lg block" data-set="Checked in|ok" data-toast="Checked in with photo and GPS (prototype).">Complete check-in</button>
+  <span class="chip" data-status hidden style="margin-top:8px"></span>
+</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="active" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+
+<section class="app" data-screen="punch"><header class="app-h"><a href="#job">‹</a><h2>Punch list</h2></header>
+<div class="app-b"><div class="list"><div class="li"><span class="dot ok"></span><span class="grow">Close ceiling opening</span></div><div class="li"><span class="dot ok"></span><span class="grow">Texture to match</span></div><div class="li"><span class="dot warn"></span><span class="grow">Final paint after dry</span></div></div></div><nav class="tabbar" aria-label="Main"><a class="active" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+
+<section class="app" data-screen="co"><header class="app-h"><a href="#job">‹</a><h2>Change order</h2></header>
+<div class="app-b">
+  <div class="field" data-nte="4800" data-spent="4350"><label class="f">Extra amount</label><input class="inp" value="620" inputmode="numeric"><div class="prog" style="margin:10px 0 6px"><i></i></div><p class="small" data-nte-out></p></div>
+  <button class="drop" data-add-thumb="#cothumbs">📷 Add photos</button><div class="thumbs" id="cothumbs" style="margin-top:8px"></div>
+  <button class="btn block" style="margin-top:12px" data-toast="Change order sent to IVO (prototype).">Request change order</button>
+</div><nav class="tabbar" aria-label="Main"><a class="active" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+
+<section class="app" data-screen="closeout"><header class="app-h"><a href="#job">‹</a><h2>Closeout</h2></header>
+<div class="app-b" data-item>
+  <button class="drop" data-add-thumb="#kcthumbs">📷 Before / after</button><div class="thumbs" id="kcthumbs" style="margin:8px 0"></div>
+  <button class="drop" data-add-file="#kcfiles">⇪ Waiver or extra file</button><div id="kcfiles" class="stack s8" style="margin:8px 0"></div>
+  <button class="btn lg block" data-set="Closeout sent|ok" data-toast="Closeout sent (prototype).">Submit closeout</button>
+  <span class="chip" data-status hidden></span>
+</div><nav class="tabbar" aria-label="Main"><a class="active" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+
+<section class="app" data-screen="compliance"><header class="app-h"><h2>Compliance</h2></header>
+<div class="app-b">
+  <div class="list"><div class="li"><span class="grow">Certificate of insurance</span><span class="chip ok">Current</span></div><div class="li"><span class="grow">W-9</span><span class="chip ok">On file</span></div><div class="li"><span class="grow">State registration</span><span class="chip ok">Active</span></div></div>
+</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="active" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+
+<section class="app" data-screen="payouts"><header class="app-h"><h2>Earnings</h2></header>
+<div class="app-b">
+  <div class="card"><div class="eyebrow">Pipeline glance</div><div class="row between"><b style="font-size:24px">$6,430</b><span class="chip later">Tracking only</span></div>
+    <p class="small muted" style="margin-top:8px">Payouts are not processed in the launch build. These numbers help you plan. Payment setup comes later.</p></div>
+  <div class="stack" style="margin-top:12px">
+    <div class="file"><span class="ic">$</span><span class="grow">REQ-1031 · Gutter cleaning</span><b>$980</b></div>
+    <div class="file"><span class="ic">$</span><span class="grow">REQ-1036 · Water mitigation</span><b>$1,200</b></div>
+    <div class="file"><span class="ic">$</span><span class="grow">REQ-1024 · Door closer</span><b>$260</b></div>
+  </div>
+</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="active" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+
+<section class="app" data-screen="profile"><header class="app-h"><h2>Company &amp; crew</h2></header>
+<div class="app-b"><p><b>Bluewater Flooring LLC</b></p><p class="small muted">Sam Rivera · King, Pierce · flooring &amp; drywall</p>
+<p class="small" style="margin-top:8px">Joined by invite after staff vetting, with a watched trial first job (option A).</p>
+<div class="list" style="margin-top:12px"><div class="li">Ana Kim · field</div><div class="li">Ben Okafor · field</div></div>
+</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="active" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+
+</div></div>
+<aside class="phone-notes">
+<div class="notes-card glass" data-note="opps opp"><h3>Fast in the field</h3><ul><li>Swipe right to accept, left to decline.</li><li>A big primary button is always there if you don’t want to swipe.</li><li>Earnings are a glance only — no payments at launch.</li></ul></div>
+<div class="notes-card glass" data-note="checkin" hidden><h3>Camera first</h3><p class="small muted">Check-in starts on the viewfinder. GPS time and a photo are the point, not a form.</p></div>
+</aside>
+</div>
+<div id="cmdk" class="cmdk" role="dialog" aria-modal="true" aria-label="Command bar">
+  <div class="box">
+    <input type="search" placeholder="Search jobs, people, actions…" aria-label="Command bar" autocomplete="off">
+    <div class="res" id="cmdk-results"><button type="button" data-cmd="Opportunities" data-href="#opps"><span>Opportunities</span><small>Swipe to accept</small></button>
+<button type="button" data-cmd="Open packet" data-href="#opp"><span>Open packet</span><small>Hallway ceiling</small></button>
+<button type="button" data-cmd="Camera check-in" data-href="#checkin"><span>Camera check-in</span><small>REQ-1042</small></button>
+<button type="button" data-cmd="Earnings and pipeline" data-href="#payouts"><span>Earnings and pipeline</span><small>Tracking only</small></button>
+<button type="button" data-cmd="Submit a bid" data-href="#bid"><span>Submit a bid</span><small>Wizard</small></button>
+<button type="button" data-cmd="Compliance documents" data-href="#compliance"><span>Compliance documents</span><small>Expiry</small></button>
+<button type="button" data-cmd="Punch list" data-href="#punch"><span>Punch list</span><small>Job tools</small></button>
+<button type="button" data-cmd="Desktop portal" data-href="../vendor-portal/index.html"><span>Desktop portal</span><small>Office view</small></button></div>
+  </div>
+</div>
+<script src="../assets/js/app.js"></script>
+</body></html>

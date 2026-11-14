@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="googlebot" content="noindex,nofollow">
+<meta name="theme-color" content="#061d2a">
+<title>Customer portal · IVO Platform prototype V02 (sample data)</title>
+<link rel="icon" href="../assets/img/favicon.png"><link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/app.css">
+</head><body class="">
+<a class="tiny" href="#main" style="position:absolute;left:-999px;top:auto">Skip to content</a>
+<div class="proto-banner"><b>Prototype – sample data</b><span class="hide-narrow">V02 · fictional companies and people · nothing is sent or saved</span>
+<nav class="ver-switch" aria-label="Prototype version"><a href="../../index.html">V01</a><span class="on">V02</span></nav>
+<span class="grow"></span>
+<button class="search-pill" type="button" data-cmd-open style="min-width:auto;padding:4px 10px">Search or jump <span class="kbd">⌘K</span></button>
+<button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to light mode" title="Light or dark mode">◐</button>
+<a href="../index.html">All screens</a></div>
+
+<div class="shell">
+  <aside class="side">
+    <div class="brand"><img src="../assets/img/ivo-mark-white.png" alt=""><div><b>IVO</b><span>CUSTOMER PORTAL · V02</span></div></div>
+    
+    <a class="nav active" href="#dashboard" data-match="dashboard">Home</a>
+    <a class="nav" href="#requests" data-match="requests">Requests</a>
+    <a class="nav" href="#job" data-match="job">Job timeline</a>
+    <a class="nav" href="#new" data-match="new">New request</a>
+    <a class="nav" href="#approvals" data-match="approvals">Approvals</a>
+    <a class="nav" href="#documents" data-match="documents">Documents</a>
+    <a class="nav" href="#properties" data-match="properties">Properties</a>
+    <a class="nav" href="#users" data-match="users">Users</a>
+    <a class="nav" href="#invoices" data-match="invoices">Invoices (Later)</a>
+    
+    <div class="hint">Type <span class="kbd">⌘K</span> to search. Same workspace as the phone app.</div>
+    <a class="nav" href="../customer/index.html">Phone app →</a>
+  </aside>
+  <div class="main" id="main" data-router>
+    <div class="topb"><button class="menu-btn" type="button" aria-label="Open menu">☰</button>
+      <h2>Harborline Property Group</h2>
+      <button class="search-pill grow" type="button" data-cmd-open>Search this workspace… <span class="kbd">⌘K</span></button>
+      <span class="chip offline">Offline-ready</span>
+    </div>
+    
+<section class="content app" data-screen="dashboard">
+  <div class="now-card">
+    <div class="eyebrow">What’s happening now</div>
+    <div class="row between wrap"><h3>Unit 3B ceiling leak</h3><span class="chip ok">On site</span></div>
+    
+<div class="flash" aria-label="Job status, readable in about three seconds">
+  <div class="st done">Received</div>
+  <div class="st done">Reviewed</div>
+  <div class="st done">Crew assigned</div>
+  <div class="st now">On site</div>
+  <div class="st">Sign-off</div>
+</div>
+
+    <div class="countdown" data-sla="182" data-warn="60" style="margin-top:12px"><span class="tiny muted">Next update due</span><span class="v">—</span></div>
+    <a class="btn" style="margin-top:12px" href="#approvals">Approve change order · +$620</a>
+  </div>
+  <div class="grid g3" style="margin-top:8px">
+    <div class="metric glass"><div class="l">Open requests</div><div class="v">2</div></div>
+    <div class="metric glass"><div class="l">Waiting on you</div><div class="v">1</div></div>
+    <div class="metric glass"><div class="l">Properties</div><div class="v">4</div></div>
+  </div>
+</section>
+<section class="content app" data-screen="requests">
+  <div class="card pad0"><table class="t"><thead><tr><th>Request</th><th>Property</th><th>Status</th></tr></thead><tbody>
+    <tr><td><a href="#job">REQ-1042 · Unit 3B ceiling leak</a></td><td>Cedar Court</td><td><span class="chip ok">On site</span></td></tr>
+    <tr><td>REQ-1059 · Hallway ceiling</td><td>Cedar Court Bldg B</td><td><span class="chip">Scheduled</span></td></tr>
+  </tbody></table></div>
+</section>
+<section class="content app" data-screen="job">
+  <div class="card"><div class="row between"><h3>REQ-1042 · Ceiling leak</h3><span class="chip ok">On site</span></div>
+<div class="flash" aria-label="Job status, readable in about three seconds">
+  <div class="st done">Received</div>
+  <div class="st done">Reviewed</div>
+  <div class="st done">Crew assigned</div>
+  <div class="st now">On site</div>
+  <div class="st">Sign-off</div>
+</div>
+<div class="tlive"><div class="tev"><div class="m appr"></div><div><div class="row between"><b>Request received</b><span class="when">Mon 8:12 AM</span></div><p class="small muted">Maya Ortiz submitted photos and a $4,800 not-to-exceed.</p><span class="chip">REQ-1042</span></div></div><div class="tev"><div class="m msg"></div><div><div class="row between"><b>IVO reviewed</b><span class="when">Mon 8:40 AM</span></div><p class="small muted">Dana confirmed drywall & paint, Urgent tier. Rules suggested Bluewater Flooring.</p><span class="chip">Review</span></div></div><div class="tev"><div class="m appr"></div><div><div class="row between"><b>Contractor confirmed</b><span class="when">Mon 1:05 PM</span></div><p class="small muted">Sam Rivera accepted the packet. Address released after accept.</p><span class="chip">Award</span></div></div><div class="tev"><div class="m photo"></div><div><div class="row between"><b>On site</b><span class="when">Tue 9:02 AM</span></div><p class="small muted">Ana Kim checked in with GPS and a photo of the ceiling.</p><span class="chip">Check-in</span></div></div><div class="tev"><div class="m co"></div><div><div class="row between"><b>Change order CO-2</b><span class="when">Tue 11:20 AM</span></div><p class="small muted">Sistering a joist, +$620. Maya can approve in one tap. Waiting.</p><span class="chip">Needs approval</span></div></div><div class="tev" style="opacity:.55"><div class="m msg"></div><div><div class="row between"><b>Closeout and invoice</b><span class="when">—</span></div><p class="small muted">Later, after punch and sign-off.</p><span class="chip">Later</span></div></div></div><a class="btn" style="margin-top:12px" href="#approvals">Approve change order · +$620</a></div>
+</section>
+<section class="content app" data-screen="new">
+  <div class="card" data-wizard data-finish="requests">
+    <div class="row between"><span class="tiny muted" data-count></span><span class="tiny gold" data-step-label></span></div><div class="steps" style="margin:8px 0"></div>
+    <div class="wstep" data-label="Where"><h3>Where?</h3><div class="field"><label class="f">Property</label><input class="inp" value="Cedar Court Apartments"></div></div>
+    <div class="wstep" data-label="Trade"><h3>Trade</h3><div class="opts" data-multi><button class="on">Drywall</button><button class="on">Paint</button></div></div>
+    <div class="wstep" data-label="Details"><h3>Scope &amp; NTE</h3><textarea class="inp" rows="3">Hallway ceiling stain, about 4 sq ft.</textarea><div class="field" style="margin-top:8px"><label class="f">NTE</label><input class="inp" value="2500"></div>
+      <button class="drop" data-add-thumb="#pthumbs" style="margin-top:8px">📷 Photos</button><div class="thumbs" id="pthumbs" style="margin-top:8px"></div>
+      <button class="drop" data-add-file="#pfiles" style="margin-top:8px">⇪ Files</button><div id="pfiles" class="stack s8" style="margin-top:8px"></div>
+    </div>
+    <div class="row" style="margin-top:12px"><button class="btn line" data-prev>Back</button><button class="btn grow" data-next data-last-label="Send request">Continue</button></div>
+  </div>
+</section>
+<section class="content app" data-screen="approvals">
+  <div class="card" data-item>
+    <div class="eyebrow">Needs your approval</div>
+    <h3>CO-2 · sister a joist · +$620</h3>
+    <p class="small muted">New total $4,970 vs original NTE $4,800.</p>
+    <button class="btn lg" data-set="Approved|ok" data-toast="Approved (prototype)." data-hide-on-set>Approve +$620</button>
+    <div data-done hidden class="note" style="margin-top:10px">Approved. IVO still confirms.</div>
+    <span class="chip" data-status hidden></span>
+  </div>
+</section>
+<section class="content app" data-screen="documents">
+  <div class="file"><span class="ic">PDF</span><span class="grow">REQ-1042 closeout package (sample)</span></div>
+</section>
+<section class="content app" data-screen="properties">
+  <div class="card"><b>Cedar Court Apartments</b><p class="small muted">410 Sample Ave, Tacoma WA · 4 open or recent jobs</p></div>
+</section>
+<section class="content app" data-screen="users">
+  <div class="list"><div class="li"><span class="grow">Maya Ortiz · admin</span></div><div class="li"><span class="grow">Jordan Lee · requester</span></div></div>
+</section>
+<section class="content app" data-screen="invoices">
+  <div class="later" id="cinv"><span class="chip later">Later</span> Invoices and payments are out of launch scope.</div>
+</section>
+
+  </div>
+</div>
+
+<div id="cmdk" class="cmdk" role="dialog" aria-modal="true" aria-label="Command bar">
+  <div class="box">
+    <input type="search" placeholder="Search jobs, people, actions…" aria-label="Command bar" autocomplete="off">
+    <div class="res" id="cmdk-results"><button type="button" data-cmd="What's happening now" data-href="#home"><span>What's happening now</span><small>Home</small></button>
+<button type="button" data-cmd="Approve the change order" data-href="#approve"><span>Approve the change order</span><small>One tap</small></button>
+<button type="button" data-cmd="New request" data-href="#new"><span>New request</span><small>8-step wizard</small></button>
+<button type="button" data-cmd="Emergency hold button" data-href="#emergency"><span>Emergency hold button</span><small>Press and hold</small></button>
+<button type="button" data-cmd="Job timeline" data-href="#job"><span>Job timeline</span><small>REQ-1042</small></button>
+<button type="button" data-cmd="Open documents" data-href="#docs"><span>Open documents</span><small>Files</small></button>
+<button type="button" data-cmd="Company users" data-href="#users"><span>Company users</span><small>Invites</small></button>
+<button type="button" data-cmd="Phone app" data-href="../customer/index.html#home"><span>Phone app</span><small>Same workspace</small></button></div>
+  </div>
+</div>
+<script src="../assets/js/app.js"></script>
+</body></html>

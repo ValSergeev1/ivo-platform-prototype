@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="googlebot" content="noindex,nofollow">
+<meta name="theme-color" content="#061d2a">
+<title>Vendor portal · IVO Platform prototype V02 (sample data)</title>
+<link rel="icon" href="../assets/img/favicon.png"><link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/app.css">
+</head><body class="">
+<a class="tiny" href="#main" style="position:absolute;left:-999px;top:auto">Skip to content</a>
+<div class="proto-banner"><b>Prototype – sample data</b><span class="hide-narrow">V02 · fictional companies and people · nothing is sent or saved</span>
+<nav class="ver-switch" aria-label="Prototype version"><a href="../../index.html">V01</a><span class="on">V02</span></nav>
+<span class="grow"></span>
+<button class="search-pill" type="button" data-cmd-open style="min-width:auto;padding:4px 10px">Search or jump <span class="kbd">⌘K</span></button>
+<button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to light mode" title="Light or dark mode">◐</button>
+<a href="../index.html">All screens</a></div>
+
+<div class="shell">
+  <aside class="side">
+    <div class="brand"><img src="../assets/img/ivo-mark-white.png" alt=""><div><b>IVO</b><span>VENDOR PORTAL · V02</span></div></div>
+    
+    <a class="nav active" href="#overview" data-match="overview">Overview</a>
+    <a class="nav" href="#opps" data-match="opps">Opportunities</a>
+    <a class="nav" href="#packet" data-match="packet">Packet</a>
+    <a class="nav" href="#bids" data-match="bids">Bids</a>
+    <a class="nav" href="#jobs" data-match="jobs job">Jobs</a>
+    <a class="nav" href="#compliance" data-match="compliance">Compliance</a>
+    <a class="nav" href="#company" data-match="company">Company &amp; crew</a>
+    <a class="nav" href="#payouts" data-match="payouts">Earnings (Later)</a>
+    
+    <div class="hint">Type <span class="kbd">⌘K</span> to search. Same workspace as the phone app.</div>
+    <a class="nav" href="../contractor/index.html">Phone app →</a>
+  </aside>
+  <div class="main" id="main" data-router>
+    <div class="topb"><button class="menu-btn" type="button" aria-label="Open menu">☰</button>
+      <h2>Bluewater Flooring LLC</h2>
+      <button class="search-pill grow" type="button" data-cmd-open>Search this workspace… <span class="kbd">⌘K</span></button>
+      <span class="chip offline">Offline-ready</span>
+    </div>
+    
+<section class="content app" data-screen="overview">
+  <div class="grid g3">
+    <div class="metric glass"><div class="l">Scorecard</div><div class="v">4.7</div></div>
+    <div class="metric glass"><div class="l">Open jobs</div><div class="v">2</div></div>
+    <div class="metric glass"><div class="l">Pipeline (tracking)</div><div class="v">$2,500</div></div>
+  </div>
+  <div class="card"><div class="eyebrow">Why you were picked · REQ-1042</div>
+    <span class="chip gold">Drywall in Pierce</span><span class="chip ok">COI current</span><span class="chip ok">Score 4.7</span><span class="chip">Capacity open</span>
+    <p class="small muted" style="margin-top:8px">Rules, not an AI model. A person at IVO still approved the invite.</p>
+  </div>
+  
+<div class="map-wrap glass" id="coverage-map">
+<svg viewBox="0 0 400 420" role="img" aria-label="Map of job sites and contractors across Washington, Oregon, Idaho and Northern California">
+  <title>Coverage map: Washington, Oregon, Idaho and Northern California</title>
+  <text x="16" y="22" fill="currentColor" font-size="11" letter-spacing="1.6" font-weight="600">WA · OR · ID · NORTHERN CA</text>
+  <g fill="var(--map-fill)" stroke="var(--map-stroke)" stroke-width="1.2">
+    <path d="M48 40 h128 l10 18 -6 66 -34 10 H52 l-12 -28 8-48 z"/>
+    <path d="M48 136 h96 l36 -10 14 16 v76 l-18 12 H50 l6-40 z"/>
+    <path d="M186 40 h88 l12 38 -28 22 8 48 -18 78 -42 8 -14-78 6-28 -8-80 z"/>
+    <path d="M50 252 h120 l22 -10 12 28 -38 68 -78 18 -26-38 8-48 z"/>
+    <path d="M62 352 128 372 148 404 54 414 z" opacity=".35" stroke="none"/>
+  </g>
+  <g fill="currentColor" opacity=".7" font-size="12" font-weight="600">
+    <text x="92" y="96">WA</text><text x="92" y="206">OR</text><text x="226" y="150">ID</text><text x="88" y="314">N. CA</text>
+  </g>
+  <g class="map-pin urgent" data-map-go="#jobs" tabindex="0" role="link" aria-label="Tacoma: Unit 3B ceiling leak, on site">
+    <circle cx="108" cy="108" r="6"/><text class="lbl" x="118" y="104">Tacoma · REQ-1042 on site</text>
+  </g>
+  <g class="map-pin" data-map-go="#jobs" tabindex="0" role="link" aria-label="Lynnwood: supply line leak, waiting on contractor">
+    <circle cx="100" cy="58" r="5"/><text class="lbl" x="110" y="54">Lynnwood · plumbing offer</text>
+  </g>
+  <g class="map-pin" tabindex="0" role="img" aria-label="Bellevue: lobby door closer, scheduled">
+    <circle cx="122" cy="70" r="5"/><text class="lbl" x="132" y="84">Bellevue · scheduled</text>
+  </g>
+  <g class="map-pin" tabindex="0" role="img" aria-label="Portland coverage, 2 contractors">
+    <circle cx="96" cy="196" r="5"/><text class="lbl" x="106" y="192">Portland · 2 contractors</text>
+  </g>
+  <g class="map-pin" tabindex="0" role="img" aria-label="Boise coverage, 1 contractor">
+    <circle cx="236" cy="168" r="5"/><text class="lbl" x="246" y="164">Boise · 1 contractor</text>
+  </g>
+  <g class="map-pin" tabindex="0" role="img" aria-label="Redding coverage, ready to route">
+    <circle cx="86" cy="300" r="5"/><text class="lbl" x="96" y="296">Redding · coverage</text>
+  </g>
+</svg>
+<div class="map-legend"><span class="chip bad">On site / urgent</span><span class="chip gold">Active job</span><span class="chip">Coverage only</span></div>
+</div>
+
+</section>
+<section class="content app" data-screen="opps">
+  <div class="card"><div class="row between"><h3>Hallway ceiling repair</h3><span class="chip gold">Direct offer</span></div><p class="small muted">Tacoma · NTE $2,500 · respond by Fri Nov 20, 5:00 PM PT</p><a class="btn" href="#packet">Review packet</a></div>
+</section>
+<section class="content app" data-screen="packet">
+  <div class="card" data-wizard id="vbid" data-finish="bids">
+    <h3>Packet · REQ-1059</h3>
+    <div class="row between"><span class="tiny muted" data-count></span><span class="tiny gold" data-step-label></span></div><div class="steps" style="margin:8px 0"></div>
+    <div class="wstep" data-label="Scope"><p>Hallway ceiling repair, Bldg B. Exact address after accept.</p></div>
+    <div class="wstep" data-label="Bid"><div class="field"><label class="f">Amount</label><input class="inp" value="2350"></div><button class="drop" data-add-file="#vbfiles">⇪ File</button><div id="vbfiles" class="stack s8" style="margin-top:8px"></div></div>
+    <div class="row" style="margin-top:12px"><button class="btn line" data-prev>Back</button><button class="btn grow" data-next data-last-label="Send bid">Continue</button></div>
+  </div>
+</section>
+<section class="content app" data-screen="bids">
+  <div class="card"><b>REQ-1059 bid · $2,350</b><p class="small muted">Submitted. Waiting on IVO’s award approval.</p></div>
+</section>
+<section class="content app" data-screen="jobs">
+  <a class="card" href="#job" style="display:block"><div class="row between"><b>REQ-1042 · Unit 3B ceiling leak</b><span class="chip info">In progress</span></div></a>
+</section>
+<section class="content app" data-screen="job">
+  <div class="card"><h3>REQ-1042</h3><div class="tlive"><div class="tev"><div class="m appr"></div><div><div class="row between"><b>Request received</b><span class="when">Mon 8:12 AM</span></div><p class="small muted">Maya Ortiz submitted photos and a $4,800 not-to-exceed.</p><span class="chip">REQ-1042</span></div></div><div class="tev"><div class="m msg"></div><div><div class="row between"><b>IVO reviewed</b><span class="when">Mon 8:40 AM</span></div><p class="small muted">Dana confirmed drywall & paint, Urgent tier. Rules suggested Bluewater Flooring.</p><span class="chip">Review</span></div></div><div class="tev"><div class="m appr"></div><div><div class="row between"><b>Contractor confirmed</b><span class="when">Mon 1:05 PM</span></div><p class="small muted">Sam Rivera accepted the packet. Address released after accept.</p><span class="chip">Award</span></div></div><div class="tev"><div class="m photo"></div><div><div class="row between"><b>On site</b><span class="when">Tue 9:02 AM</span></div><p class="small muted">Ana Kim checked in with GPS and a photo of the ceiling.</p><span class="chip">Check-in</span></div></div><div class="tev"><div class="m co"></div><div><div class="row between"><b>Change order CO-2</b><span class="when">Tue 11:20 AM</span></div><p class="small muted">Sistering a joist, +$620. Maya can approve in one tap. Waiting.</p><span class="chip">Needs approval</span></div></div><div class="tev" style="opacity:.55"><div class="m msg"></div><div><div class="row between"><b>Closeout and invoice</b><span class="when">—</span></div><p class="small muted">Later, after punch and sign-off.</p><span class="chip">Later</span></div></div></div><a class="btn" href="#jobs">Back to jobs</a></div>
+</section>
+<section class="content app" data-screen="compliance">
+  <div class="list"><div class="li"><span class="grow">Certificate of insurance</span><span class="chip ok">Current</span></div><div class="li"><span class="grow">W-9</span><span class="chip ok">On file</span></div></div>
+</section>
+<section class="content app" data-screen="company">
+  <div class="card"><b>Bluewater Flooring LLC</b><p class="small muted">Crew: Ana Kim, Ben Okafor. Joined by invite, option A, after a watched trial job.</p></div>
+</section>
+<section class="content app" data-screen="payouts">
+  <div class="later"><span class="chip later">Later</span> Earnings are shown as tracking only. Payouts are not processed at launch.</div>
+</section>
+
+  </div>
+</div>
+
+<div id="cmdk" class="cmdk" role="dialog" aria-modal="true" aria-label="Command bar">
+  <div class="box">
+    <input type="search" placeholder="Search jobs, people, actions…" aria-label="Command bar" autocomplete="off">
+    <div class="res" id="cmdk-results"><button type="button" data-cmd="Opportunities" data-href="#opps"><span>Opportunities</span><small>Swipe to accept</small></button>
+<button type="button" data-cmd="Open packet" data-href="#opp"><span>Open packet</span><small>Hallway ceiling</small></button>
+<button type="button" data-cmd="Camera check-in" data-href="#checkin"><span>Camera check-in</span><small>REQ-1042</small></button>
+<button type="button" data-cmd="Earnings and pipeline" data-href="#payouts"><span>Earnings and pipeline</span><small>Tracking only</small></button>
+<button type="button" data-cmd="Submit a bid" data-href="#bid"><span>Submit a bid</span><small>Wizard</small></button>
+<button type="button" data-cmd="Compliance documents" data-href="#compliance"><span>Compliance documents</span><small>Expiry</small></button>
+<button type="button" data-cmd="Punch list" data-href="#punch"><span>Punch list</span><small>Job tools</small></button>
+<button type="button" data-cmd="Phone app" data-href="../contractor/index.html#opps"><span>Phone app</span><small>Field view</small></button></div>
+  </div>
+</div>
+<script src="../assets/js/app.js"></script>
+</body></html>
