@@ -20,9 +20,9 @@
 <nav class="phone-index" aria-label="Screens">
   <div class="eyebrow">Contractor app · phone</div><h1>Bluewater Flooring LLC</h1><p class="small muted">Signed in as Sam Rivera (sample), owner.</p>
   <div class="grp">Getting in</div><a class="nav" href="#signin">1 · Sign in</a>
-  <div class="grp">Work</div><a class="nav" href="#opps">2 · Opportunities</a><a class="nav" href="#opp">3 · Packet</a><a class="nav" href="#bid">4 · Submit a bid</a><a class="nav" href="#bid-sent">5 · Bid sent</a>
-  <div class="grp">On site</div><a class="nav" href="#jobs">6 · My jobs &amp; schedule</a><a class="nav" href="#job">7 · Job</a><a class="nav" href="#checkin">8 · Camera check-in</a><a class="nav" href="#punch">9 · Punch list</a><a class="nav" href="#co">10 · Change-order request</a><a class="nav" href="#closeout">11 · Closeout</a>
-  <div class="grp">Company</div><a class="nav" href="#compliance">12 · Compliance</a><a class="nav" href="#payouts">13 · Earnings (tracking only)</a><a class="nav" href="#profile">14 · Company &amp; crew</a>
+  <div class="grp">Work</div><a class="nav" href="#opps">2 · Opportunities</a><a class="nav" href="#opp">3 · Packet</a><a class="nav" href="#bid">4 · Submit a bid</a><a class="nav" href="#bid-sent">5 · Bid sent</a><a class="nav" href="#bidconfirm">6 · Bid confirmation request</a>
+  <div class="grp">On site</div><a class="nav" href="#jobs">7 · My jobs &amp; schedule</a><a class="nav" href="#job">8 · Job</a><a class="nav" href="#checkin">9 · Camera check-in</a><a class="nav" href="#punch">10 · Punch list</a><a class="nav" href="#co">11 · Change-order request</a><a class="nav" href="#closeout">12 · Closeout</a>
+  <div class="grp">Company</div><a class="nav" href="#compliance">13 · Compliance</a><a class="nav" href="#payouts">14 · Earnings (tracking only)</a><a class="nav" href="#profile">15 · Company &amp; crew</a>
   <p style="margin-top:16px"><a class="btn line sm" href="../vendor-portal/index.html">Desktop portal view →</a></p>
 </nav>
 <div class="phone"><div class="notch"></div><div data-router>
@@ -42,6 +42,11 @@
     <div class="row between"><div><div class="tiny muted">This month (tracking)</div><b style="font-size:22px">$6,430</b></div><div style="text-align:right"><div class="tiny muted">In pipeline</div><b>$2,500</b></div></div>
     <p class="tiny muted" style="margin-top:8px">Tracking only — payouts are not in the launch build. <span class="chip later">Later</span></p>
   </div>
+  <a class="card" href="#bidconfirm" style="display:block;margin-bottom:12px">
+    <div class="row between"><div class="eyebrow">Needs a reply</div><span class="chip gold">Bid confirmation</span></div>
+    <h3 style="margin-top:4px">Cedar Ridge Elementary · flooring</h3>
+    <p class="small muted">Confirm $86,400, dates Nov 30, 2026-Jan 15, 2027, and capacity if IVO is awarded.</p>
+  </a>
   <div class="swipe-deck">
     <article class="swipe-card" data-swipe data-swipe-yes="Accepted. Opening the packet." data-swipe-no="Declined (prototype)." data-go-yes="opp">
       <span class="swipe-hint yes">ACCEPT</span><span class="swipe-hint no">DECLINE</span>
@@ -52,7 +57,7 @@
     </article>
   </div>
   <p class="tiny muted" style="margin-top:10px">Prefer buttons? Open the packet and use Accept there. Address is hidden until you accept.</p>
-</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="active" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="active" href="#opps" data-match="opps opp bid bid-sent bidconfirm">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
 
 <section class="app" data-screen="opp"><header class="app-h"><a href="#opps">‹</a><h2>Packet</h2></header>
 <div class="app-b">
@@ -61,7 +66,7 @@
   <div class="list"><div class="li"><span class="dot ok"></span>Scope, 3 files, 2 photos</div><div class="li"><span class="dot ok"></span>Deadline Fri Nov 20, 5:00 PM PT</div><div class="li"><span class="dot warn"></span>Address locked until accept</div></div>
   <div class="row" style="margin-top:16px"><a class="btn grow" href="#jobs" data-toast="Accepted (prototype).">Accept</a><a class="btn line grow" href="#bid">Bid</a></div>
   <button class="btn bad block" style="margin-top:8px" data-toast="Declined (prototype).">Decline</button>
-</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="active" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="active" href="#opps" data-match="opps opp bid bid-sent bidconfirm">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
 
 <section class="app" data-screen="bid"><header class="app-h"><a href="#opp">‹</a><h2>Submit a bid</h2></header>
 <div class="app-b" data-wizard data-finish="bid-sent" data-reset>
@@ -72,15 +77,32 @@
     <button class="drop" style="margin-top:8px" data-add-file="#kbfiles">⇪ Attach a file</button><div id="kbfiles" class="stack s8" style="margin-top:8px"></div></div>
   <div class="wstep" data-label="Review"><h3>Review bid</h3><div class="sheet"><dl class="kv" style="grid-template-columns:90px 1fr"><dt>Amount</dt><dd>$2,350</dd><dt>Start</dt><dd>Mon Nov 23</dd></dl></div></div>
   <div class="row" style="margin-top:16px"><button class="btn line" data-prev>Back</button><button class="btn grow" data-next data-last-label="Send bid">Continue</button></div>
-</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="active" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="active" href="#opps" data-match="opps opp bid bid-sent bidconfirm">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
 
-<section class="app" data-screen="bid-sent"><div class="app-b" style="padding:40px 22px;text-align:center"><div class="eyebrow">Sent</div><h2>Bid submitted</h2><p class="small muted" style="margin:10px 0 18px">IVO will compare bids and approve any award before you’re contacted with a decision.</p><a class="btn block" href="#opps">Back to opportunities</a></div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="active" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+<section class="app" data-screen="bid-sent"><div class="app-b" style="padding:40px 22px;text-align:center"><div class="eyebrow">Sent</div><h2>Bid submitted</h2><p class="small muted" style="margin:10px 0 18px">IVO will compare bids and approve any award before you’re contacted with a decision.</p><a class="btn block" href="#opps">Back to opportunities</a></div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="active" href="#opps" data-match="opps opp bid bid-sent bidconfirm">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+
+<section class="app" data-screen="bidconfirm"><header class="app-h"><a href="#opps">‹</a><h2>Bid confirmation</h2></header>
+<div class="app-b" data-item>
+  <div class="eyebrow">BID-2201 · IVO is bidding as a sub</div>
+  <h3>Cedar Ridge Elementary modernization</h3>
+  <p class="small muted">Flooring · LVP, 6,200 SF. IVO needs you to confirm price, dates and capacity if they are awarded the work.</p>
+  <div class="sheet" style="margin:12px 0"><dl class="kv" style="grid-template-columns:110px 1fr">
+    <dt>Your price</dt><dd>$86,400</dd>
+    <dt>Dates</dt><dd>Nov 30, 2026-Jan 15, 2027</dd>
+    <dt>Capacity</dt><dd>Can you perform the work if IVO wins?</dd>
+  </dl></div>
+  <button class="btn block lg" data-set="Confirmed|ok" data-toast="Confirmed (prototype). IVO was not notified by a live message.">Confirm this price and these dates</button>
+  <div class="field" style="margin-top:16px"><label class="f">Or adjust your price</label><input class="inp" value="86400" inputmode="numeric"></div>
+  <button class="btn line block" data-set="Price changed|warn" data-toast="Price change noted (prototype). Nothing was sent.">Send a new price</button>
+  <button class="btn bad block" style="margin-top:8px" data-set="Declined|bad" data-toast="Marked declined (prototype).">Not available</button>
+  <span class="chip" data-status hidden style="margin-top:10px"></span>
+</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="active" href="#opps" data-match="opps opp bid bid-sent bidconfirm">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
 
 <section class="app" data-screen="jobs"><header class="app-h"><h2>Jobs &amp; schedule</h2></header>
 <div class="app-b"><div class="stack">
   <a class="card" href="#job"><div class="row between"><b>Ceiling leak, drywall &amp; paint</b><span class="chip info">In progress</span></div><p class="tiny muted">REQ-1042 · Cedar Court Unit 3B · today 9:00 AM–3:00 PM</p></a>
   <a class="card" href="#job"><div class="row between"><b>Hallway ceiling repair</b><span class="chip">Scheduled</span></div><p class="tiny muted">REQ-1059 · Mon 8:00 AM</p></a>
-</div></div><nav class="tabbar" aria-label="Main"><a class="active" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+</div></div><nav class="tabbar" aria-label="Main"><a class="active" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent bidconfirm">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
 
 <section class="app" data-screen="job"><header class="app-h"><a href="#jobs">‹</a><h2>REQ-1042</h2></header>
 <div class="app-b">
@@ -89,7 +111,7 @@
   <div class="card" style="margin:10px 0"><div class="row between"><span>Approved (NTE)</span><b>$4,800</b></div><div class="prog warn" style="margin:6px 0"><i style="width:91%"></i></div><p class="tiny muted">Your quote $4,350 · CO-2 +$620 pending</p></div>
   <div class="tlive"><div class="tev"><div class="m appr"></div><div><div class="row between"><b>Request received</b><span class="when">Mon 8:12 AM</span></div><p class="small muted">Maya Ortiz submitted photos and a $4,800 not-to-exceed.</p><span class="chip">REQ-1042</span></div></div><div class="tev"><div class="m msg"></div><div><div class="row between"><b>IVO reviewed</b><span class="when">Mon 8:40 AM</span></div><p class="small muted">Dana confirmed drywall & paint, Urgent tier. Rules suggested Bluewater Flooring.</p><span class="chip">Review</span></div></div><div class="tev"><div class="m appr"></div><div><div class="row between"><b>Contractor confirmed</b><span class="when">Mon 1:05 PM</span></div><p class="small muted">Sam Rivera accepted the packet. Address released after accept.</p><span class="chip">Award</span></div></div><div class="tev"><div class="m photo"></div><div><div class="row between"><b>On site</b><span class="when">Tue 9:02 AM</span></div><p class="small muted">Ana Kim checked in with GPS and a photo of the ceiling.</p><span class="chip">Check-in</span></div></div><div class="tev"><div class="m co"></div><div><div class="row between"><b>Change order CO-2</b><span class="when">Tue 11:20 AM</span></div><p class="small muted">Sistering a joist, +$620. Maya can approve in one tap. Waiting.</p><span class="chip">Needs approval</span></div></div><div class="tev" style="opacity:.55"><div class="m msg"></div><div><div class="row between"><b>Closeout and invoice</b><span class="when">—</span></div><p class="small muted">Later, after punch and sign-off.</p><span class="chip">Later</span></div></div></div>
   <a class="btn block" style="margin-top:12px" href="#checkin">Open camera check-in</a>
-</div><nav class="tabbar" aria-label="Main"><a class="active" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+</div><nav class="tabbar" aria-label="Main"><a class="active" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent bidconfirm">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
 
 <section class="app" data-screen="checkin"><header class="app-h"><a href="#job">‹</a><h2>Check in</h2><span class="chip offline">Works offline</span></header>
 <div class="app-b" data-item>
@@ -99,17 +121,17 @@
   <div class="thumbs" id="kthumbs" style="margin:12px 0"></div>
   <button class="btn lg block" data-set="Checked in|ok" data-toast="Checked in with photo and GPS (prototype).">Complete check-in</button>
   <span class="chip" data-status hidden style="margin-top:8px"></span>
-</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="active" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent bidconfirm">Opps</a><a class="active" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
 
 <section class="app" data-screen="punch"><header class="app-h"><a href="#job">‹</a><h2>Punch list</h2></header>
-<div class="app-b"><div class="list"><div class="li"><span class="dot ok"></span><span class="grow">Close ceiling opening</span></div><div class="li"><span class="dot ok"></span><span class="grow">Texture to match</span></div><div class="li"><span class="dot warn"></span><span class="grow">Final paint after dry</span></div></div></div><nav class="tabbar" aria-label="Main"><a class="active" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+<div class="app-b"><div class="list"><div class="li"><span class="dot ok"></span><span class="grow">Close ceiling opening</span></div><div class="li"><span class="dot ok"></span><span class="grow">Texture to match</span></div><div class="li"><span class="dot warn"></span><span class="grow">Final paint after dry</span></div></div></div><nav class="tabbar" aria-label="Main"><a class="active" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent bidconfirm">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
 
 <section class="app" data-screen="co"><header class="app-h"><a href="#job">‹</a><h2>Change order</h2></header>
 <div class="app-b">
   <div class="field" data-nte="4800" data-spent="4350"><label class="f">Extra amount</label><input class="inp" value="620" inputmode="numeric"><div class="prog" style="margin:10px 0 6px"><i></i></div><p class="small" data-nte-out></p></div>
   <button class="drop" data-add-thumb="#cothumbs">📷 Add photos</button><div class="thumbs" id="cothumbs" style="margin-top:8px"></div>
   <button class="btn block" style="margin-top:12px" data-toast="Change order sent to IVO (prototype).">Request change order</button>
-</div><nav class="tabbar" aria-label="Main"><a class="active" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+</div><nav class="tabbar" aria-label="Main"><a class="active" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent bidconfirm">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
 
 <section class="app" data-screen="closeout"><header class="app-h"><a href="#job">‹</a><h2>Closeout</h2></header>
 <div class="app-b" data-item>
@@ -117,12 +139,12 @@
   <button class="drop" data-add-file="#kcfiles">⇪ Waiver or extra file</button><div id="kcfiles" class="stack s8" style="margin:8px 0"></div>
   <button class="btn lg block" data-set="Closeout sent|ok" data-toast="Closeout sent (prototype).">Submit closeout</button>
   <span class="chip" data-status hidden></span>
-</div><nav class="tabbar" aria-label="Main"><a class="active" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+</div><nav class="tabbar" aria-label="Main"><a class="active" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent bidconfirm">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
 
 <section class="app" data-screen="compliance"><header class="app-h"><h2>Compliance</h2></header>
 <div class="app-b">
   <div class="list"><div class="li"><span class="grow">Certificate of insurance</span><span class="chip ok">Current</span></div><div class="li"><span class="grow">W-9</span><span class="chip ok">On file</span></div><div class="li"><span class="grow">State registration</span><span class="chip ok">Active</span></div></div>
-</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="active" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent bidconfirm">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="active" href="#compliance" data-match="compliance">Docs</a><a class="" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
 
 <section class="app" data-screen="payouts"><header class="app-h"><h2>Earnings</h2></header>
 <div class="app-b">
@@ -133,17 +155,17 @@
     <div class="file"><span class="ic">$</span><span class="grow">REQ-1036 · Water mitigation</span><b>$1,200</b></div>
     <div class="file"><span class="ic">$</span><span class="grow">REQ-1024 · Door closer</span><b>$260</b></div>
   </div>
-</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="active" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent bidconfirm">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="active" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
 
 <section class="app" data-screen="profile"><header class="app-h"><h2>Company &amp; crew</h2></header>
 <div class="app-b"><p><b>Bluewater Flooring LLC</b></p><p class="small muted">Sam Rivera · King, Pierce · flooring &amp; drywall</p>
 <p class="small" style="margin-top:8px">Joined by invite after staff vetting, with a watched trial first job (option A).</p>
 <div class="list" style="margin-top:12px"><div class="li">Ana Kim · field</div><div class="li">Ben Okafor · field</div></div>
-</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="active" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
+</div><nav class="tabbar" aria-label="Main"><a class="" href="#jobs" data-match="jobs job punch co closeout">Jobs</a><a class="" href="#opps" data-match="opps opp bid bid-sent bidconfirm">Opps</a><a class="" href="#checkin" data-match="checkin">Check in</a><a class="" href="#compliance" data-match="compliance">Docs</a><a class="active" href="#profile" data-match="profile payouts signin">Profile</a></nav></section>
 
 </div></div>
 <aside class="phone-notes">
-<div class="notes-card glass" data-note="opps opp"><h3>Fast in the field</h3><ul><li>Swipe right to accept, left to decline.</li><li>A big primary button is always there if you don’t want to swipe.</li><li>Earnings are a glance only — no payments at launch.</li></ul></div>
+<div class="notes-card glass" data-note="opps opp bidconfirm"><h3>Fast in the field</h3><ul><li>Swipe right to accept, left to decline.</li><li>A big primary button is always there if you don’t want to swipe.</li><li>Earnings are a glance only — no payments at launch.</li></ul></div>
 <div class="notes-card glass" data-note="checkin" hidden><h3>Camera first</h3><p class="small muted">Check-in starts on the viewfinder. GPS time and a photo are the point, not a form.</p></div>
 </aside>
 </div>
@@ -157,6 +179,7 @@
 <button type="button" data-cmd="Submit a bid" data-href="#bid"><span>Submit a bid</span><small>Wizard</small></button>
 <button type="button" data-cmd="Compliance documents" data-href="#compliance"><span>Compliance documents</span><small>Expiry</small></button>
 <button type="button" data-cmd="Punch list" data-href="#punch"><span>Punch list</span><small>Job tools</small></button>
+<button type="button" data-cmd="Bid confirmation request" data-href="#bidconfirm"><span>Bid confirmation request</span><small>Confirm price and dates</small></button>
 <button type="button" data-cmd="Desktop portal" data-href="../vendor-portal/index.html"><span>Desktop portal</span><small>Office view</small></button></div>
   </div>
 </div>

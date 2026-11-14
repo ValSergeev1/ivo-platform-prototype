@@ -23,6 +23,7 @@
     
     <a class="nav active" href="#overview" data-match="overview">Overview</a>
     <a class="nav" href="#opps" data-match="opps">Opportunities</a>
+    <a class="nav" href="#bidconfirm" data-match="bidconfirm">Bid confirmation</a>
     <a class="nav" href="#packet" data-match="packet">Packet</a>
     <a class="nav" href="#bids" data-match="bids">Bids</a>
     <a class="nav" href="#jobs" data-match="jobs job">Jobs</a>
@@ -90,6 +91,20 @@
 </section>
 <section class="content app" data-screen="opps">
   <div class="card"><div class="row between"><h3>Hallway ceiling repair</h3><span class="chip gold">Direct offer</span></div><p class="small muted">Tacoma · NTE $2,500 · respond by Fri Nov 20, 5:00 PM PT</p><a class="btn" href="#packet">Review packet</a></div>
+  <div class="card" style="margin-top:12px"><div class="row between"><h3>Cedar Ridge Elementary · flooring</h3><span class="chip gold">Bid confirmation</span></div><p class="small muted">Confirm $86,400, dates Nov 30, 2026-Jan 15, 2027, and capacity if IVO is awarded.</p><a class="btn" href="#bidconfirm">Open request</a></div>
+</section>
+<section class="content app" data-screen="bidconfirm">
+  <div class="card" data-item>
+    <div class="eyebrow">BID-2201 · IVO is bidding as a sub</div>
+    <h3>Cedar Ridge Elementary modernization</h3>
+    <p class="small muted">Flooring · LVP, 6,200 SF. Confirm price, dates and capacity if IVO is awarded.</p>
+    <dl class="kv" style="margin:12px 0"><dt>Your price</dt><dd>$86,400</dd><dt>Dates</dt><dd>Nov 30, 2026-Jan 15, 2027</dd></dl>
+    <button class="btn" data-set="Confirmed|ok" data-toast="Confirmed (prototype). Nothing was sent.">Confirm this price and these dates</button>
+    <div class="field" style="margin-top:14px"><label class="f">Or adjust your price</label><input class="inp" value="86400" inputmode="numeric"></div>
+    <button class="btn line" data-set="Price changed|warn" data-toast="Price change noted (prototype).">Send a new price</button>
+    <button class="btn bad" data-set="Declined|bad" data-toast="Marked declined (prototype).">Not available</button>
+    <span class="chip" data-status hidden style="margin-left:8px"></span>
+  </div>
 </section>
 <section class="content app" data-screen="packet">
   <div class="card" data-wizard id="vbid" data-finish="bids">
@@ -132,6 +147,7 @@
 <button type="button" data-cmd="Submit a bid" data-href="#bid"><span>Submit a bid</span><small>Wizard</small></button>
 <button type="button" data-cmd="Compliance documents" data-href="#compliance"><span>Compliance documents</span><small>Expiry</small></button>
 <button type="button" data-cmd="Punch list" data-href="#punch"><span>Punch list</span><small>Job tools</small></button>
+<button type="button" data-cmd="Bid confirmation request" data-href="#bidconfirm"><span>Bid confirmation request</span><small>Confirm price and dates</small></button>
 <button type="button" data-cmd="Phone app" data-href="../contractor/index.html#opps"><span>Phone app</span><small>Field view</small></button></div>
   </div>
 </div>

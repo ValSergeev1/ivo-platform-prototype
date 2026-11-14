@@ -26,9 +26,11 @@
 <a class="nav" href="#approvals">Approvals</a>
 <a class="nav" href="#requests">Requests</a>
 <a class="nav" href="#job" data-match="job">Job timeline</a>
-<a class="nav" href="#bids" data-match="bid">Bid packages</a>
+<a class="nav" href="#bidding" data-match="bidpkg bidsubs bidlevel bidform bidwon bidlost">Bidding</a>
+<a class="nav" href="#bids" data-match="bid">Outbound packets</a>
 <a class="nav" href="#contractors" data-match="contractor">Network</a>
 <a class="nav" href="#applications">Applications</a>
+<a class="nav" href="#integrations">Integrations</a>
 <a class="nav" href="#team">Team & roles</a>
     <div class="hint">Type <span class="kbd">⌘K</span> to search or jump. On triage: <span class="kbd">J</span> <span class="kbd">K</span> to move, <span class="kbd">Enter</span> to open.</div>
   </aside>
@@ -37,14 +39,14 @@
       <h2>Today at IVO</h2>
       <button class="search-pill grow" type="button" data-cmd-open>Search jobs, contractors, actions… <span class="kbd">⌘K</span></button>
       <span class="chip offline">Offline-ready staff tools</span>
-      <a class="chip warn" href="#approvals">3 approvals</a>
+      <a class="chip warn" href="#approvals">5 approvals</a>
       
     </div>
     <section class="content app" data-screen="overview">
       <div class="grid g4">
         <div class="metric glass"><div class="l">SLA hit, 7 days</div><div class="v">94%</div></div>
-        <div class="metric glass"><div class="l">Open approvals</div><div class="v">3</div></div>
-        <div class="metric glass"><div class="l">Jobs this week</div><div class="v">11</div></div>
+        <div class="metric glass"><div class="l">Open approvals</div><div class="v">5</div></div>
+        <div class="metric glass"><div class="l">Bids due this week</div><div class="v">3</div></div>
         <div class="metric glass"><div class="l">At-risk timers</div><div class="v" style="color:var(--bad)">1</div></div>
       </div>
       <div class="board">
@@ -97,7 +99,8 @@
 <div class="map-legend"><span class="chip bad">On site / urgent</span><span class="chip gold">Active job</span><span class="chip">Coverage only</span></div>
 </div>
 
-      <div class="later"><span class="chip later">Later</span> AI drafting, a bid-reading engine, outreach sequences and SMS alerts will appear here only after launch.</div>
+      <div class="card"><div class="row between wrap"><div><h3>Bidding on outside contracts</h3><p class="small muted">AI reads the package, drafts sub confirmations and fills the bid form. Nothing leaves without your approval.</p></div><a class="btn" href="#bidding">Open bidding</a></div></div>
+      <div class="later"><span class="chip later">Later</span> Payments and text messages stay out of the launch build.</div>
     </section>
 <section class="content app" data-screen="map">
       <p class="small muted">Job sites and in-network contractors across Washington, Oregon, Idaho and Northern California. Built with SVG only — no map vendor, no tracking.</p>
@@ -180,6 +183,8 @@
         <div class="card" data-item><div class="row between wrap"><div><span class="chip gold">Change order</span> <b>CO-2 on REQ-1042 · +$620</b><p class="small muted">Maya Ortiz already approved in the app. New NTE $4,970.</p></div><span class="chip warn" data-status>Needs IVO</span></div><div class="primary-slot"><button class="btn" data-set="Approved|ok" data-toast="Change order approved.">Approve change order</button></div></div>
         <div class="card" data-item><div class="row between wrap"><div><span class="chip">Bid invitations</span> <b>REQ-1051 · Lobby LED · invite 3 electricians</b></div><span class="chip warn" data-status>Waiting</span></div><div class="primary-slot"><button class="btn" data-set="Invites queued|ok" data-toast="Invites will send after you approve (prototype).">Approve invites</button></div></div>
         <div class="card" data-item><div class="row between wrap"><div><span class="chip">Template email</span> <b>REQ-1053 · “Crew dispatched”</b></div><span class="chip warn" data-status>Waiting</span></div><div class="primary-slot"><button class="btn" data-set="Send approved|ok" data-toast="Marked approved. Nothing was sent.">Approve send</button></div></div>
+        <div class="card" data-item><div class="row between wrap"><div><span class="chip gold">Sub outreach</span> <b>BID-2201 · 2 confirmation drafts</b><p class="small muted">Ask Harbor Air and a follow-up to Metro Drywall to confirm price, dates and capacity. Nothing sends until you approve.</p></div><span class="chip warn" data-status>Waiting</span></div><div class="primary-slot"><a class="btn" href="#bidsubs">Review drafts</a></div></div>
+        <div class="card" data-item><div class="row between wrap"><div><span class="chip gold">Bid submission</span> <b>BID-2201 · Cedar Ridge Elementary · $442,000</b><p class="small muted">AI-filled bid form is ready. Submit waits on your approval.</p></div><span class="chip warn" data-status>Waiting</span></div><div class="primary-slot"><a class="btn" href="#bidform">Review form</a></div></div>
       </div>
     </section>
 <section class="content app" data-screen="requests">
@@ -209,9 +214,137 @@
         </div>
       </div>
     </section>
+<section class="content app" data-screen="bidding">
+      <div class="row between wrap"><div><h3>Bidding on outside contracts</h3><p class="small muted">IVO acting as a subcontractor. Every filled-out bid and every message to a sub waits here for admin approval.</p></div><a class="btn sm line" href="#integrations">Integrations</a></div>
+      <div class="grid g4">
+        <div class="metric glass"><div class="l">Due in 7 days</div><div class="v">3</div></div>
+        <div class="metric glass"><div class="l">Waiting on your approval</div><div class="v">2</div></div>
+        <div class="metric glass"><div class="l">Subs to confirm</div><div class="v">1</div></div>
+        <div class="metric glass"><div class="l">Won this month</div><div class="v">1</div></div>
+      </div>
+      <div class="bid-board"><div class="col glass"><h3>Found<span class="chip">1</span></h3><a class="job-card" href="#bidpkg"><div class="row between"><b>BID-2212</b><span class="chip ">New</span></div><p class="small">Seattle Piers warehouse TI</p><p class="tiny muted">Due Dec 4 · invitation received</p><p class="tiny" style="margin-top:4px"><span class="chip info">Imported from external platform</span></p></a></div><div class="col glass"><h3>Reviewing<span class="chip">1</span></h3><a class="job-card" href="#bidpkg"><div class="row between"><b>BID-2210</b><span class="chip ">In review</span></div><p class="small">Redding Clinic tenant improvement</p><p class="tiny muted">Due Nov 25 · AI extracting</p></a></div><div class="col glass"><h3>Pricing<span class="chip">1</span></h3><a class="job-card" href="#bidlevel"><div class="row between"><b>BID-2198</b><span class="chip warn">2 days</span></div><p class="small">Bellevue Library lighting</p><p class="tiny muted">Due Nov 21, 3:00 PM PT</p></a></div><div class="col glass"><h3>Sub confirmations<span class="chip">1</span></h3><a class="job-card" href="#bidsubs"><div class="row between"><b>BID-2204</b><span class="chip warn">Waiting</span></div><p class="small">Tacoma Civic Annex HVAC</p><p class="tiny muted">Due Nov 22 · 1 no reply</p></a></div><div class="col glass"><h3>Ready for approval<span class="chip">1</span></h3><a class="job-card" href="#bidform"><div class="row between"><b>BID-2201</b><span class="chip gold">Ready</span></div><p class="small">Cedar Ridge Elementary modernization</p><p class="tiny muted">Due Fri Nov 20, 2:00 PM PT</p><div class="countdown" data-sla="980" data-warn="240" style="margin-top:8px;padding:8px 10px"><span class="tiny muted">Bid due</span><span class="v">-</span></div><p class="tiny" style="margin-top:4px"><span class="chip info">Imported from external platform</span></p></a></div><div class="col glass"><h3>Submitted<span class="chip">1</span></h3><a class="job-card" href="#bidpkg"><div class="row between"><b>BID-2188</b><span class="chip ">Out</span></div><p class="small">Portland Fire Station 12</p><p class="tiny muted">Submitted Nov 12 · awaiting award</p></a></div><div class="col glass"><h3>Won<span class="chip">1</span></h3><a class="job-card" href="#bidwon"><div class="row between"><b>BID-2175</b><span class="chip ok">Won</span></div><p class="small">Lynnwood Courthouse doors</p><p class="tiny muted">Awarded Nov 10 · job opened</p></a></div><div class="col glass"><h3>Lost<span class="chip">1</span></h3><a class="job-card" href="#bidlost"><div class="row between"><b>BID-2162</b><span class="chip bad">Lost</span></div><p class="small">Boise City Hall roof</p><p class="tiny muted">Lost Nov 6 · price</p></a></div><div class="col glass"><h3>No-bid<span class="chip">1</span></h3><a class="job-card" href="#bidpkg"><div class="row between"><b>BID-2207</b><span class="chip ">No-bid</span></div><p class="small">Multnomah Parking garage</p><p class="tiny muted">No-bid Nov 11 · capacity</p></a></div></div>
+    </section>
+<section class="content app" data-screen="bidpkg">
+      <div class="row between wrap"><div><a class="tiny gold" href="#bidding">Back to pipeline</a><div class="eyebrow" style="margin-top:8px">BID-2201 · Northline Construction (sample GC)</div><h3>Cedar Ridge Elementary modernization</h3><p class="small muted">Sample School District · Kent, WA · bid due Fri Nov 20, 2026, 2:00 PM PT</p></div>
+        <div class="stack" style="align-items:flex-end"><span class="chip gold">Ready for approval</span><span class="chip info">Imported from external platform</span><div class="countdown" data-sla="980" data-warn="240"><span class="tiny muted">Bid due</span><span class="v">-</span></div></div>
+      </div>
+      <div class="grid g2" style="align-items:start">
+        <div class="stack">
+          <div class="card"><h3>Uploaded documents</h3>
+            <div class="stack s8" style="margin-top:8px">
+              <div class="file"><span class="ic">PDF</span><span class="grow">ITB_CedarRidge_sample.pdf<span class="tiny muted" style="display:block">Invitation to bid · 14 pages</span></span></div>
+              <div class="file"><span class="ic">PDF</span><span class="grow">Plans_A101-A140_sample.pdf<span class="tiny muted" style="display:block">Architectural plans · 40 sheets</span></span></div>
+              <div class="file"><span class="ic">PDF</span><span class="grow">Specs_Div09-26_sample.pdf<span class="tiny muted" style="display:block">Specifications, divisions 9-26</span></span></div>
+              <div class="file"><span class="ic">PDF</span><span class="grow">Addendum_02_sample.pdf<span class="tiny muted" style="display:block">Addendum 2 · night work and RTU note</span></span></div>
+            </div>
+          </div>
+          <div class="card"><h3>Requirements the AI pulled out</h3>
+            <div class="list" style="margin-top:8px">
+              <div class="li"><span class="grow">Bid due Fri Nov 20, 2:00 PM PT, local time</span><span class="cite">ITB p. 3</span></div>
+              <div class="li"><span class="grow">Bid bond 5% of the base bid</span><span class="cite">ITB p. 7</span></div>
+              <div class="li"><span class="grow">Insurance: general liability $2M, auto, workers' comp</span><span class="cite">ITB p. 8</span></div>
+              <div class="li"><span class="grow">Acknowledge addenda 1 and 2</span><span class="cite">ITB p. 4 · Addendum 2</span></div>
+              <div class="li"><span class="grow"><span class="chip warn">Risk</span> Liquidated damages $1,500 / day</span><span class="cite">ITB p. 11</span></div>
+              <div class="li"><span class="grow"><span class="chip warn">Risk</span> Night work only in occupied wings</span><span class="cite">Addendum 2 p. 2</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card"><h3>Scope by trade, with sources</h3>
+            <p class="tiny muted" style="margin-bottom:8px">Each line cites the page it came from so you can check the AI.</p>
+            <div class="list">
+              <div class="li"><span class="grow"><b>Drywall</b> · 18,400 SF Level 4 finish, corridors and classrooms</span><span class="cite">Specs 09 29 00 · Plans A112</span></div>
+              <div class="li"><span class="grow"><b>Flooring</b> · LVP, 6,200 SF in classrooms 101-118</span><span class="cite">Specs 09 65 19</span></div>
+              <div class="li"><span class="grow"><b>Electrical</b> · lighting package, rooms 101-118, controls as specified</span><span class="cite">Plans E201</span></div>
+              <div class="li"><span class="grow"><b>HVAC</b> · four RTU replacements, same-size, after-hours set</span><span class="cite">Specs 23 74 00 · Addendum 2</span></div>
+            </div>
+            <div class="row wrap" style="margin-top:12px"><a class="btn" href="#bidsubs">Sub confirmations</a><a class="btn line" href="#bidlevel">Level quotes</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+<section class="content app" data-screen="bidsubs">
+      <div class="row between wrap"><div><a class="tiny gold" href="#bidding">Back to pipeline</a><div class="eyebrow" style="margin-top:8px">BID-2201</div><h3>Subcontractor confirmations</h3><p class="small muted">The AI matched these trades from the network and drafted a confirmation request for each. Nothing is sent until you approve the draft.</p></div><a class="btn line sm" href="#bidpkg">Package</a></div>
+      <div class="card" data-item style="margin-bottom:12px">
+        <div class="row between wrap"><div><span class="chip gold">Drafts waiting</span> <b>2 confirmation requests</b><p class="small muted">Harbor Air LLC (HVAC, no first send yet) and a follow-up to Metro Drywall Co. (declined once). Asks each to confirm price, availability for Nov 30, 2026-Jan 15, 2027, and capacity if IVO is awarded.</p></div><span class="chip warn" data-status>Needs approval</span></div>
+        <div class="sheet" style="margin:10px 0"><p class="small">Please confirm your price of $94,800 for the four RTU replacements at Cedar Ridge Elementary, that your crew is available Nov 30-Jan 15, and that you can perform the work if IVO is awarded. Reply in the app or this thread.</p></div>
+        <button class="btn" data-set="Approved to send|ok" data-toast="Marked approved. Nothing was sent (prototype).">Approve and send drafts</button>
+      </div>
+      <div class="card pad0 tscroll"><table class="t"><thead><tr><th>Subcontractor</th><th>Trade</th><th>Price</th><th>Dates</th><th>Capacity</th><th>Status</th></tr></thead><tbody>
+        <tr><td>Summit Interiors LLC</td><td>Drywall</td><td>$72,200</td><td>Nov 30-Jan 15</td><td>Open</td><td><span class="chip ok">Confirmed</span></td></tr>
+        <tr><td>Bluewater Flooring LLC</td><td>Flooring</td><td>$86,400</td><td>Nov 30-Jan 15</td><td>Open</td><td><span class="chip ok">Confirmed</span></td></tr>
+        <tr><td>Cascade Electric</td><td>Electrical</td><td>$124,000 <span class="tiny muted">was $118,500</span></td><td>Nov 30-Jan 15</td><td>Open</td><td><span class="chip warn">Price changed</span></td></tr>
+        <tr><td>Harbor Air LLC</td><td>HVAC</td><td>$94,800 est.</td><td>-</td><td>-</td><td><span class="chip">No reply</span></td></tr>
+        <tr><td>Metro Drywall Co.</td><td>Drywall (alt.)</td><td>-</td><td>-</td><td>Booked</td><td><span class="chip bad">Declined</span></td></tr>
+      </tbody></table></div>
+      <a class="btn" style="margin-top:12px" href="#bidlevel">Open leveling</a>
+    </section>
+<section class="content app" data-screen="bidlevel">
+      <div class="row between wrap"><div><a class="tiny gold" href="#bidding">Back to pipeline</a><div class="eyebrow" style="margin-top:8px">BID-2201</div><h3>Leveling and recommended price</h3><p class="small muted">Sub quotes side by side. Gaps and exclusions are flagged. You set the final number.</p></div></div>
+      <div class="card pad0 tscroll"><table class="t level"><thead><tr><th>Trade</th><th>Sub</th><th>Quote</th><th>Exclusions</th><th>Flag</th></tr></thead><tbody>
+        <tr><td>Drywall</td><td>Summit Interiors LLC</td><td>$72,200</td><td>None noted</td><td><span class="chip ok">Confirmed</span></td></tr>
+        <tr class="excl"><td>Drywall</td><td>Metro Drywall Co.</td><td>-</td><td>Declined · booked</td><td><span class="chip bad">Sole source left</span></td></tr>
+        <tr><td>Flooring</td><td>Bluewater Flooring LLC</td><td>$86,400</td><td>None noted</td><td><span class="chip ok">Confirmed</span></td></tr>
+        <tr><td>Electrical</td><td>Cascade Electric</td><td>$124,000</td><td>Controls allowance held</td><td><span class="chip warn">Price changed +$5,500</span></td></tr>
+        <tr class="gap"><td>HVAC</td><td>Harbor Air LLC</td><td>$94,800 est.</td><td>No confirmed quote</td><td><span class="chip warn">Gap · no reply</span></td></tr>
+      </tbody></table></div>
+      <div class="grid g2" style="align-items:start;margin-top:14px">
+        <div class="card">
+          <div class="eyebrow">Recommended price</div>
+          <div class="v" style="font-size:28px;font-weight:560">$441,558</div>
+          <p class="small muted">Confidence 72% - HVAC is still an estimate, and the electrical price moved.</p>
+          <dl class="kv" style="margin-top:10px">
+            <dt>Confirmed subs</dt><dd>$282,600</dd>
+            <dt>HVAC estimate</dt><dd>$94,800</dd>
+            <dt>Sub total</dt><dd>$377,400</dd>
+            <dt>Markup 12%</dt><dd>$45,288</dd>
+            <dt>Contingency 5%</dt><dd>$18,870</dd>
+          </dl>
+          <p class="tiny muted" style="margin-top:8px">Reasoning: leveled confirmed quotes, historical HVAC unit cost for four RTUs of this size, standard markup and contingency for liquidated-damages risk (ITB p. 11).</p>
+        </div>
+        <div class="card">
+          <div class="eyebrow">Your final price</div>
+          <div class="field"><label class="f">Base bid you will submit</label><input class="inp" value="442000" inputmode="numeric"></div>
+          <a class="btn block" href="#bidform">Preview the filled bid form</a>
+        </div>
+      </div>
+    </section>
+<section class="content app" data-screen="bidform">
+      <div class="row between wrap"><div><a class="tiny gold" href="#bidding">Back to pipeline</a><div class="eyebrow" style="margin-top:8px">BID-2201 · AI-filled form</div><h3>Northline Construction bid form (sample)</h3><p class="small muted">Highlighted fields were filled by the AI from the package and your final price. Review them, then approve. Nothing is submitted until you do.</p></div><span class="chip gold">Ready for approval</span></div>
+      <div class="card" data-item>
+        <div class="hl-field"><label class="f">Bidder legal name</label><input class="inp" value="IVO Serv Group"></div>
+        <div class="hl-field"><label class="f">Project</label><input class="inp" value="Cedar Ridge Elementary modernization"></div>
+        <div class="grid g2">
+          <div class="hl-field"><label class="f">Base bid</label><input class="inp" value="$442,000"></div>
+          <div class="hl-field"><label class="f">Calendar days to complete</label><input class="inp" value="90"></div>
+        </div>
+        <div class="hl-field"><label class="f">Addenda acknowledged</label><input class="inp" value="Addendum 1, Addendum 2"></div>
+        <div class="hl-field"><label class="f">Bid bond</label><input class="inp" value="5% of the base bid, included"></div>
+        <div class="field"><label class="f">Authorized signature (you)</label><input class="inp" value="Val, IVO Serv Group (sample)"></div>
+        <div class="note" style="margin:12px 0">This is a preview. Approving queues the submission; the prototype does not send it to anyone.</div>
+        <button class="btn lg" data-set="Approved to submit|ok" data-toast="Marked approved. The bid was not sent (prototype).">Approve and submit</button>
+        <span class="chip" data-status hidden style="margin-left:8px"></span>
+      </div>
+    </section>
+<section class="content app" data-screen="bidwon">
+      <div class="row between wrap"><div><a class="tiny gold" href="#bidding">Back to pipeline</a><div class="eyebrow" style="margin-top:8px">BID-2175 · Won</div><h3>Lynnwood Courthouse doors</h3><p class="small muted">Awarded Nov 10, 2026. The bid became a job automatically, with the confirmed subs already assigned.</p></div><span class="chip ok">Won</span></div>
+      <div class="card">
+        <div class="row between"><div><b>JOB-2175</b><p class="small muted">Opened from the won bid. Document check still required before work can start.</p></div><a class="btn" href="#job">Open job timeline</a></div>
+        <div class="list" style="margin-top:12px">
+          <div class="li"><span class="grow">Pacific Openings LLC · doors and hardware · confirmed $38,400</span><span class="chip ok">Pre-assigned</span></div>
+          <div class="li"><span class="grow">Cascade Electric · power to operators · confirmed $6,200</span><span class="chip ok">Pre-assigned</span></div>
+        </div>
+      </div>
+    </section>
+<section class="content app" data-screen="bidlost">
+      <div class="row between wrap"><div><a class="tiny gold" href="#bidding">Back to pipeline</a><div class="eyebrow" style="margin-top:8px">BID-2162 · Lost</div><h3>Boise City Hall roof</h3><p class="small muted">Result recorded so the pricing model can learn from it.</p></div><span class="chip bad">Lost</span></div>
+      <div class="card">
+        <dl class="kv"><dt>Our bid</dt><dd>$186,400</dd><dt>Awarded at</dt><dd>Not disclosed</dd><dt>Reason</dt><dd>Price - we were not the low bidder</dd><dt>What we learned</dt><dd>Markup on membrane roofing was high against recent local results. Flagged for the next similar bid.</dd></dl>
+      </div>
+    </section>
 <section class="content app" data-screen="bids">
       <div class="card"><div class="row between"><b>REQ-1051 · Lobby LED retrofit</b><span class="chip">3 invites drafted</span></div><p class="small muted">Deadline Fri Nov 20, 5:00 PM PT. Duplicate check: no matching open package.</p><div class="primary-slot" style="margin-top:10px"><a class="btn" href="#bid">Open packet</a></div></div>
-      <div class="later"><span class="chip later">Later</span> An AI bid-reading engine is out of launch scope. Staff still assemble packets by hand.</div>
+      <p class="small muted" style="margin-top:12px">This is IVO inviting contractors onto a customer job. For IVO bidding as a subcontractor on an outside contract, use <a class="gold" href="#bidding">Bidding</a>.</p>
     </section>
 <section class="content app" data-screen="bid">
       <div class="card"><h3>Packet · REQ-1051</h3><p class="small muted">Scope, photos, files and a hard deadline — a packet cannot go out without all four.</p>
@@ -244,6 +377,11 @@
         <button class="btn" style="margin-top:10px" data-set="Invite sent|ok" data-toast="Invite marked sent (prototype).">Send invite</button>
       </div>
     </section>
+<section class="content app" data-screen="integrations">
+      <div class="row between wrap"><div><h3>Integrations</h3><p class="small muted">Connect outside tools for bidding and the rest of the work. Sample statuses only - no live connections and no third-party names. Each real hookup needs your approval and that platform's API access.</p></div></div>
+      <div class="int-grid"><div class="int-card card"><h3>Bid platforms and plan rooms</h3><p class="small muted" style="margin:6px 0 10px">Pull invitations, plans and addenda from outside bidding platforms and plan rooms. Each real connection needs your approval and that platform's API access.</p><span class="chip info status">Available</span></div><div class="int-card card"><h3>Email import of bid invites</h3><p class="small muted" style="margin:6px 0 10px">A watched intake mailbox turns a forwarded invitation into a bid in Found, with attachments saved to the package.</p><span class="chip ok status">Connected sample</span></div><div class="int-card card"><h3>Calendar</h3><p class="small muted" style="margin:6px 0 10px">Push bid due dates and job start windows to the staff calendar, and show sub availability you already confirmed.</p><span class="chip info status">Available</span></div><div class="int-card card"><h3>Accounting</h3><p class="small muted" style="margin:6px 0 10px">Send awarded job costs and, later, invoices. No payments are processed at launch.</p><span class="chip warn status">Requires approval</span></div><div class="int-card card"><h3>File storage</h3><p class="small muted" style="margin:6px 0 10px">Private storage for plans, specs and filled forms, with virus scanning and signed links.</p><span class="chip ok status">Connected sample</span></div><div class="int-card card"><h3>Webhooks and API keys</h3><p class="small muted" style="margin:6px 0 10px">Let approved systems create bids, post sub responses and receive status changes. Keys are scoped and can be revoked.</p><span class="chip warn status">Requires approval</span></div></div>
+      <div class="note" style="margin-top:16px">The prototype does not call any outside system. Connecting a real platform is a later, approved step.</div>
+    </section>
 <section class="content app" data-screen="team">
       <div class="card"><h3>Role matrix</h3><p class="small muted">Still open: who besides the owner can approve a contractor or a new customer workspace, and naming a second admin.</p>
         <table class="t"><thead><tr><th>Role</th><th>Can approve routing</th><th>Can approve contractors</th></tr></thead><tbody>
@@ -268,6 +406,12 @@
 <button type="button" data-cmd="Applications inbox" data-href="#applications"><span>Applications inbox</span><small>Invite-only, option A</small></button>
 <button type="button" data-cmd="Team and role matrix" data-href="#team"><span>Team and role matrix</span><small>Still open</small></button>
 <button type="button" data-cmd="Invite a contractor" data-href="#applications"><span>Invite a contractor</span><small>Staff-vetted invite</small></button>
+<button type="button" data-cmd="Open bidding pipeline" data-href="#bidding"><span>Open bidding pipeline</span><small>Outside contracts</small></button>
+<button type="button" data-cmd="BID-2201 package" data-href="#bidpkg"><span>BID-2201 package</span><small>Cedar Ridge Elementary</small></button>
+<button type="button" data-cmd="Sub confirmations" data-href="#bidsubs"><span>Sub confirmations</span><small>Approval queue</small></button>
+<button type="button" data-cmd="Bid leveling and price" data-href="#bidlevel"><span>Bid leveling and price</span><small>Recommended price</small></button>
+<button type="button" data-cmd="Approve and submit bid" data-href="#bidform"><span>Approve and submit bid</span><small>Admin approval</small></button>
+<button type="button" data-cmd="Integrations" data-href="#integrations"><span>Integrations</span><small>Connections</small></button>
 <button type="button" data-cmd="Go to V02 home" data-href="../index.html"><span>Go to V02 home</span><small>Home</small></button></div>
   </div>
 </div>
