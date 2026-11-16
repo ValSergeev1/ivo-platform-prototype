@@ -1,4 +1,5 @@
 from core import *
+from join import build_join
 
 def topbar(title, depth=1):
     pre = "../" * depth
@@ -16,41 +17,10 @@ def opt(key, title, sub, status, inner, fit=""):
     return f'''<section class="opt {cls}" aria-labelledby="o-{key}"><div class="row between wrap"><span class="mono acc" style="font-size:20px">{key}</span>{badge}</div><h2 id="o-{key}" class="h3">{title}</h2><p class="small t2">{sub}</p>{inner}{f'<div class="note">{ic("info","sm")}<div>{fit}</div></div>' if fit else ""}</section>'''
 
 def build_apply():
-    wa = flow("wa", [
-        ("IVO invites the contractor", f'<div class="panel"><div class="bd"><div class="xs t3">Email from IVO</div><p class="small" style="margin-top:6px">“Dana at IVO Group invited Bluewater Flooring LLC to apply.”</p><div style="margin-top:10px">{btn("Accept invitation","sm primary")}</div></div></div>', "IVO staff"),
-        ("Sign in with email code", '<div class="otp row" style="gap:6px">' + "".join(f'<input class="input mono" style="text-align:center;padding:0" value="{d}" aria-label="Digit {i+1}">' for i,d in enumerate("204816")) + '</div>', "Contractor"),
-        ("Company info", '<label class="field"><span>Legal name</span><input class="input" value="Bluewater Flooring LLC"></label>', "Contractor"),
-        ("Trades &amp; regions", '<fieldset class="pick" style="border:0;padding:0;margin:0"><legend class="sr">Trades</legend><label><input type="checkbox" checked><span>Flooring</span></label><label><input type="checkbox" checked><span>Drywall</span></label><label><input type="checkbox"><span>Paint</span></label></fieldset>', "Contractor"),
-        ("Documents", li("COI_sample.pdf","Uploaded · virus-scanned","file-check","ok",chip("Uploaded","ok")), "Contractor"),
-        ("References", '<label class="field"><span>Reference 1</span><input class="input" value="Evergreen Restoration Co."></label><p class="xs t3">Count still open: 1 or 2.</p>', "Contractor"),
-        ("Compliance check", f'<div class="col gap6"><div class="row small">{ic("circle-check","sm okc")}State registration lookup active</div><div class="row small">{ic("circle-check","sm okc")}Certificate limits ok</div></div>', "IVO staff"),
-        ("Approval", f'<p class="small">Approve Bluewater Flooring LLC?</p><div>{btn("Approve","sm primary",attrs=" data-toast=&quot;Approved (prototype).&quot;")}</div>', "Owner"),
-        ("Onboarding", f'<div class="col gap6"><div class="row small">{ic("eye","sm acc")}Watched trial first job</div><div class="row small">{ic("route","sm acc")}Ready for routing</div></div><a class="btn sm" href="../contractor/index.html#today">See the contractor app</a>', "Contractor"),
-    ], "Bluewater Flooring is ready for routing (prototype).")
-    wb = '<div class="inset small t2">Open application form on the website. Anyone can apply, then verification and a trial job.</div>'
-    wc = '<div class="inset small t2">A trusted contractor or customer refers them. IVO reviews, then the same invite as A.</div>'
-    body = topbar("Contractor join process") + f'''<main id="main" class="page" tabindex="-1"><div class="ph"><div><div class="eyebrow">Decision recorded · 13 Nov 2026</div><h1 style="margin-top:6px">How contractors join the network</h1><p>The owner approved option A. Click through it step by step. Sample data only.</p></div><div class="acts">{btn("Customer join process","",href="../onboarding/index.html",ic_after="arrow-right")}</div></div>
-<div class="grid g-main-l">{opt("A","Invite-only, staff-vetted","Staff invite contractors they choose, after vetting. The first job is a closely watched trial.","approved",wa,"The existing “Partner with IVO” form stays as an inquiry that lands in Triage; staff decide whether to invite.")}
-<div class="col gap16">{opt("B","Open application → verification → trial job","Anyone can apply on the website.","not-chosen",wb)}{opt("C","Referral-based","A trusted contractor or customer refers them.","not-chosen",wc,"Not chosen for launch. Could work later as an extra source, using the same invite as A.")}
-{note("Still open: how many references to require (1 or 2), required documents, and who besides the owner can approve a contractor (a second admin).","circle-help")}</div></div></main>'''
-    page("apply/index.html", "Contractor join process", body, cmds=[("Navigate","Option A flow","#wa","Approved","badge-check"),("Prototype","Contractor app","../contractor/index.html#today","","smartphone"),("Prototype","Customer join","../onboarding/index.html","Option 1","users")], app="IVO join process")
+    build_join("apply")
 
 def build_onboarding():
-    o1 = flow("o1", [
-        ("Customer sends a request", '<div class="panel"><div class="bd small t2">Website request form: trade, location, scope, urgency, budget, photos. No account needed.</div></div>', "Customer"),
-        ("Confirmation email", '<div class="inset small">“We received REQ-1059”</div>', "System"),
-        ("IVO reviews &amp; calls", '<p class="small t2">Triage in the staff console.</p><a class="btn sm" href="../console/index.html#triage">See triage</a>', "IVO staff"),
-        ("Approve the invite", f'<p class="small">Invite Maya Ortiz to a Harborline workspace?</p><div>{btn("Approve invite","sm primary",attrs=" data-toast=&quot;Invite approved (prototype).&quot;")}</div>', "IVO staff"),
-        ("Accept &amp; sign in", '<p class="small t2">Invite email → email code → the request is already inside.</p><a class="btn sm" href="../customer/index.html#invite">See it in the customer app</a>', "Customer"),
-        ("Set up the company", f'<div class="col gap6"><div class="row small">{ic("building-2","sm acc")}Add properties</div><div class="row small">{ic("user-plus","sm acc")}Invite colleagues (IVO confirms)</div></div>', "Customer"),
-    ], "Customer workspace ready (prototype).")
-    o2 = '<div class="inset small t2">Staff set up the company for a customer IVO already works with, then send the same invite. Email code, then an empty workspace with properties.</div>'
-    o3 = '<div class="inset small t2">Like option 1, plus a no-login private tracker link until they’re invited. Out of launch scope.</div>'
-    body = topbar("Customer join process") + f'''<main id="main" class="page" tabindex="-1"><div class="ph"><div><div class="eyebrow">Decision recorded · 13 Nov 2026</div><h1 style="margin-top:6px">How customers get into the portal</h1><p>The portal is invite-only. The owner approved option 1: request first, then an invite after IVO reviews it. Sample data only.</p></div><div class="acts">{btn("Contractor join process","",href="../apply/index.html",ic_after="arrow-right")}</div></div>
-<div class="grid g-main-l">{opt("1","Request first, then invite","New customers send a request; after IVO reviews it, they’re invited.","approved",o1,"Staff can still use option 2 for accounts IVO already knows.")}
-<div class="col gap16">{opt("2","Account first (staff-invited)","IVO sets up accounts for customers it already works with.","allowed",o2,"Same invite, no extra build.")}{opt("3","Request first + private tracker link","A no-login status page until they’re invited.","later",o3,"Stays marked Later.")}
-{note("Still open: who can approve a new customer workspace, and the role matrix.","circle-help")}</div></div></main>'''
-    page("onboarding/index.html", "Customer join process", body, cmds=[("Navigate","Option 1 flow","#o1","Approved","badge-check"),("Prototype","Customer app","../customer/index.html#invite","","smartphone"),("Prototype","Contractor join","../apply/index.html","Option A","hard-hat")], app="IVO join process")
+    build_join("onboarding")
 
 def build_hub():
     apps = [("console/index.html","layout-dashboard","Staff console","Desktop + phone","Command center, dispatch board with live map, work orders, approvals, AI copilot, bidding, network, settings and the audit log."),

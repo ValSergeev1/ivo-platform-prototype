@@ -1,28 +1,38 @@
 from con_a import job_tl, ptimeline
 from core import *
+from field import customer_home_body, gallery_screen
 
 PERSONA = ("Maya Ortiz (sample)", "Harborline Property Group · org admin")
-CTL = [("Navigate","Home","#home","What's happening now","house"),("Actions","Emergency · alert IVO now","#emergency","One tap, 5 s undo","siren"),("Actions","New request","#new","4 steps","plus"),("Navigate","Requests","#requests","","list"),("Records","REQ-1042 · Ceiling leak","#job","On site","clipboard"),("Actions","Approve change order CO-2","#approve","+$620","check"),("Actions","Sign off REQ-1042","#closeout","","pen-line"),("Navigate","Documents","#docs","","folder"),("Navigate","Invoices","#invoices","Amounts only","receipt"),("Navigate","Account and users","#account","","user")]
+CTL = [("Navigate","Home","#home","Property and job feed","house"),("Navigate","Photo gallery","#gallery","Cedar Court","images"),("Actions","Emergency · alert IVO now","#emergency","One tap, 5 s undo","siren"),("Actions","New request","#new","4 steps","plus"),("Navigate","Requests","#requests","","list"),("Records","REQ-1042 · Ceiling leak","#job","On site","clipboard"),("Actions","Approve change order CO-2","#approve","+$620","check"),("Actions","Sign off REQ-1042","#closeout","","pen-line"),("Navigate","Documents","#docs","","folder"),("Navigate","Invoices","#invoices","Amounts only","receipt"),("Navigate","Account and users","#account","","user")]
 
 def otp(code_hint):
     return '<div class="otp row" style="gap:8px">' + "".join(f'<input class="input mono" style="text-align:center;font-size:20px;padding:0;min-height:52px" inputmode="numeric" maxlength="1" aria-label="Digit {i+1}">' for i in range(6)) + '</div>'
 
 def customer_screens():
     S = []
-    S.append(mscreen("invite", "", f'''<div class="hero" style="min-height:520px;display:flex;flex-direction:column;justify-content:flex-end;gap:14px"><img src="../assets/img/ivo-mark-white.png" alt="" style="width:44px;height:44px"><span class="chip gold" style="align-self:flex-start">Invitation</span>
-<h1 style="font-size:30px">Your IVO workspace is ready.</h1><p class="t3x">Dana Whitfield invited maya.ortiz@harborline.example to Harborline Property Group after reviewing your Cedar Court request.</p>
-<a class="btn primary xl block" href="#signin">{ic("arrow-right")}<span>Accept invitation</span></a><p class="xs t3x">Invite-only. No password, a code is emailed to you.</p></div>''', notab=True, hdr=False))
-    S.append(mscreen("signin", "Sign in", f'''<div class="col gap16" style="padding-top:20px"><span class="apic gold" style="width:52px;height:52px">{ic("mail","lg")}</span><h2>Check your email</h2><p class="t2">We sent a 6-digit code to <b>maya.ortiz@harborline.example</b></p>
+    S.append(mscreen("invite", "", f'''<div class="join-app">
+<div class="join-app-hero">
+<img src="../assets/img/ivo-mark-white.png" alt="" style="width:44px;height:44px">
+<div class="join-progress" aria-hidden="true"><i class="on"></i><i></i></div>
+<span class="chip gold" style="align-self:flex-start">Invitation</span>
+<h1>Your IVO workspace is ready.</h1>
+<p class="t3x">Dana Whitfield invited maya.ortiz@harborline.example to Harborline Property Group after reviewing your Cedar Court request.</p>
+</div>
+<div class="join-app-foot">
+<a class="btn primary xl block" href="#signin">{ic("arrow-right")}<span>Accept invitation</span></a>
+<p class="xs t3">Invite-only. No password — a code is emailed to you.</p>
+</div></div>''', notab=True, hdr=False))
+    S.append(mscreen("signin", "Sign in", f'''<div class="join-app">
+<div class="join-progress" aria-hidden="true"><i class="on"></i><i class="on"></i></div>
+<span class="apic gold" style="width:52px;height:52px">{ic("mail","lg")}</span>
+<h2>Check your email</h2>
+<p class="t2">We sent a 6-digit code to <b>maya.ortiz@harborline.example</b></p>
 <fieldset style="border:0;padding:0;margin:0"><legend class="lbl" style="margin-bottom:8px">Sign-in code</legend>{otp("")}</fieldset>
-<button class="btn primary lg block" type="button" data-fill-otp="204816" data-go="#home">{ic("key-round","sm")}<span>Use sample code 204816</span></button><p class="xs t3">Codes expire in 10 minutes. Sign-in length is still an open decision.</p></div>''', back="#invite", notab=True))
-    S.append(mscreen("home", f'<span class="xs t3" style="display:block;font-weight:500">Harborline Property Group</span>Good evening, Maya', f'''
-<a class="sos" href="#emergency" aria-label="Emergency: alert IVO now. One tap, with 5 seconds to cancel."><span class="ic">{ic("siren","lg")}</span><span class="grow">Emergency<small>Active leak, no power, unsafe. One tap alerts IVO.</small></span>{ic("chevron-right")}</a>
-<div class="hero"><div class="row between"><span class="eyebrow" style="color:#e1c395">Happening now</span><span class="chip gold"><i class="d" style="background:#e1c395;width:7px;height:7px;border-radius:50%"></i>Live</span></div>
-<h2 style="margin-top:10px;font-size:22px">Unit 3B ceiling leak</h2><p class="t3x small" style="margin-top:4px">Cedar Court · Ana Kim is on site since 9:02 AM</p>
-<div style="margin:16px 0">{steps(["Received","Reviewed","Assigned","On site","Sign-off"],3)}</div>
-<a class="btn primary lg block" href="#approve">{ic("check","sm")}<span>Approve change order · +$620</span></a></div>
-<div class="grid g2" style="grid-template-columns:1fr 1fr;gap:10px"><a class="tile-btn" href="#new" style="min-height:96px">{ic("plus","lg")}<b>New request</b></a><a class="tile-btn" href="#docs" style="min-height:96px">{ic("folder","lg")}<b>Documents</b></a></div>
-<section class="panel" aria-labelledby="hm-o"><div class="hd"><h2 id="hm-o">Also open</h2><span class="grow"></span><a class="btn sm ghost" href="#requests">All</a></div><div class="list">{li("REQ-1059 · Hallway ceiling","Scheduled Mon 8:00 AM · Bldg B","calendar","info",chip("Scheduled","ok"),href="#requests")}</div></section>''', default=True))
+<div class="join-app-foot">
+<button class="btn primary xl block" type="button" data-fill-otp="204816" data-go="#home">{ic("key-round","sm")}<span>Use sample code 204816</span></button>
+<p class="xs t3">Codes expire in 10 minutes. Sign-in length is still an open decision.</p>
+</div></div>''', back="#invite", notab=True))
+    S.append(mscreen("home", f'<span class="xs t3" style="display:block;font-weight:500">Harborline Property Group</span>Good evening, Maya', customer_home_body(), default=True))
     S.append(mscreen("emergency", "Emergency", f'''<div data-sos class="col gap16" style="align-items:center;text-align:center;padding-top:8px"><div class="sosring"><b data-sos-count>5</b></div><h2>Alerting IVO on-call…</h2><p class="t2 small">Sending in a few seconds with your location (Cedar Court) and your phone number. Tap cancel if this was a mistake.</p>
 <button class="btn lg block" type="button" data-sos-cancel>{ic("x","sm")}<span>Cancel, nothing is sent</span></button></div>
 <div data-sos-live class="col gap16 hide"><div class="note emergency">{ic("siren","sm")}<div><b>IVO has your alert.</b> A coordinator is being reached now. Keep your phone nearby.</div></div>
@@ -64,18 +74,24 @@ def customer_screens():
     S.append(mscreen("invoices", "Invoices", f'''<div class="panel"><div class="list">{li("REQ-1031 · Gutter cleaning","Approved amount","receipt","",'<b class="mono">$980</b>')}{li("REQ-1036 · Water mitigation","Approved amount","receipt","",'<b class="mono">$1,200</b>')}</div></div>{note("You see approved amounts on every job. Online payments are <b>Later</b>, not in the launch build.","clock-4")}'''))
     S.append(mscreen("account", "Account", f'''<div class="panel"><div class="bd row"><span class="avatar" style="width:48px;height:48px">MO</span><div class="grow"><b>Maya Ortiz</b><div class="small t3">maya.ortiz@harborline.example</div></div></div></div>
 <section class="panel" aria-labelledby="cu-h"><div class="hd"><h2 id="cu-h">Company users</h2><span class="grow"></span><button class="btn sm" type="button" data-toast="Invite drafted. IVO confirms every colleague invite.">{ic("user-plus","sm")}<span>Invite</span></button></div><div class="list">{li("Maya Ortiz","Admin · you","user","gold")}{li("Jordan Lee","Requester","user")}</div></section>
-<div class="panel"><div class="list">{li("Properties","Cedar Court, Harbor Point","building-2")}<button class="li" type="button" data-theme-toggle aria-label="Switch theme"><span class="ic">{ic("sun-moon")}</span><span class="grow" style="font-weight:550">Light / dark</span>{ic("chevron-right")}</button></div></div>
+<div class="panel"><div class="list">{li("Properties","Cedar Court, Harbor Point","building-2",href="#gallery")}<button class="li" type="button" data-theme-toggle aria-label="Switch theme"><span class="ic">{ic("sun-moon")}</span><span class="grow" style="font-weight:550">Light / dark</span>{ic("chevron-right")}</button></div></div>
 {note("Workspace opened after IVO reviewed your request (option 1).","badge-check")}'''))
+    S.append(gallery_screen("gallery", "Cedar Court Apartments", "410 Sample Ave, Tacoma, WA", "exterior", "CC",
+        mine=[("exterior", "Front entrance", True), ("lobby", "Lobby, looking east"), ("office", "Property office")],
+        jobs=[("site", "Crew arrival", "REQ-1042"), ("lock", "Joist damage", "REQ-1042"), ("slab", "Ceiling opening", "REQ-1042")], open_jobs=2))
+    S.append(gallery_screen("gallery-hp", "Harbor Point", "88 Harbor Way, Tacoma, WA", "lobby", "HP",
+        mine=[("lobby", "Main lobby", True), ("glass", "Entry glass")],
+        jobs=[("office", "After gutter cleaning", "REQ-1031")], open_jobs=0))
     return "".join(S)
 
 NOTES_C = lambda: f'''<div class="panel"><div class="bd stack-s"><div class="eyebrow">V03 design notes</div><h3>Emergency is one tap from Home</h3><p class="small t2">The Emergency button sends the alert after a 5-second undo ring. No form first. Details and photos are optional afterward.</p></div></div>
-<div class="panel"><div class="bd stack-s"><h3>Read status in 3 seconds</h3><p class="small t2">The “Happening now” card shows the one job that needs you, its live stage, and the single next action.</p></div></div>
+<div class="panel"><div class="bd stack-s"><h3>Your property, then the feed</h3><p class="small t2">Home opens on a photo of the property. Tap it for the gallery. The job feed below shows arrivals, photos, change orders, sign-off and invoices, with a New mark on unread cards.</p></div></div>
 <div class="panel"><div class="bd stack-s"><h3>Built for thumbs</h3><p class="small t2">44 px minimum targets, 15–17 px body text, a bottom tab bar, and works offline on site.</p></div></div>
 <div class="panel"><div class="bd stack-s"><h3>Invite-only, request first</h3><p class="small t2">New customers send a request, then IVO invites them (option 1, approved 2026-11-13).</p></div></div>'''
 
 def build_customer():
-    idx = [("Getting in",[("invite","Invitation"),("signin","Email-code sign-in")]),("Everyday",[("home","Home · happening now"),("emergency","Emergency · one tap"),("new","New request"),("submitted","Request sent")]),("Jobs",[("requests","Requests"),("job","Job tracker"),("approve","Approve change order"),("closeout","Sign off")]),("Account",[("docs","Documents"),("invoices","Invoices"),("account","Account &amp; users")])]
-    tabs = [("home","Home","house","emergency"),("requests","Requests","list","job approve closeout"),("new","New","plus","submitted","fab"),("docs","Files","folder",""),("account","Account","user","invoices")]
+    idx = [("Getting in",[("invite","Invitation"),("signin","Email-code sign-in")]),("Everyday",[("home","Home · property and feed"),("emergency","Emergency · one tap"),("new","New request"),("submitted","Request sent")]),("Jobs",[("requests","Requests"),("job","Job tracker"),("approve","Approve change order"),("closeout","Sign off")]),("Account",[("gallery","Photo gallery · Cedar Court"),("gallery-hp","Photo gallery · Harbor Point"),("docs","Documents"),("invoices","Invoices"),("account","Account &amp; users")])]
+    tabs = [("home","Home","house","emergency gallery gallery-hp"),("requests","Requests","list","job approve closeout"),("new","New","plus","submitted","fab"),("docs","Files","folder",""),("account","Account","user","invoices")]
     body = m_shell("Customer app · phone", PERSONA, idx, customer_screens(), tabs, NOTES_C(), portal_href=("../customer-portal/index.html","Desktop portal"))
     page("customer/index.html", "Customer app", body, cmds=CTL, app="IVO customer app", bodyattrs=' data-sw="1"', head='<link rel="manifest" href="manifest.webmanifest">')
 
