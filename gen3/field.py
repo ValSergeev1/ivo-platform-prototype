@@ -129,7 +129,7 @@ def customer_home_body():
 </section>
 </div>'''
 
-def gallery_screen(sid, name, addr, img, initials, mine, jobs, back="#home", open_jobs=0):
+def gallery_screen(sid, name, addr, img, initials, mine, jobs, back="#home", open_jobs=0, extra=""):
     mine_html = "".join(gallery_fig(*m) if len(m) == 2 else gallery_fig(m[0], m[1], cover=m[2]) for m in mine)
     job_html = "".join(gallery_fig(img_, cap, job=job) for img_, cap, job in jobs)
     return mscreen(sid, name, f'''<div data-gallery data-coach="gallery">
@@ -144,6 +144,7 @@ def gallery_screen(sid, name, addr, img, initials, mine, jobs, back="#home", ope
 <div class="gallery" data-mine>{mine_html}</div></section>
 <section class="panel" aria-labelledby="jobs-h-{sid}"><div class="hd"><h2 id="jobs-h-{sid}">From your jobs</h2></div>
 <div class="gallery">{job_html}</div></section>
+{extra}
 </div>''', back=back)
 
 def markup_plan_svg():

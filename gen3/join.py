@@ -1,5 +1,6 @@
 """Full-bleed join / sign-up stepper for customers and contractors. Sample data only."""
 from core import *
+from vendors import apply_invite_customer_panel, apply_docs_ivo, apply_docs_customer, apply_done_customer
 
 CUSTOMER_STEPS = [
     ("role", "How you'll join"),
@@ -120,13 +121,16 @@ def _contractor_steps():
     )
     return f'''
 <section class="join-step" data-join-step="invite" data-join-roles="contractor">
+<div data-invite-ivo>
 <p class="eyebrow acc">Step 2 of 9</p>
 <h1>You've been invited.</h1>
-<p class="t2 lead">IVO vets contractors, then sends an invite. The first job is a closely watched trial.</p>
+<p class="t2 lead">IVO reviews contractors, then sends an invite. The first job is a closely watched trial.</p>
 <div class="panel glow"><div class="bd col gap16">
 <div class="eyebrow">Email from IVO</div>
 <p>Dana at IVO Group invited <b>Bluewater Flooring LLC</b> to join the network.</p>
 </div></div>
+</div>
+{apply_invite_customer_panel()}
 </section>
 <section class="join-step" data-join-step="code" data-join-roles="contractor">
 <p class="eyebrow acc">Step 3 of 9</p>
@@ -157,15 +161,10 @@ def _contractor_steps():
 </section>
 <section class="join-step" data-join-step="docs" data-join-roles="contractor">
 <p class="eyebrow acc">Step 7 of 9</p>
-<h1>License and insurance.</h1>
-<p class="t2 lead">IVO only routes work when required documents are current. Uploads in this preview stay on your screen.</p>
-<div class="doc-drop" data-toast="Documents uploaded (preview). Nothing was sent.">
-{ic("upload","lg")}
-<b>Upload license, COI and W-9</b>
-<span class="small t2">PDF, JPEG or PNG. Drag in or tap to choose.</span>
-<input type="file" accept=".pdf,image/*" multiple class="sr" aria-label="Upload license, insurance and W-9">
-</div>
-<div class="panel"><div class="list">{li("COI_sample.pdf","General liability $2M · virus-scanned","file-check","ok",chip("Uploaded","ok"))}{li("WA contractor license","Active · looked up automatically","badge-check","ok",chip("Verified","ok"))}</div></div>
+<h1>License, insurance and qualification.</h1>
+<p class="t2 lead">Every vendor completes the same checklist. Certificates must show expiry dates. Uploads in this preview stay on your screen.</p>
+{apply_docs_ivo()}
+{apply_docs_customer()}
 </section>
 <section class="join-step" data-join-step="availability" data-join-roles="contractor">
 <p class="eyebrow acc">Step 8 of 9</p>
@@ -180,7 +179,7 @@ def _contractor_steps():
 <select class="input lg"><option>2–3 people</option><option selected>4–6 people</option><option>7 or more</option></select></label>
 </section>
 <section class="join-step" data-join-step="done" data-join-roles="contractor">
-<div class="join-done">
+<div class="join-done" data-invite-ivo>
 <span class="apic ok" style="width:64px;height:64px">{ic("badge-check","xl")}</span>
 <p class="eyebrow acc">Welcome to the network</p>
 <h1>You're in. Your first job is a watched trial.</h1>
@@ -192,8 +191,9 @@ def _contractor_steps():
 {li("Availability","This week · 4–6 people","calendar")}
 </div></div>
 <a class="btn primary xl block" href="../contractor/index.html#today">{ic("smartphone","sm")}<span>Open the contractor app</span></a>
-<p class="xs t3">Approved path (option A, 13 Nov 2026): invite-only after vetting, with a watched trial first job. The public “Partner with IVO” form stays an inquiry; staff decide whether to invite.</p>
+<p class="xs t3">Approved path (option A, 13 Nov 2026): invite-only after review, with a watched trial first job. The public “Partner with IVO” form stays an inquiry; staff decide whether to invite.</p>
 </div>
+{apply_done_customer()}
 </section>'''
 
 def join_body(default_role):
@@ -253,7 +253,7 @@ def build_join(kind):
     else:
         cmds = [
             ("Join","How you'll join","#role","","hard-hat"),
-            ("Join","Your invitation","#invite","","mail"),
+            ("Join","Your invitation","#invite","","mail"),("Join","Customer-vendor invitation","../apply/index.html?invite=vendor#invite","Harborline · Cedar Court","handshake"),
             ("Join","Sign in","#code","","key-round"),
             ("Join","Company","#firm","","building"),
             ("Join","Trades","#trades","","hammer"),

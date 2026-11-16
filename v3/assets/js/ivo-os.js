@@ -561,6 +561,15 @@ const K=["role","invite","code","firm","trades","area","docs","availability","do
 $$('[data-join]').forEach(root=>{
   let role=root.dataset.defaultRole||"customer";
   let step="role";
+  let vendorInvite=false;
+  try{vendorInvite=new URLSearchParams(location.search).get("invite")==="vendor"}catch(e){}
+  function syncInvite(){
+    root.dataset.inviteSource=vendorInvite?"customer":"ivo";
+    $$("[data-invite-customer]",root).forEach(el=>{el.hidden=!vendorInvite});
+    $$("[data-invite-ivo]",root).forEach(el=>{el.hidden=!!vendorInvite});
+  }
+  syncInvite();
+  if(vendorInvite) role="contractor";
   const path=()=>role==="customer"?C:K;
   function show(id){
     const list=path();
@@ -590,8 +599,13 @@ $$('[data-join]').forEach(root=>{
       next.disabled=false;
       const lab=$('span',next);
       if(last){
-        if(lab)lab.textContent=role==="customer"?"See the customer app":"Open the contractor app";
-        next.dataset.finishHref=role==="customer"?"../customer/index.html#invite":"../contractor/index.html#today";
+        if(vendorInvite && role==="contractor"){
+          if(lab)lab.textContent="Done";
+          delete next.dataset.finishHref;
+        }else{
+          if(lab)lab.textContent=role==="customer"?"See the customer app":"Open the contractor app";
+          next.dataset.finishHref=role==="customer"?"../customer/index.html#invite":"../contractor/index.html#today";
+        }
       }else{
         if(lab)lab.textContent="Continue";
         delete next.dataset.finishHref;
@@ -599,13 +613,16 @@ $$('[data-join]').forEach(root=>{
       next.classList.remove("hide");
     }
     if(location.hash.slice(1)!==id)history.replaceState(null,"","#"+id);
+    syncInvite();
     const sc=$('.join-main',root);if(sc)sc.scrollTop=0;
     window.scrollTo({top:0});
   }
   function fromHash(){
     const h=location.hash.slice(1);
+    if(vendorInvite) role="contractor";
     if(C.includes(h)&&h!=="role")role="customer";
     if(K.includes(h)&&h!=="role")role="contractor";
+    if(vendorInvite && role==="contractor" && (!h || h==="role")){show("invite");return}
     show(h||"role");
   }
   root.addEventListener("click",e=>{
@@ -684,7 +701,8 @@ $$('[data-join]').forEach(root=>{
       {id:"feed",screen:"home",sel:'[data-coach="feed"]',title:"Your job feed",body:"New updates land here — arrivals, photos, and notes from the crew."},
       {id:"new-request",screen:"home",sel:'.tabbar a[href="#new"]',title:"Start a new request",body:"Tap New to send a request. Use Emergency on Home only when something is unsafe."},
       {id:"approvals",screen:"approve",sel:'[data-coach="approvals"]',title:"Approve in one tap",body:"This change order is waiting on you. Approve it here, or ask a question first."},
-      {id:"gallery",screen:"gallery",sel:'[data-coach="gallery"]',title:"Property photos",body:"Your property photos live here. Photos from jobs show up under each request.",screens:["gallery","gallery-hp"]}
+      {id:"gallery",screen:"gallery",sel:'[data-coach="gallery"]',title:"Property photos",body:"Your property photos live here. Photos from jobs show up under each request.",screens:["gallery","gallery-hp"]},
+      {id:"vendors",screen:"vendors",sel:'[data-coach="vendors"]',title:"Invite a vendor you trust",body:"Invite a technician or trade you already trust. They complete the same checks as every IVO network member, and they cannot be assigned work until IVO staff approves."}
     ]
   }:{
     welcome:[
@@ -1129,4 +1147,97 @@ $$('[data-join]').forEach(root=>{
   maybeFirstRun();
   window.IVO=window.IVO||{};
   window.IVO.welcome={show:showWelcome,tips:sid=>startTipsFor(sid||currentScreen(),{force:true}),reset(){clearWelcome();clearTips()}};
+})();
+
+
+/* customer-invited vendors: forms, filters, approvals, notifications (preview only) */
+(()=>{
+  const $= (s,r=document)=>r.querySelector(s);
+  const $$= (s,r=document)=>[...r.querySelectorAll(s)];
+  function toast(msg,icon){
+    if(window.IVO&&window.IVO.toast){window.IVO.toast(msg,icon||"info");return}
+  }
+
+  document.addEventListener("click",e=>{
+    const sw=e.target.closest("[data-pref-toggle]");
+    if(sw){
+      const on=sw.classList.toggle("on");
+      sw.setAttribute("aria-checked",on?"true":"false");
+      return;
+    }
+    const bell=e.target.closest("[data-notif-toggle]");
+    if(bell){
+      const wrap=bell.closest("[data-notif]");
+      const pop=$("#notif-pop",wrap)||$(".notif-pop",wrap);
+      if(!pop)return;
+      const open=pop.classList.contains("hide");
+      pop.classList.toggle("hide",!open);
+      bell.setAttribute("aria-expanded",open?"true":"false");
+      return;
+    }
+    if(!e.target.closest("[data-notif]")){
+      $$("[data-notif] .notif-pop").forEach(p=>p.classList.add("hide"));
+      $$("[data-notif-toggle]").forEach(b=>b.setAttribute("aria-expanded","false"));
+    }
+    const ap=e.target.closest("[data-vendor-approve]");
+    if(ap){
+      const card=ap.closest("[data-item],.page");
+      if(card){
+        const st=$("[data-status],.chip.warn",card);
+      }
+      toast("Approval recorded (preview). Nothing was sent.","check");
+      return;
+    }
+    const rj=e.target.closest("[data-vendor-reject]");
+    if(rj){
+      toast("Not approved (preview). Nothing was sent.","x");
+      return;
+    }
+  });
+
+  $$("[data-vendor-invite-form]").forEach(form=>{
+    form.addEventListener("submit",e=>{
+      e.preventDefault();
+      toast("Invite drafted (preview). Nothing was sent.","send");
+    });
+    const btn=$('button[type="submit"], .btn.primary',form);
+    if(btn && form.tagName!=="FORM"){
+      btn.addEventListener("click",()=>toast("Invite drafted (preview). Nothing was sent.","send"));
+    }
+  });
+  // portal form uses a button, not submit
+  document.addEventListener("click",e=>{
+    const b=e.target.closest("[data-vendor-invite-form] .btn.primary");
+    if(!b)return;
+    const form=b.closest("[data-vendor-invite-form]");
+    if(form && form.tagName==="FORM" && b.type==="submit")return;
+    toast("Invite drafted (preview). Nothing was sent.","send");
+  });
+
+  function applyVendorFilters(){
+    const root=$("[data-vendor-filters]");
+    if(!root)return;
+    const q=(($("[data-vendor-search]",root)||{}).value||"").toLowerCase();
+    const customer=(($("[data-vendor-filter='customer']",root)||{}).value||"");
+    const status=(($("[data-vendor-filter='status']",root)||{}).value||"");
+    const trade=(($("[data-vendor-filter='trade']",root)||{}).value||"");
+    const rows=$$("#iv-table tbody tr");
+    let n=0;
+    rows.forEach(r=>{
+      const okC=!customer||r.dataset.customer===customer;
+      const okS=!status||r.dataset.status===status;
+      const okT=!trade||r.dataset.trade===trade;
+      const okQ=!q||r.textContent.toLowerCase().includes(q);
+      const show=okC&&okS&&okT&&okQ;
+      r.classList.toggle("hide",!show);
+      if(show)n++;
+    });
+    const c=$("[data-vendor-count]");
+    if(c)c.textContent=n+" vendor"+(n===1?"":"s");
+  }
+  const filters=$("[data-vendor-filters]");
+  if(filters){
+    filters.addEventListener("input",applyVendorFilters);
+    filters.addEventListener("change",applyVendorFilters);
+  }
 })();

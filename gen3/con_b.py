@@ -1,4 +1,5 @@
 from con_a import *
+from vendors import staff_directory, staff_vendor_detail, staff_notif_bell
 
 BIDS = [("Found","BID-2212","Seattle Piers warehouse TI","Due Dec 4 · invitation received","New","",True,"#bidpkg"),
         ("Reviewing","BID-2210","Redding Clinic tenant improvement","Due Nov 25 · AI extracting","In review","info",False,"#bidpkg"),
@@ -213,15 +214,15 @@ def s_audit():
 
 GROUPS = [("Operate",[("today","Today","layout-dashboard","","","t"),("dispatch","Dispatch","radar","2","","d"),("workorders","Work orders","clipboard-list","23","job closeout","w"),("triage","Triage","inbox","3","","r"),("approvals","Approvals","shield-check","!5","","a")]),
           ("Win work",[("bidding","Bidding","file-text","9","bidpkg bidscope bidsubs bidlevel bidform bidwon bidlost","b")]),
-          ("Network",[("contractors","Contractors","network","42","contractor","c"),("applications","Vetting","badge-check","6","","v")]),
+          ("Network",[("contractors","Contractors","network","42","contractor","c"),("invited-vendors","Invited vendors","handshake","!2","invited-vendor","n"),("applications","Vetting","badge-check","6","","v")]),
           ("System",[("integrations","Integrations","plug","","","i"),("settings","Settings","settings","","audit","s")])]
 
-CMDS = [("Navigate","Today","#today","Command center","layout-dashboard"),("Navigate","Dispatch board","#dispatch","Map + lanes","radar"),("Navigate","Work orders","#workorders","List and board","clipboard-list"),("Navigate","Triage inbox","#triage","3 new","inbox"),("Navigate","Approvals","#approvals","5 waiting","shield-check"),("Navigate","Bidding pipeline","#bidding","9 bids","file-text"),("Navigate","Contractor network","#contractors","42","network"),("Navigate","Vetting","#applications","Option A","badge-check"),("Navigate","Integrations","#integrations","","plug"),("Navigate","Settings","#settings","Roles, policies","settings"),("Navigate","Audit log","#audit","Hash chain","scroll-text"),
+CMDS = [("Navigate","Today","#today","Command center","layout-dashboard"),("Navigate","Dispatch board","#dispatch","Map + lanes","radar"),("Navigate","Work orders","#workorders","List and board","clipboard-list"),("Navigate","Triage inbox","#triage","3 new","inbox"),("Navigate","Approvals","#approvals","5 waiting","shield-check"),("Navigate","Bidding pipeline","#bidding","9 bids","file-text"),("Navigate","Contractor network","#contractors","42","network"),("Navigate","Invited vendors","#invited-vendors","All customer invites","handshake"),("Navigate","Vendor qualification","#invited-vendor","Ridgeway checklist","list-checks"),("Navigate","Vetting","#applications","Option A","badge-check"),("Navigate","Integrations","#integrations","","plug"),("Navigate","Settings","#settings","Roles, policies","settings"),("Navigate","Audit log","#audit","Hash chain","scroll-text"),
         ("Records","REQ-1042 · Ceiling leak, Unit 3B","#job","On site","clipboard"),("Records","REQ-1042 closeout package","#closeout","Builder","package-check"),("Records","BID-2201 · Cedar Ridge Elementary","#bidpkg","Package","file-text"),("Records","BID-2201 scope","#bidscope","6 lines","list-tree"),("Records","BID-2201 leveling","#bidlevel","Rec. $441,558","table-2"),("Records","Bluewater Flooring LLC","#contractor","Score 4.7","hard-hat"),("Records","BID-2175 won → job","#bidwon","","trophy"),("Records","BID-2162 lost","#bidlost","","circle-x"),
         ("Actions","Approve change order CO-2","#approvals","Opens approval","check"),("Actions","Approve and submit BID-2201","#bidform","Admin approval","send"),("Actions","Review sub outreach drafts","#bidsubs","2 drafts","mail"),("Actions","Assign REQ-1053","#dispatch","Draft","calendar-plus"),("Actions","Verify audit chain","#audit","","shield-check")]
 
 def build():
-    screens = "".join([s_today(), s_dispatch(), s_workorders(), s_triage(), s_job(), s_closeout(), s_approvals(), s_bidding(), s_bidpkg(), s_bidscope(), s_bidsubs(), s_bidlevel(), s_bidform(), s_bidwon(), s_bidlost(), s_contractors(), s_contractor(), s_applications(), s_integrations(), s_settings(), s_audit()])
+    screens = "".join([s_today(), s_dispatch(), s_workorders(), s_triage(), s_job(), s_closeout(), s_approvals(), s_bidding(), s_bidpkg(), s_bidscope(), s_bidsubs(), s_bidlevel(), s_bidform(), s_bidwon(), s_bidlost(), s_contractors(), s_contractor(), staff_directory(), staff_vendor_detail(), s_applications(), s_integrations(), s_settings(), s_audit()])
     bnav = [("today","Today","layout-dashboard",""),("dispatch","Dispatch","radar",""),("approvals","Approvals","shield-check",""),("bidding","Bids","file-text","bidpkg bidscope bidsubs bidlevel bidform bidwon bidlost")]
-    body = os_shell("staff console", GROUPS, screens, bnav, copilot=copilot())
+    body = os_shell("staff console", GROUPS, screens, bnav, copilot=copilot(), top_right=staff_notif_bell())
     page("console/index.html", "Staff console", body, depth=1, cmds=CMDS, app="IVO staff console")

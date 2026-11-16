@@ -1,4 +1,5 @@
 from core import *
+from vendors import today_invite_brief, today_invite_feed, fee_field, preferred_tag, invite_by_id
 
 def WHY(name="Bluewater Flooring LLC", trade="Trade: flooring + drywall", score="Scorecard 4.7 · on-time 96%"):
     rows = [(trade,"weight 30"),("Coverage: Pierce County","weight 20"),("COI and license current","required"),(score,"weight 25"),("Capacity: 1 of 2 crews free Tue","weight 25")]
@@ -32,6 +33,7 @@ def s_today():
 {li("Confirm change order CO-2 on REQ-1042", "+$620 · customer already approved in the app", "file-pen-line", "gold", btn("Review","sm",href="#approvals"))}
 {li("Submit BID-2201 by Fri 2:00 PM PT", "Cedar Ridge Elementary · AI-filled form ready · $442,000", "send", "info", btn("Open","sm",href="#bidform"))}
 {li("Roof drain clog is 18 min from an SLA breach", "REQ-1053 · Harbor Point · suggest reassign", "siren", "urgent", btn("Dispatch","sm",href="#dispatch"))}
+{today_invite_brief()}
 </div></section>'''
     sla = "".join(f'''<div class="li"><span class="ic {c}">{ic(i)}</span><div class="grow"><div style="font-weight:550">{t}</div><div class="small t3">{s}</div></div><span class="mono num {tc}" data-countdown="{sec}" aria-label="time left"></span></div>''' for t,s,i,c,tc,sec in [
         ("Roof drain clog","REQ-1053 · Harbor Point · Urgent","droplets","urgent","urgc",1080),
@@ -42,7 +44,7 @@ def s_today():
         ("message-square-reply","8:51 AM","Summit Interiors confirmed $72,200","BID-2201 drywall · available Nov 30–Jan 15",""),
         ("inbox","8:40 AM","New request from Harbor Point","Roof drain clog · Urgent · AI suggests plumbing",""),
         ("file-check-2","8:12 AM","Package analyzed · BID-2210","Redding Clinic TI · 6 requirements, 2 risks",""),
-    ])
+    ] + today_invite_feed())
     pins = [("Tacoma","bad","REQ-1053 roof drain · SLA at risk","#job"),("Kent","","BID-2201 site · Cedar Ridge","#bidpkg"),("Lynnwood","ok","JOB-2175 courthouse doors","#bidwon"),("Bellevue","crew","Cascade Electric on call",None),("Portland","crew","2 crews ready",None),("Boise","crew","Coverage ready",None),("Redding","","BID-2210 clinic TI","#bidpkg")]
     legend = '<div class="legend" style="margin-top:12px"><span><i class="dot gold"></i>Job site</span><span><i class="dot bad"></i>At risk</span><span><i class="dot ok"></i>Won / active</span><span><i class="dot info"></i>Crew</span></div>'
     inner = f'''<div class="grid g4 kpis" style="margin-bottom:16px">{k}</div>
@@ -58,6 +60,43 @@ def s_dispatch():
     q = "".join(f'''<div class="kc dragcard" draggable="true" data-job="{j}" tabindex="0" aria-label="{j} {n}, drag to a crew lane"><div class="row between"><span class="id">{j}</span>{chip(t,c,True)}</div><h4>{n}</h4><div class="meta">{ic("map-pin","sm")}{w}</div>
 <div class="inset" style="margin-top:10px;padding:10px"><div class="row small">{ic("sparkles","sm acc")}<span class="grow">Suggest <b>{s}</b></span><span class="mono xs t3">{sc}</span></div><div class="xs t3" style="margin-top:4px">{why}</div></div>
 <div class="row wrap" style="margin-top:10px"><button class="btn sm primary" type="button" data-assign="{j}|{s}">{ic("calendar-plus","sm")}<span>Assign draft</span></button><span class="xs t3">or drag onto a lane</span></div></div>''' for j,t,c,n,w,s,sc,why in data)
+    north = invite_by_id("northshore")
+    lake = invite_by_id("lakeside")
+    blocked = (
+        '<div class="kc" data-job="REQ-1068" tabindex="0" aria-label="REQ-1068 Suite 4 paint touch-up, not assignable yet">'
+        '<div class="row between"><span class="id">REQ-1068</span>' + chip("Standard", "", True) + '</div>'
+        '<h4>Suite 4 paint touch-up</h4>'
+        '<div class="meta">' + ic("map-pin", "sm") + "Cedar Court · Tacoma</div>"
+        '<div class="row wrap" style="margin-top:8px">'
+        + chip(ic("star", "sm") + "Preferred by customer", "gold")
+        + chip("Not yet qualified", "warn", True)
+        + "</div>"
+        '<p class="xs t2" style="margin-top:8px">Harborline prefers <b>Northshore Paint Co. (sample)</b>. '
+        "This vendor is not yet qualified and cannot be assigned until every required document is complete and staff approve it.</p>"
+        '<div class="row wrap" style="margin-top:10px">'
+        '<button class="btn sm" type="button" disabled aria-disabled="true">' + ic("lock", "sm") + "<span>Cannot assign</span></button>"
+        '<a class="btn sm" href="#invited-vendors">' + ic("list-checks", "sm") + "<span>View checklist</span></a>"
+        "</div></div>"
+    )
+    assignable = (
+        '<div class="kc dragcard" draggable="true" data-job="REQ-1071" tabindex="0" aria-label="REQ-1071 Flooring punch, preferred qualified vendor">'
+        '<div class="row between"><span class="id">REQ-1071</span>' + chip("Standard", "", True) + '</div>'
+        "<h4>Corridor flooring punch</h4>"
+        '<div class="meta">' + ic("map-pin", "sm") + "Cedar Court · Tacoma</div>"
+        '<div class="row wrap" style="margin-top:8px">'
+        + chip(ic("star", "sm") + "Preferred by customer", "gold")
+        + chip("Qualified", "ok", True)
+        + "</div>"
+        '<p class="xs t2" style="margin-top:8px">Harborline prefers <b>Lakeside Flooring Inc. (sample)</b>, '
+        "a customer-invited vendor who has completed qualification.</p>"
+        + fee_field()
+        + '<div class="row wrap" style="margin-top:10px">'
+        '<button class="btn sm primary" type="button" data-assign="REQ-1071|Lakeside Flooring Inc. (sample)">'
+        + ic("calendar-plus", "sm") + "<span>Assign draft</span></button>"
+        '<span class="xs t3">or drag onto a lane</span></div></div>'
+    )
+    q = q + blocked + assignable
+
     crews = [("Bluewater · Ana Kim","AK",[(2,46,"REQ-1042 Unit 3B ceiling","gold")]),
              ("Bluewater · Ben Okafor","BO",[(0,18,"REQ-1059 hallway",""),(70,20,"REQ-1036 punch","")]),
              ("Evergreen Restoration","ER",[(10,40,"REQ-1048 water mitigation","")]),
@@ -70,7 +109,7 @@ def s_dispatch():
     hours = '<div class="hours"><span>Crew</span>' + "".join(f"<span>{h}</span>" for h in ["7a","8a","9a","10a","11a","12p","1p","2p","3p","4p"]) + "</div>"
     pins = [("Tacoma","bad","REQ-1053 roof drain · unassigned",None),("Kent","crew","Ana Kim · on site REQ-1042",None),("Seattle","crew","Ben Okafor · en route",None),("Bellevue","crew","Cascade Electric · on call",None),("Lynnwood","crew","Evergreen crew",None),("Portland","crew","Portland crews ready",None)]
     inner = f'''<div class="grid dgrid" style="margin-bottom:16px">
-<section class="panel" aria-labelledby="uq"><div class="hd">{ic("inbox")}<h2 id="uq">Unassigned · 2</h2><span class="grow"></span>{chip("AI suggestions","gold")}</div><div class="bd col gap16">{q}<span class="chip ok" data-dispatch-status hidden></span></div></section>
+<section class="panel" aria-labelledby="uq"><div class="hd">{ic("inbox")}<h2 id="uq">Unassigned · 4</h2><span class="grow"></span>{chip("AI suggestions","gold")}</div><div class="bd col gap16">{q}<span class="chip ok" data-dispatch-status hidden></span></div></section>
 {panel("Live crew map", mapbox(pins, routes=[("Seattle","Tacoma"),("Bellevue","Tacoma")], extra_cls="lg") + '<div class="legend" style="margin-top:12px"><span><i class="dot bad"></i>Unassigned, at risk</span><span><i class="dot info"></i>Crew position (sample)</span></div>', "radar", '<span class="live">Live</span>')}
 </div>
 {panel("Today's schedule · Puget Sound", f'<div class="tscroll"><div class="lanes">{hours}{lanes}</div></div>', "gantt-chart", btn("Week","sm ghost",icon="calendar",attrs=' data-toast="Week view (prototype)."'), bd="bd p0")}
