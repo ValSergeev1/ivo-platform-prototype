@@ -1,0 +1,49 @@
+/* Align apply / onboarding chrome with the IVO website preview. */
+.site-join-top{
+  font-family:"Inter Tight","Geist",system-ui,sans-serif;
+  background:#fff;
+  color:#061d2a;
+  border-bottom:1px solid #dce4e8;
+  position:sticky;
+  top:var(--banner,0px);
+  z-index:40;
+}
+.site-join-top .wrap{
+  display:flex;align-items:center;height:60px;gap:20px;
+  max-width:1200px;margin:0 auto;padding:0 24px;
+}
+.site-join-top .brand{
+  display:flex;align-items:center;gap:10px;text-decoration:none;color:#061d2a;min-height:44px;
+}
+.site-join-top .brand img{width:36px;height:36px}
+.site-join-top .mark-d{display:none!important}
+.site-join-top .mark-l{display:block!important}
+.site-join-top .wm{line-height:1}
+.site-join-top .wm b{display:block;font-size:20px;font-weight:600;letter-spacing:.14em}
+.site-join-top .wm span{display:block;font-size:9px;letter-spacing:.42em;color:#4f6676;margin-top:2px}
+.site-join-top nav{margin-left:auto;display:flex;gap:18px;align-items:center}
+.site-join-top nav a{
+  color:#061d2a;text-decoration:none;font-size:14px;font-weight:500;
+  min-height:44px;display:inline-flex;align-items:center;
+}
+.site-join-top nav a:hover{color:#886034}
+.site-join-top .sj-cta{
+  background:#b38a55;color:#fff!important;padding:0 16px;border-radius:2px;min-height:44px;
+}
+.site-join-top .sj-cta:hover{background:#9d7746;color:#fff}
+@media (min-width:901px){
+  body[data-app="IVO join"] .join-rail{
+    top:calc(var(--banner,0px) + 60px);
+    height:calc(100vh - var(--banner,0px) - 60px);
+  }
+  body[data-app="IVO join"] .join{
+    min-height:calc(100vh - var(--banner,0px) - 60px);
+  }
+}
+body[data-app="IVO join"] .btn.primary{
+  background:#b38a55;border-color:#b38a55;
+}
+@media (max-width:720px){
+  .site-join-top nav a:not(.sj-cta){display:none}
+  .site-join-top .wrap{padding:0 16px;height:56px}
+}

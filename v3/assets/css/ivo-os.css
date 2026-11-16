@@ -879,3 +879,8 @@ a.phero:hover .phero-img{transform:scale(1.02)}
   .notif-wrap{position:relative}
   .notif-pop{position:fixed;left:12px;right:12px;top:calc(var(--banner,0px) + var(--top,56px) + 8px);bottom:auto;max-height:min(70vh,calc(100dvh - var(--banner,0px) - var(--top,56px) - var(--bnav,64px) - 24px));overflow:auto;z-index:80}
 }
+
+/* Sign-in and invite screens: tighter alignment with the IVO website. */
+.join-app .btn.primary,.join-app-foot .btn.primary{min-height:48px}
+.join-app h2,.join-app-hero h1{letter-spacing:-.03em}
+.join-app .otp .input{border-radius:2px}

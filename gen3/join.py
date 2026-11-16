@@ -210,7 +210,23 @@ def join_body(default_role):
     pitch_c = "Send a request first. After IVO reviews it, we invite you into a workspace — option 1, approved 13 Nov 2026."
     pitch_k = "IVO invites contractors after vetting. The first job is a closely watched trial — option A, approved 13 Nov 2026."
     pitch = pitch_c if default_role == "customer" else pitch_k
-    return f'''<div class="join" data-join data-default-role="{default_role}">
+    site = "https://valsergeev1.github.io/ivo-site-v2-preview"
+    chrome = f'''<div class="site-join-top">
+<div class="wrap">
+<a class="brand" href="{site}/" aria-label="IVO Group website preview">
+<img class="mark-l" src="../assets/img/ivo-mark-navy.png" alt="" width="36" height="36">
+<img class="mark-d" src="../assets/img/ivo-mark-white.png" alt="" width="36" height="36">
+<span class="wm"><b>IVO</b><span>GROUP</span></span>
+</a>
+<nav aria-label="IVO website">
+<a href="{site}/partner-with-ivo/">Partner with IVO</a>
+<a href="{site}/portal-walkthrough/">Portal walkthrough</a>
+<a href="https://ivoservgroup.com/portal">Portal sign-in</a>
+<a class="sj-cta" href="{site}/#request">Start a request</a>
+</nav>
+</div>
+</div>'''
+    return f'''{chrome}<div class="join" data-join data-default-role="{default_role}">
 <aside class="join-rail" aria-label="Join progress">
 <a class="join-brand" href="../index.html"><img class="mark-d" src="../assets/img/ivo-mark-white.png" alt=""><img class="mark-l" src="../assets/img/ivo-mark-white.png" alt=""><span>IVO</span></a>
 <p class="eyebrow" style="color:#e1c395">Join the network</p>
@@ -249,7 +265,8 @@ def build_join(kind):
             ("Prototype","Customer app invitation","../customer/index.html#invite","","smartphone"),
             ("Prototype","Contractor join","../apply/index.html","","hard-hat"),
         ]
-        page("onboarding/index.html", title, body, cmds=cmds, app="IVO join")
+        head='<link rel="stylesheet" href="../assets/css/join-site.css"><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">'
+        page("onboarding/index.html", title, body, cmds=cmds, app="IVO join", head=head)
     else:
         cmds = [
             ("Join","How you'll join","#role","","hard-hat"),
@@ -264,4 +281,5 @@ def build_join(kind):
             ("Prototype","Contractor app","../contractor/index.html#today","","smartphone"),
             ("Prototype","Customer join","../onboarding/index.html","","users"),
         ]
-        page("apply/index.html", title, body, cmds=cmds, app="IVO join")
+        head='<link rel="stylesheet" href="../assets/css/join-site.css"><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">'
+        page("apply/index.html", title, body, cmds=cmds, app="IVO join", head=head)
