@@ -57,7 +57,7 @@ def spark(vals, cls="acc", fill=True):
     pts = [(i * w / (len(vals) - 1), h - 3 - (v - mn) / rng * (h - 6)) for i, v in enumerate(vals)]
     d = "M" + " L".join(f"{x:.1f},{y:.1f}" for x, y in pts)
     area = d + f" L{w},{h} L0,{h} Z"
-    col = {"acc": "var(--accent-2)", "ok": "var(--ok)", "warn": "var(--warn)", "bad": "var(--bad)", "info": "var(--info)"}[cls]
+    col = {"acc": "var(--accent-2)", "ok": "var(--ok)", "warn": "var(--warn)", "bad": "var(--bad)", "info": "var(--info)", "urgent": "var(--urgent)", "emergency": "var(--urgent)"}[cls]
     return (f'<svg class="spark" viewBox="0 0 {w} {h}" preserveAspectRatio="none" aria-hidden="true">'
             f'<path d="{area}" fill="{col}" opacity=".14"/><path d="{d}" fill="none" stroke="{col}" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>')
 

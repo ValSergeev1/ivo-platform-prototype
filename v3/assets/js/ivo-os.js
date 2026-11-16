@@ -4,7 +4,7 @@ const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelecto
 const root=document.documentElement;
 /* theme */
 const TK='ivo-v3-theme';
-function applyTheme(t){root.setAttribute('data-theme',t);$$('[data-theme-toggle]').forEach(b=>{b.setAttribute('aria-label',t==='dark'?'Switch to light theme':'Switch to dark theme');b.setAttribute('aria-pressed',t==='light')});const m=$('meta[name=theme-color]');if(m)m.content=t==='dark'?'#061d2a':'#f3f5f7'}
+function applyTheme(t){root.setAttribute('data-theme',t);$$('[data-theme-toggle]').forEach(b=>{b.setAttribute('aria-label',t==='dark'?'Switch to light theme':'Switch to dark theme');b.setAttribute('aria-pressed',t==='light')});const m=$('meta[name=theme-color]');if(m)m.content=t==='dark'?'#0a1c26':'#f3f5f7'}
 let saved=null;try{saved=localStorage.getItem(TK)}catch(e){}
 applyTheme(saved||root.getAttribute('data-theme')||'dark');
 document.addEventListener('click',e=>{const b=e.target.closest('[data-theme-toggle]');if(!b)return;const t=root.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(t);try{localStorage.setItem(TK,t)}catch(e){};toast(t==='dark'?'Dark theme':'Light theme','sun-moon')});

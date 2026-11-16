@@ -31,11 +31,11 @@ def s_today():
 <div class="list">
 {li("Confirm change order CO-2 on REQ-1042", "+$620 · customer already approved in the app", "file-pen-line", "gold", btn("Review","sm",href="#approvals"))}
 {li("Submit BID-2201 by Fri 2:00 PM PT", "Cedar Ridge Elementary · AI-filled form ready · $442,000", "send", "info", btn("Open","sm",href="#bidform"))}
-{li("Roof drain clog is 18 min from an SLA breach", "REQ-1053 · Harbor Point · suggest reassign", "siren", "bad", btn("Dispatch","sm",href="#dispatch"))}
+{li("Roof drain clog is 18 min from an SLA breach", "REQ-1053 · Harbor Point · suggest reassign", "siren", "urgent", btn("Dispatch","sm",href="#dispatch"))}
 </div></section>'''
     sla = "".join(f'''<div class="li"><span class="ic {c}">{ic(i)}</span><div class="grow"><div style="font-weight:550">{t}</div><div class="small t3">{s}</div></div><span class="mono num {tc}" data-countdown="{sec}" aria-label="time left"></span></div>''' for t,s,i,c,tc,sec in [
-        ("Roof drain clog","REQ-1053 · Harbor Point · Urgent","droplets","bad","badc",1080),
-        ("HVAC not cooling, medical office","Triage · Tacoma · Urgent","thermometer-sun","warn","warnc",5400),
+        ("Roof drain clog","REQ-1053 · Harbor Point · Urgent","droplets","urgent","urgc",1080),
+        ("HVAC not cooling, medical office","Triage · Tacoma · Urgent","thermometer-sun","urgent","urgc",5400),
         ("Lobby LED retrofit · bids close","REQ-1051 · Cedar Court","lightbulb","info","t2",26*3600)])
     feed = timeline([
         ("map-pin","9:02 AM","Ana Kim checked in at Cedar Court","GPS verified · 2 photos · REQ-1042","now"),
@@ -53,7 +53,7 @@ def s_today():
     return screen("today", "Good morning, Dana", inner, "Today · Sat Nov 14 · Pacific", "", btn("New work order","",icon="plus",href="#triage") + btn("Ask copilot","primary",icon="sparkles",attrs=' data-copilot-toggle aria-expanded="false"'), default=True)
 
 def s_dispatch():
-    data = [("REQ-1053","Urgent","bad","Roof drain clog","Harbor Point · Tacoma","Cascade Electric","fit 91","On-call tech 11 min away · plumbing in King + Pierce · COI current"),
+    data = [("REQ-1053","Urgent","urgent","Roof drain clog","Harbor Point · Tacoma","Cascade Electric","fit 91","On-call tech 11 min away · plumbing in King + Pierce · COI current"),
             ("REQ-1060","Standard","","Door closer replacement","Cedar Court Bldg A · Tacoma","Bluewater · Ben Okafor","fit 84","Free 1–3 PM · 6 min from current job · general repair")]
     q = "".join(f'''<div class="kc dragcard" draggable="true" data-job="{j}" tabindex="0" aria-label="{j} {n}, drag to a crew lane"><div class="row between"><span class="id">{j}</span>{chip(t,c,True)}</div><h4>{n}</h4><div class="meta">{ic("map-pin","sm")}{w}</div>
 <div class="inset" style="margin-top:10px;padding:10px"><div class="row small">{ic("sparkles","sm acc")}<span class="grow">Suggest <b>{s}</b></span><span class="mono xs t3">{sc}</span></div><div class="xs t3" style="margin-top:4px">{why}</div></div>
@@ -77,12 +77,12 @@ def s_dispatch():
 <div style="margin-top:12px">{note("Assignments are drafts. Notifying a contractor waits in Approvals, and the address is released only after they accept.","shield-check","gate")}</div>'''
     return screen("dispatch", "Dispatch board", inner, "Operate", "Drag a job onto a crew lane, or take the AI suggestion. Every pick shows why.", btn("Auto-plan day","",icon="wand-sparkles",attrs=' data-toast="Draft plan ready for review. Nothing was sent."'))
 
-WO = [("REQ-1053","Roof drain clog","Harbor Point","Urgent","bad","Timer at risk","warn","Evergreen Restoration","18 min","urgent waiting"),
-      ("REQ-1042","Ceiling leak, Unit 3B","Harborline · Cedar Court","Urgent","bad","On site","info","Bluewater Flooring","On track","urgent onsite"),
-      ("REQ-1062","No power, suite 210","Pioneer Lofts","Emergency","bad","Routing","warn","—","1h target","emergency waiting"),
+WO = [("REQ-1053","Roof drain clog","Harbor Point","Urgent","urgent","Timer at risk","urgent","Evergreen Restoration","18 min","urgent waiting"),
+      ("REQ-1042","Ceiling leak, Unit 3B","Harborline · Cedar Court","Urgent","urgent","On site","info","Bluewater Flooring","On track","urgent onsite"),
+      ("REQ-1062","No power, suite 210","Pioneer Lofts","Emergency","emergency","Routing","warn","—","1h target","emergency waiting"),
       ("REQ-1051","Lobby LED retrofit","Harborline · Cedar Court","Standard","","Bidding","","3 invited","Fri 5 PM","standard"),
       ("REQ-1059","Hallway ceiling","Harborline · Cedar Court","Standard","","Scheduled","ok","Bluewater Flooring","Mon 8 AM","standard"),
-      ("REQ-1048","Water mitigation, unit 12","Bayview Commons","Urgent","bad","On site","info","Evergreen Restoration","On track","urgent onsite"),
+      ("REQ-1048","Water mitigation, unit 12","Bayview Commons","Urgent","urgent","On site","info","Evergreen Restoration","On track","urgent onsite"),
       ("REQ-1060","Door closer replacement","Cedar Court Bldg A","Standard","","New","","—","2 days","standard waiting"),
       ("REQ-1044","Tenant turnover, suite 4","Rainier Office Park","Standard","","Closeout","ok","Summit Interiors","Sign-off","standard"),
       ("REQ-1039","ADA ramp handrail","Lakeside Medical","Standard","","Punch","info","Pacific Openings LLC","2 items","standard")]
@@ -106,11 +106,11 @@ def s_workorders():
 
 def s_triage():
     why_hvac = WHY("Harbor Air LLC", "Trade: HVAC", "Scorecard 4.6 · on-time 93%")
-    cards = f'''<div class="panel" data-item><div class="hd">{ic("thermometer-sun")}<h2>HVAC not cooling, medical office</h2><span class="grow"></span>{chip("Urgent","bad",True)}<span class="chip" data-status hidden></span></div><div class="bd grid g2">
+    cards = f'''<div class="panel" data-item><div class="hd">{ic("thermometer-sun")}<h2>HVAC not cooling, medical office</h2><span class="grow"></span>{chip("Urgent","urgent",True)}<span class="chip" data-status hidden></span></div><div class="bd grid g2">
 <div class="col"><div class="small t3">Tacoma · public request form · 14 min ago · Lakeside Medical (new customer)</div>
 <p class="small">“Exam rooms 3–6 are at 81°F and climbing. Patients are scheduled from 1 PM. Rooftop unit is making a clicking noise.”</p>
 <div class="inset"><div class="row small">{ic("sparkles","sm acc")}<b>AI classification</b><span class="grow"></span><span class="mono xs t3">conf. 0.93</span></div>
-<div class="row wrap gap6" style="margin-top:8px">{chip("HVAC","gold")}{chip("Repair")}{chip("Urgent · 4h tier","warn")}{chip("Medical occupancy")}</div><p class="xs t3" style="margin-top:8px">Keywords: “not cooling”, “rooftop unit”, occupied clinic → Urgent per response-time tiers (draft).</p></div></div>
+<div class="row wrap gap6" style="margin-top:8px">{chip("HVAC","gold")}{chip("Repair")}{chip("Urgent · 4h tier","urgent")}{chip("Medical occupancy")}</div><p class="xs t3" style="margin-top:8px">Keywords: “not cooling”, “rooftop unit”, occupied clinic → Urgent per response-time tiers (draft).</p></div></div>
 <div class="col">{why_hvac}
 <div class="row wrap"><button class="btn primary" type="button" data-set="Confirmed · routing draft in Approvals|ok" data-hide=".alt">{ic("check","sm")}<span>Confirm type &amp; route</span></button><button class="btn alt" type="button" data-toast="Edit opened (prototype).">{ic("pencil","sm")}<span>Edit</span></button><button class="btn ghost alt" type="button" data-set="Asked to request first|info" data-toast="New customer goes through request first (option 1).">Invite flow</button></div></div></div></div>
 <div class="panel" data-item><div class="hd">{ic("lightbulb")}<h2>Lobby lighting, evening work</h2><span class="grow"></span>{chip("Standard","",True)}<span class="chip" data-status hidden></span></div><div class="bd row wrap between">
@@ -121,7 +121,7 @@ def s_triage():
     return screen("triage", "Triage inbox", f'<div class="col gap16">{cards}</div>', "Operate", "AI suggests type, trade and urgency. A person confirms every one.", chip("3 new","gold"))
 
 def job_header():
-    return f'''<div class="panel" style="padding:18px;margin-bottom:16px"><div class="row wrap between at"><div><div class="row wrap gap6"><span class="mono acc">REQ-1042</span>{chip("Urgent","bad",True)}{chip("On site","info",True)}</div>
+    return f'''<div class="panel" style="padding:18px;margin-bottom:16px"><div class="row wrap between at"><div><div class="row wrap gap6"><span class="mono acc">REQ-1042</span>{chip("Urgent","urgent",True)}{chip("On site","info",True)}</div>
 <h1 style="margin-top:6px">Ceiling leak, drywall &amp; paint</h1><div class="small t3" style="margin-top:4px">Cedar Court Apartments, Unit 3B · Tacoma, Pierce County · Harborline Property Group</div></div>
 <div class="row wrap"><span class="avs"><span class="avatar">MO</span><span class="avatar navy">SR</span><span class="avatar navy">AK</span></span>{btn("Message","",icon="message-square",attrs=' data-toast="Draft opened. Sending waits for approval."')}{btn("Review CO-2","primary",icon="file-pen-line",href="#approvals")}</div></div>
 <div style="margin-top:16px">{steps(["Received","Reviewed","Assigned","On site","Punch","Sign-off"],3)}</div></div>'''
