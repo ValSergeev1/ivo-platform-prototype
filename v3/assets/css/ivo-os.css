@@ -1,11 +1,11 @@
 /* IVO OS · V03 design system · prototype, sample data only.
    Brand: navy #061d2a / #0c2938, decorative gold #b38a55 / #e1c395,
-   gold ink #8a6534 (text, links, small buttons and icons on light surfaces; WCAG AA 4.5:1),
+   gold ink #886034 (text, links, small buttons and icons on light surfaces; WCAG AA 4.5:1),
    safety orange #e8590c (emergency, urgent and overdue states only). Icons: Lucide (ISC). */
 :root{
   --font: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --navy:#061d2a; --navy-2:#0c2938; --gold:#b38a55; --gold-l:#e1c395; --gold-ink:#8a6534;
+  --navy:#061d2a; --navy-2:#0c2938; --gold:#b38a55; --gold-l:#e1c395; --gold-ink:#886034;
   --urgent-solid:#e8590c; --urgent-solid-hover:#f06515;
   --r-xs:6px; --r-sm:8px; --r:12px; --r-lg:16px; --r-xl:22px;
   --ease:cubic-bezier(.2,.8,.2,1); --t:180ms;
@@ -33,7 +33,7 @@
   --bg:#f3f5f7; --bg-2:#e9edf1; --surface:#ffffff; --surface-2:#f8fafb; --surface-3:#eef2f5; --surface-4:#e3e9ee;
   --line:#e1e7ec; --line-2:#cfd8df; --line-gold:#d8c3a2;
   --text:#061d2a; --text-2:#2c4655; --text-3:#4f6676;
-  --accent:#8a6534; --accent-2:#b38a55; --accent-ink:#061d2a; --accent-soft:rgba(138,101,52,.14);
+  --accent:#886034; --accent-2:#b38a55; --accent-ink:#061d2a; --accent-soft:rgba(138,101,52,.14);
   --primary-bg:#061d2a; --primary-fg:#f2e3c8; --primary-hover:#0c2938;
   --ok:#166534; --ok-bg:#e3f4e8; --warn:#8a3b0c; --warn-bg:#fbefdc;
   --bad:#a51b1b; --bad-bg:#fbe6e6; --info:#075985; --info-bg:#e1f0f8;
