@@ -208,6 +208,8 @@ if(home){
         if(!node)return;
         node.setAttribute('data-live-added','');
         list.prepend(node);
+        const cur=$$('.chip-btn[aria-pressed="true"]',home)[0];
+        showPlace(cur?cur.dataset.place:'cedar');
         const a=$('[data-feed-announce]',home);
         if(a)a.textContent='1 new update';
         toast('New job update: crew left the site','map-pin');
@@ -216,6 +218,8 @@ if(home){
     if($('[data-screen="home"].on'))armLive();
     document.addEventListener('screen:show',e=>{if(e.target&&e.target.dataset.screen==='home')armLive()});
   }
+  const cur=$$('.chip-btn[aria-pressed="true"]',home)[0];
+  showPlace(cur?cur.dataset.place:'cedar');
 }
 
 /* Gallery: cover, pin, remove, local add — stays on this phone only. */
