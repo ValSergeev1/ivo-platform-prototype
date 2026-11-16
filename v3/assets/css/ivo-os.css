@@ -884,3 +884,25 @@ a.phero:hover .phero-img{transform:scale(1.02)}
 .join-app .btn.primary,.join-app-foot .btn.primary{min-height:48px}
 .join-app h2,.join-app-hero h1{letter-spacing:-.03em}
 .join-app .otp .input{border-radius:2px}
+
+/* Screen transitions — respect reduced motion. Header and tab bar stay put. */
+[data-screen]{animation:none}
+[data-screen].on{animation:ivo-screen-in .28s var(--ease,ease) both}
+@keyframes ivo-screen-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.top,.bnav,.tabbar,header.top,header.ahd{view-transition-name:none}
+@media (prefers-reduced-motion:reduce){
+  [data-screen].on{animation:none}
+}
+
+/* Sign-in matches the site portal card, without leaving the app chrome. */
+[data-screen="signin"] .join-app,
+[data-screen="invite"] .join-app{
+  background:var(--bg,#fff);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:28px 22px 24px;
+  box-shadow:0 24px 50px -32px rgba(6,29,42,.28);
+}
+[data-screen="signin"] .ahd,
+[data-screen="invite"] .ahd{min-height:60px}
+.tabbar{min-height:calc(62px + env(safe-area-inset-bottom,0px))}

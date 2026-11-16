@@ -221,7 +221,7 @@ def join_body(default_role):
 <nav aria-label="IVO website">
 <a href="{site}/partner-with-ivo/">Partner with IVO</a>
 <a href="{site}/portal-walkthrough/">Portal walkthrough</a>
-<a href="https://ivoservgroup.com/portal">Portal sign-in</a>
+<a href="https://valsergeev1.github.io/ivo-site-v2-preview/portal/">Portal sign-in</a>
 <a class="sj-cta" href="{site}/#request">Start a request</a>
 </nav>
 </div>
