@@ -106,19 +106,20 @@ def customer_home_body():
 <button type="button" class="chip-btn" data-place="harbor" aria-pressed="false"><img class="chip-thumb" src="../assets/img/ph-lobby.webp" alt="">Harbor Point</button>
 </div></div>
 <a class="sos" href="#emergency" aria-label="Emergency: alert IVO now. One tap, with 5 seconds to cancel."><span class="ic">{ic("siren","lg")}</span><span class="grow">Emergency<small>Active leak, no power, unsafe. One tap alerts IVO.</small></span>{ic("chevron-right")}</a>
-<div data-place-block="cedar"><div class="hero"><div class="row between"><span class="eyebrow" style="color:#e1c395">Happening now</span><span class="chip gold"><i class="d" style="background:#e1c395;width:7px;height:7px;border-radius:50%"></i>Live</span></div>
+<div data-place-block="cedar"><div class="hero" data-coach="job-card"><div class="row between"><span class="eyebrow" style="color:#e1c395">Happening now</span><span class="chip gold"><i class="d" style="background:#e1c395;width:7px;height:7px;border-radius:50%"></i>Live</span></div>
 <h2 style="margin-top:10px;font-size:22px">Unit 3B ceiling leak</h2><p class="t3x small" style="margin-top:4px">Cedar Court · Ana Kim is on site since 9:02 AM</p>
 <div style="margin:16px 0">{steps(["Received","Reviewed","Assigned","On site","Sign-off"],3)}</div>
 <a class="btn primary lg block" href="#approve">{ic("check","sm")}<span>Approve change order · +$620</span></a></div>
 <div class="grid g2" style="grid-template-columns:1fr 1fr;gap:10px"><a class="tile-btn" href="#new" style="min-height:96px">{ic("plus","lg")}<b>New request</b></a><a class="tile-btn" href="#docs" style="min-height:96px">{ic("folder","lg")}<b>Documents</b></a></div>
 <section class="panel" aria-labelledby="hm-o"><div class="hd"><h2 id="hm-o">Also open</h2><span class="grow"></span><a class="btn sm ghost" href="#requests">All</a></div><div class="list">{li("REQ-1059 · Hallway ceiling","Scheduled Mon 8:00 AM · Bldg B","calendar","info",chip("Scheduled","ok"),href="#requests")}</div></section></div>
 <section class="feed" aria-labelledby="feed-h">
-<div class="row between wrap" style="gap:8px"><h2 id="feed-h" class="feed-h">{ic("sparkles","sm acc")} Job updates</h2><span class="chip gold"><i class="d" style="background:#e1c395;width:7px;height:7px;border-radius:50%"></i>Live</span></div>
+<div class="feed-head" data-coach="feed"><div class="row between wrap" style="gap:8px"><h2 id="feed-h" class="feed-h">{ic("sparkles","sm acc")} Job updates</h2><span class="chip gold"><i class="d" style="background:#e1c395;width:7px;height:7px;border-radius:50%"></i>Live</span></div>
 <div class="seg feed-filters" role="group" aria-label="Show" data-feed-filter>
 <button type="button" data-filter="all" aria-pressed="true">All</button>
 <button type="button" data-filter="visits" aria-pressed="false">Visits</button>
 <button type="button" data-filter="photos" aria-pressed="false">Photos</button>
 <button type="button" data-filter="money" aria-pressed="false">Approvals and invoices</button>
+</div>
 </div>
 <p class="sr" aria-live="polite" data-feed-announce></p>
 <ol class="feed-list">
@@ -131,7 +132,7 @@ def customer_home_body():
 def gallery_screen(sid, name, addr, img, initials, mine, jobs, back="#home", open_jobs=0):
     mine_html = "".join(gallery_fig(*m) if len(m) == 2 else gallery_fig(m[0], m[1], cover=m[2]) for m in mine)
     job_html = "".join(gallery_fig(img_, cap, job=job) for img_, cap, job in jobs)
-    return mscreen(sid, name, f'''<div data-gallery>
+    return mscreen(sid, name, f'''<div data-gallery data-coach="gallery">
 {phero(sid, name, addr, open_jobs, len(mine)+len(jobs), img, "#gallery", initials, static=True)}
 <div class="panel"><div class="bd col gap16">
 <label class="field"><span>Caption (optional)</span><input class="input" placeholder="e.g. Front entrance"></label>

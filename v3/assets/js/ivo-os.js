@@ -6,6 +6,7 @@ const root=document.documentElement;
 const TK='ivo-v3-theme';
 function applyTheme(t){root.setAttribute('data-theme',t);$$('[data-theme-toggle]').forEach(b=>{b.setAttribute('aria-label',t==='dark'?'Switch to light theme':'Switch to dark theme');b.setAttribute('aria-pressed',t==='light')});const m=$('meta[name=theme-color]');if(m)m.content=t==='dark'?'#0a1c26':'#f3f5f7'}
 let saved=null;try{saved=localStorage.getItem(TK)}catch(e){}
+try{const qt=new URLSearchParams(location.search).get('theme');if(qt==='light'||qt==='dark')saved=qt}catch(e){}
 applyTheme(saved||root.getAttribute('data-theme')||'dark');
 document.addEventListener('click',e=>{const b=e.target.closest('[data-theme-toggle]');if(!b)return;const t=root.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(t);try{localStorage.setItem(TK,t)}catch(e){};toast(t==='dark'?'Dark theme':'Light theme','sun-moon')});
 
@@ -640,4 +641,492 @@ $$('[data-join]').forEach(root=>{
   window.addEventListener("hashchange",fromHash);
   fromHash();
 });
+})();
+
+/* first-run welcome + on-screen tips (customer and contractor apps) */
+(()=>{
+  const kind=document.body.dataset.welcomeKind;
+  if(!kind)return;
+  const $= (s,r=document)=>r.querySelector(s);
+  const $$= (s,r=document)=>[...r.querySelectorAll(s)];
+  const name=document.body.dataset.welcomeName||"";
+  const WK=`ivo-v3-welcome-${kind}`;
+  const TK=`ivo-v3-tips-${kind}`;
+  const reduce=window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const AUTH=new Set(["invite","signin"]);
+
+  function icon(n,cls="xl"){return `<svg class="i ${cls}" aria-hidden="true"><use href="#i-${n}"></use></svg>`}
+  function params(){try{return new URLSearchParams(location.search)}catch(e){return new URLSearchParams()}}
+  function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+  function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+  function lsDel(k){try{localStorage.removeItem(k)}catch(e){}}
+  function welcomeSeen(){return lsGet(WK)==="1"}
+  function markWelcome(){lsSet(WK,"1")}
+  function clearWelcome(){lsDel(WK)}
+  function tipState(){
+    try{const r=JSON.parse(lsGet(TK)||"{}");return {seen:Array.isArray(r.seen)?r.seen:[],skipped:!!r.skipped}}
+    catch(e){return {seen:[],skipped:false}}
+  }
+  function saveTips(st){lsSet(TK,JSON.stringify(st))}
+  function clearTips(){lsDel(TK)}
+  function markTip(id){const st=tipState();if(!st.seen.includes(id))st.seen.push(id);saveTips(st)}
+  function skipAllTips(){const st=tipState();st.skipped=true;CARDS.tips.forEach(t=>{if(!st.seen.includes(t.id))st.seen.push(t.id)});saveTips(st)}
+
+  const CARDS=kind==="customer"?{
+    welcome:[
+      {icon:"clipboard-list",eyebrow:`Welcome, ${name}`.trim().replace(/,\s*$/,""),title:"Request work in one place",body:"Send a new request from Home, including a one-tap Emergency when something is unsafe."},
+      {icon:"camera",eyebrow:"On the job",title:"Track your job live",body:"See when the crew arrives, new photos, and other updates in your job feed."},
+      {icon:"check",eyebrow:"When work changes",title:"Approve change orders in one tap",body:"When extra work is needed, you'll see the amount here and can approve it, or ask a question first."},
+      {icon:"package-check",eyebrow:"When work is done",title:"Closeout, docs, and invoices",body:"Review the closeout package and see approved invoice amounts in this app."}
+    ],
+    tips:[
+      {id:"job-card",screen:"home",sel:'[data-coach="job-card"]',title:"The job happening now",body:"This card is the job in progress. Open it for status, photos, and the next step."},
+      {id:"feed",screen:"home",sel:'[data-coach="feed"]',title:"Your job feed",body:"New updates land here — arrivals, photos, and notes from the crew."},
+      {id:"new-request",screen:"home",sel:'.tabbar a[href="#new"]',title:"Start a new request",body:"Tap New to send a request. Use Emergency on Home only when something is unsafe."},
+      {id:"approvals",screen:"approve",sel:'[data-coach="approvals"]',title:"Approve in one tap",body:"This change order is waiting on you. Approve it here, or ask a question first."},
+      {id:"gallery",screen:"gallery",sel:'[data-coach="gallery"]',title:"Property photos",body:"Your property photos live here. Photos from jobs show up under each request.",screens:["gallery","gallery-hp"]}
+    ]
+  }:{
+    welcome:[
+      {icon:"briefcase",eyebrow:`Welcome, ${name}`.trim().replace(/,\s*$/,""),title:"Get invites and bid fast",body:"When IVO sends an invite, review the packet and submit a bid from this app."},
+      {icon:"sun",eyebrow:"On site",title:"Your day starts on Today",body:"The job card shows your window, your checklist, and GPS check-in when you arrive."},
+      {icon:"camera",eyebrow:"In the field",title:"Photos, markup, and voice notes",body:"Take photos, mark up a plan with your finger, or leave a voice note from the field."},
+      {icon:"package-check",eyebrow:"Wrap up",title:"Change orders and closeout",body:"Request a change order when the work changes, then submit closeout when you're done."}
+    ],
+    tips:[
+      {id:"job-card",screen:"today",sel:'[data-coach="job-card"]',title:"Today's job",body:"This is today's job. Your window, checklist, and GPS check-in are all on this card."},
+      {id:"camera",screen:"today",sel:'.tabbar a[href="#photos"]',title:"Take a job photo",body:"The camera tab takes a job photo. Use it for check-in, before, and after shots."},
+      {id:"markup",screen:"today",sel:'[data-coach="markup"]',title:"Mark up a plan",body:"Mark up a plan with your finger — pen, arrows, shapes, and pins, with undo."},
+      {id:"voice",screen:"today",sel:'[data-coach="voice"]',title:"Leave a voice note",body:"Leave a voice note from the field. Notes cap at 3 minutes."},
+      {id:"projects",screen:"today",sel:'.tabbar a[href="#opps"]',title:"Projects and bids",body:"Invites and your bids are under Projects. Open a packet to review and bid."},
+      {id:"closeout",screen:"closeout",sel:'[data-coach="closeout"]',title:"Submit closeout",body:"When the work is done, check these items and submit closeout from here."}
+    ]
+  };
+
+  function currentScreen(){
+    const s=$("[data-router] [data-screen].on");
+    return s?s.dataset.screen:"";
+  }
+  function isAuth(id){return AUTH.has(id||currentScreen())}
+  function host(){return $(".device")||document.body}
+  function phone(){return window.matchMedia("(max-width:820px)").matches}
+
+  let welcomeEl=null, welcomeIdx=0, welcomeThenTips=true, prevFocus=null;
+  let coachEl=null, coachQueue=[], coachI=0, coachReposition=null;
+
+  function focusables(root){
+    return $$("button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])",root)
+      .filter(el=>!el.disabled && el.getClientRects().length && el.getAttribute("aria-hidden")!=="true");
+  }
+  function trap(root,e){
+    if(e.key!=="Tab")return;
+    const f=focusables(root);if(!f.length)return;
+    const first=f[0],last=f[f.length-1];
+    if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus()}
+    else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus()}
+  }
+
+  function closeWelcome(){
+    if(!welcomeEl)return;
+    welcomeEl.hidden=true;
+    welcomeEl.remove();
+    welcomeEl=null;
+    document.body.classList.remove("welcome-open");
+    if(prevFocus && document.contains(prevFocus))try{prevFocus.focus({preventScroll:true})}catch(e){}
+  }
+
+  function renderWelcome(i){
+    const cards=CARDS.welcome;
+    const n=cards.length;
+    i=Math.max(0,Math.min(n-1,i));
+    welcomeIdx=i;
+    const track=$(".welcome-track",welcomeEl);
+    const title=$("#welcome-title",welcomeEl);
+    const next=$("[data-welcome-next]",welcomeEl);
+    const last=i===n-1;
+    if(track)track.style.transform=`translateX(${-i*100}%)`;
+    $$(".welcome-card",welcomeEl).forEach((c,k)=>{
+      c.setAttribute("aria-hidden",k===i?"false":"true");
+      if(k===i)c.removeAttribute("inert");else c.setAttribute("inert","");
+    });
+    $$(".welcome-dots button",welcomeEl).forEach((b,k)=>{
+      if(k===i)b.setAttribute("aria-current","true");else b.removeAttribute("aria-current");
+    });
+    if(title)title.id="welcome-title";
+    const visibleTitle=$(`.welcome-card:nth-child(${i+1}) h2`,welcomeEl);
+    if(visibleTitle){
+      $$(".welcome-card h2",welcomeEl).forEach(h=>h.removeAttribute("id"));
+      visibleTitle.id="welcome-title";
+    }
+    if(next)next.innerHTML=last?`<span>Get started</span>`:`<span>Next</span>${icon("arrow-right","sm")}`;
+    welcomeEl.setAttribute("aria-label",`${cards[i].title} (${i+1} of ${n})`);
+  }
+
+  function finishWelcome(){
+    markWelcome();
+    closeWelcome();
+    if(welcomeThenTips)startTipsFor(currentScreen());
+  }
+
+  function showWelcome(opts){
+    const o=opts||{};
+    if(welcomeEl)closeWelcome();
+    closeCoach();
+    if(isAuth())return;
+    const cards=CARDS.welcome;
+    prevFocus=document.activeElement;
+    const el=document.createElement("div");
+    el.className="welcome-layer";
+    el.setAttribute("role","dialog");
+    el.setAttribute("aria-modal","true");
+    el.setAttribute("aria-labelledby","welcome-title");
+    const dots=cards.map((c,i)=>`<button type="button" data-welcome-dot="${i}" aria-label="Go to card ${i+1} of ${cards.length}: ${c.title}"><i></i></button>`).join("");
+    const slides=cards.map((c,i)=>`<article class="welcome-card" role="group" aria-label="${i+1} of ${cards.length}" ${i===0?"":`aria-hidden="true" inert`}>
+      <div class="welcome-ico">${icon(c.icon)}</div>
+      ${c.eyebrow?`<p class="eyebrow">${c.eyebrow}</p>`:""}
+      <h2 ${i===0?`id="welcome-title"`:""}>${c.title}</h2>
+      <p class="welcome-copy">${c.body}</p>
+    </article>`).join("");
+    el.innerHTML=`<div class="welcome-slides"><div class="welcome-track">${slides}</div></div>
+      <div class="welcome-nav">
+        <div class="welcome-dots" role="tablist" aria-label="Welcome cards">${dots}</div>
+        <div class="welcome-actions">
+          <button type="button" class="btn lg" data-welcome-skip>Skip</button>
+          <button type="button" class="btn primary lg grow" data-welcome-next><span>Next</span>${icon("arrow-right","sm")}</button>
+        </div>
+      </div>`;
+    host().appendChild(el);
+    welcomeEl=el;
+    document.body.classList.add("welcome-open");
+    welcomeThenTips=o.thenTips!==false;
+    renderWelcome(Math.max(0,(o.step||1)-1));
+
+    const slidesEl=$(".welcome-slides",el);
+    const track=$(".welcome-track",el);
+    let dragging=false,startX=0,startT=0,width=0;
+    function onDown(e){
+      if(e.pointerType==="mouse"&&e.button!==0)return;
+      if(e.target.closest("button"))return;
+      dragging=true;startX=e.clientX;width=slidesEl.getBoundingClientRect().width||1;
+      startT=welcomeIdx*-width;
+      if(!reduce)track.style.transition="none";
+      try{slidesEl.setPointerCapture(e.pointerId)}catch(err){}
+    }
+    function onMove(e){
+      if(!dragging)return;
+      const dx=e.clientX-startX;
+      track.style.transform=`translateX(${startT+dx}px)`;
+    }
+    function onUp(e){
+      if(!dragging)return;
+      dragging=false;
+      track.style.transition=reduce?"none":"";
+      const dx=e.clientX-startX;
+      if(dx<-40)renderWelcome(welcomeIdx+1);
+      else if(dx>40)renderWelcome(welcomeIdx-1);
+      else renderWelcome(welcomeIdx);
+    }
+    slidesEl.addEventListener("pointerdown",onDown);
+    slidesEl.addEventListener("pointermove",onMove);
+    slidesEl.addEventListener("pointerup",onUp);
+    slidesEl.addEventListener("pointercancel",onUp);
+
+    el.addEventListener("click",e=>{
+      const skip=e.target.closest("[data-welcome-skip]");
+      if(skip){finishWelcome();return}
+      const next=e.target.closest("[data-welcome-next]");
+      if(next){
+        if(welcomeIdx>=CARDS.welcome.length-1)finishWelcome();
+        else renderWelcome(welcomeIdx+1);
+        return;
+      }
+      const dot=e.target.closest("[data-welcome-dot]");
+      if(dot)renderWelcome(+dot.dataset.welcomeDot);
+    });
+    requestAnimationFrame(()=>{const n=$("[data-welcome-next]",el);if(n)n.focus({preventScroll:true})});
+  }
+
+  function closeCoach(){
+    if(coachReposition){
+      window.removeEventListener("resize",coachReposition);
+      window.removeEventListener("scroll",coachReposition,true);
+      const scr=$(".device .scr");
+      if(scr)scr.removeEventListener("scroll",coachReposition);
+      coachReposition=null;
+    }
+    if(!coachEl)return;
+    coachEl.hidden=true;
+    coachEl.remove();
+    coachEl=null;
+    coachQueue=[];
+    document.body.classList.remove("coach-open");
+    if(prevFocus && document.contains(prevFocus))try{prevFocus.focus({preventScroll:true})}catch(e){}
+  }
+
+  function tabReserve(){
+    const tb=$(".tabbar");
+    if(!tb||!coachEl)return 12;
+    const dev=tb.closest(".device");
+    if(dev&&dev.classList.contains("notab"))return 12;
+    const cs=getComputedStyle(tb);
+    if(cs.display==="none"||cs.visibility==="hidden")return 12;
+    const layerR=coachEl.getBoundingClientRect();
+    const tbR=tb.getBoundingClientRect();
+    if(tbR.bottom<=layerR.top||tbR.top>=layerR.bottom)return 12;
+    return Math.max(12, Math.round(layerR.bottom-tbR.top)+8);
+  }
+
+  function scrollRoot(){
+    const sc=$(".device .scr");
+    if(sc){
+      const oy=getComputedStyle(sc).overflowY;
+      if((oy==="auto"||oy==="scroll") && sc.scrollHeight>sc.clientHeight+8)return sc;
+    }
+    return document.scrollingElement||document.documentElement;
+  }
+
+  function scrollTargetIntoView(target, bubbleH){
+    if(!target||target.closest(".tabbar")||!coachEl)return;
+    const layerR=coachEl.getBoundingClientRect();
+    const reserve=tabReserve();
+    const bh=bubbleH||160;
+    const availTop=layerR.top+12;
+    const floor=layerR.bottom-reserve;
+    const r=target.getBoundingClientRect();
+    const visiblePx=Math.min(r.bottom,floor)-Math.max(r.top,availTop);
+    const spaceAbove=r.top-availTop-16;
+    const spaceBelow=floor-r.bottom-16;
+    // If enough of the target is already on screen and the bubble fits, don't scroll.
+    if(visiblePx>=Math.min(r.height,72) && (spaceAbove>=bh || spaceBelow>=bh || visiblePx>=Math.min(r.height,120))){
+      return;
+    }
+    const availBot=floor-bh-16;
+    const availH=Math.max(80,availBot-availTop);
+    let delta=0;
+    if(r.height>availH){
+      delta=r.top-availTop;
+    }else if(r.bottom>availBot && r.top>=availTop){
+      // prefer scrolling only if the top would stay visible
+      const need=r.bottom-availBot;
+      if(r.top-need>=availTop)delta=need;
+      else delta=r.top-availTop;
+    }else if(r.top<availTop){
+      delta=r.top-availTop;
+    }else if(r.bottom>floor){
+      delta=r.top-availTop;
+    }
+    if(Math.abs(delta)<4)return;
+    const root=scrollRoot();
+    if(root===document.scrollingElement||root===document.documentElement||root===document.body){
+      window.scrollBy(0,delta);
+    }else{
+      root.scrollTop+=delta;
+    }
+  }
+
+  function placeCoach(){
+    if(!coachEl)return;
+    const tip=coachQueue[coachI];if(!tip)return;
+    const target=$(tip.sel);
+    const spot=$(".coach-spot",coachEl);
+    const bubble=$(".coach-bubble",coachEl);
+    const arrow=$(".coach-arrow",coachEl);
+    if(!target||!spot||!bubble)return;
+    const layerR=coachEl.getBoundingClientRect();
+    const r=target.getBoundingClientRect();
+    const pad=8;
+    let top=r.top-layerR.top-pad;
+    let left=r.left-layerR.left-pad;
+    let w=Math.max(r.width+pad*2,44);
+    let h=Math.max(r.height+pad*2,44);
+    if(top<0){h+=top;top=0}
+    if(left<0){w+=left;left=0}
+    if(top+h>layerR.height)h=layerR.height-top;
+    if(left+w>layerR.width)w=layerR.width-left;
+    if(h<8||w<8){spot.style.opacity="0"}else{spot.style.opacity="1"}
+    spot.style.top=`${Math.round(top)}px`;
+    spot.style.left=`${Math.round(left)}px`;
+    spot.style.width=`${Math.round(Math.max(w,0))}px`;
+    spot.style.height=`${Math.round(Math.max(h,0))}px`;
+    const radius=Math.min(16,Math.round(Math.min(Math.max(w,8),Math.max(h,8))/4)||16);
+    spot.style.borderRadius=`${radius}px`;
+
+    const gap=14;
+    const reserve=tabReserve();
+    const bw=Math.min(bubble.offsetWidth||320,layerR.width-24);
+    const bh=bubble.offsetHeight||160;
+    const visTop=Math.max(top,0);
+    const visBot=Math.min(top+h,layerR.height-reserve);
+    const spaceBelow=layerR.height-reserve-visBot-gap;
+    const spaceAbove=visTop-gap-8;
+    const place=(spaceBelow>=bh || (spaceBelow>spaceAbove && spaceBelow>bh*0.5))?"below":"above";
+    bubble.dataset.place=place;
+    let bTop=place==="below"?visBot+gap:visTop-gap-bh;
+    let bLeft=left+w/2-bw/2;
+    bLeft=Math.max(12,Math.min(layerR.width-bw-12,bLeft));
+    bTop=Math.max(8,Math.min(layerR.height-bh-reserve,bTop));
+    bubble.style.top=`${Math.round(bTop)}px`;
+    bubble.style.left=`${Math.round(bLeft)}px`;
+    if(arrow){
+      const ax=Math.max(16,Math.min(bw-16,(left+w/2)-bLeft));
+      arrow.style.left=`${Math.round(ax-6)}px`;
+    }
+  }
+
+  function renderCoach(){
+    const tip=coachQueue[coachI];if(!tip||!coachEl)return;
+    const n=coachQueue.length;
+    const target=$(tip.sel);
+    if(!target){advanceCoach(true);return}
+    const bubble=$(".coach-bubble",coachEl);
+    $(".coach-step",bubble).textContent=`${coachI+1} of ${n}`;
+    $("h2",bubble).textContent=tip.title;
+    $(".coach-copy",bubble).textContent=tip.body;
+    const next=$("[data-coach-next]",coachEl);
+    const last=coachI===n-1;
+    if(next)next.textContent=last?"Got it":"Next";
+    coachEl.setAttribute("aria-label",`${tip.title} (${coachI+1} of ${n})`);
+    const bh=bubble.offsetHeight||160;
+    scrollTargetIntoView(target,bh);
+    const go=()=>placeCoach();
+    go();
+    requestAnimationFrame(()=>{go();requestAnimationFrame(go)});
+  }
+
+  function advanceCoach(skipMissing){
+    if(coachQueue[coachI] && !skipMissing)markTip(coachQueue[coachI].id);
+    coachI+=1;
+    if(coachI>=coachQueue.length){closeCoach();return}
+    renderCoach();
+  }
+
+  function showCoach(queue,startAt){
+    closeCoach();
+    queue=(queue||[]).filter(t=>$(t.sel));
+    if(!queue.length)return;
+    prevFocus=document.activeElement;
+    coachQueue=queue;
+    coachI=Math.max(0,Math.min(queue.length-1,(startAt||1)-1));
+    const el=document.createElement("div");
+    el.className="coach-layer";
+    el.setAttribute("role","dialog");
+    el.setAttribute("aria-modal","true");
+    el.setAttribute("aria-labelledby","coach-title");
+    el.innerHTML=`<div class="coach-spot" aria-hidden="true"></div>
+      <div class="coach-bubble">
+        <i class="coach-arrow" aria-hidden="true"></i>
+        <p class="coach-step"></p>
+        <h2 id="coach-title"></h2>
+        <p class="coach-copy"></p>
+        <div class="coach-actions">
+          <button type="button" class="btn" data-coach-skip>Skip tips</button>
+          <button type="button" class="btn primary grow" data-coach-next>Next</button>
+        </div>
+      </div>`;
+    host().appendChild(el);
+    coachEl=el;
+    document.body.classList.add("coach-open");
+    el.addEventListener("click",e=>{
+      if(e.target.closest("[data-coach-skip]")){skipAllTips();closeCoach();return}
+      if(e.target.closest("[data-coach-next]"))advanceCoach();
+    });
+    coachReposition=()=>placeCoach();
+    window.addEventListener("resize",coachReposition);
+    window.addEventListener("scroll",coachReposition,true);
+    const scr=$(".device .scr");
+    if(scr)scr.addEventListener("scroll",coachReposition,{passive:true});
+    renderCoach();
+    requestAnimationFrame(()=>{const n=$("[data-coach-next]",el);if(n)n.focus({preventScroll:true});placeCoach()});
+  }
+
+  function tipsForScreen(sid,opts){
+    const o=opts||{};
+    const st=tipState();
+    return CARDS.tips.filter(t=>{
+      const screens=t.screens||[t.screen];
+      if(!screens.includes(sid))return false;
+      if(o.force)return true;
+      if(st.skipped)return false;
+      return !st.seen.includes(t.id);
+    });
+  }
+  function startTipsFor(sid,opts){
+    const o=opts||{};
+    if(welcomeEl||isAuth(sid))return;
+    const queue=tipsForScreen(sid,o);
+    if(!queue.length)return;
+    showCoach(queue,o.tip);
+  }
+
+  function maybeFirstRun(){
+    const qs=params();
+    const sid=currentScreen();
+    if(qs.get("tips")==="reset")clearTips();
+    const forceWelcome=qs.get("welcome")==="1";
+    const forceTips=qs.get("tips")==="1";
+    const step=parseInt(qs.get("step")||"1",10);
+    const tipN=parseInt(qs.get("tip")||"1",10);
+    if(forceWelcome){
+      showWelcome({step:isFinite(step)?step:1,thenTips:!forceTips});
+      if(forceTips)startTipsFor(sid,{force:true,tip:isFinite(tipN)?tipN:1});
+      return;
+    }
+    if(forceTips){
+      startTipsFor(sid,{force:true,tip:isFinite(tipN)?tipN:1});
+      return;
+    }
+    if(isAuth(sid))return;
+    if(!welcomeSeen()){
+      showWelcome({thenTips:true});
+      return;
+    }
+    startTipsFor(sid);
+  }
+
+  document.addEventListener("keydown",e=>{
+    if(e.key==="Escape"){
+      if(welcomeEl){e.preventDefault();finishWelcome();return}
+      if(coachEl){e.preventDefault();skipAllTips();closeCoach();return}
+    }
+    if(welcomeEl){
+      trap(welcomeEl,e);
+      if(e.key==="ArrowRight"){e.preventDefault();if(welcomeIdx>=CARDS.welcome.length-1)finishWelcome();else renderWelcome(welcomeIdx+1)}
+      if(e.key==="ArrowLeft"){e.preventDefault();renderWelcome(welcomeIdx-1)}
+      return;
+    }
+    if(coachEl)trap(coachEl,e);
+  });
+
+  document.addEventListener("click",e=>{
+    const b=e.target.closest("[data-replay-welcome]");
+    if(!b)return;
+    clearWelcome();
+    clearTips();
+    const dest=kind==="customer"?"#home":"#today";
+    const go=()=>showWelcome({thenTips:true,step:1});
+    if(location.hash!==dest){
+      const once=ev=>{
+        if(AUTH.has(ev.target.dataset.screen))return;
+        document.removeEventListener("screen:show",once);
+        go();
+      };
+      document.addEventListener("screen:show",once);
+      location.hash=dest;
+    }else go();
+  });
+
+  document.addEventListener("screen:show",e=>{
+    if(welcomeEl)return;
+    const sid=e.target&&e.target.dataset.screen;
+    if(!sid||isAuth(sid))return;
+    if(!welcomeSeen() && params().get("welcome")!=="1"){
+      showWelcome({thenTips:true});
+      return;
+    }
+    startTipsFor(sid);
+  });
+
+  maybeFirstRun();
+  window.IVO=window.IVO||{};
+  window.IVO.welcome={show:showWelcome,tips:sid=>startTipsFor(sid||currentScreen(),{force:true}),reset(){clearWelcome();clearTips()}};
 })();

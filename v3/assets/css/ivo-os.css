@@ -775,3 +775,83 @@ a.phero:hover .phero-img{transform:scale(1.02)}
 
 .btn:disabled{opacity:.45;cursor:default}
 .mk-undoredo{display:flex;flex:none;gap:2px;padding-right:6px;margin-right:4px;border-right:1px solid var(--line)}
+
+/* ---------- first-run welcome + coach tips ---------- */
+.welcome-layer,.coach-layer{
+  position:fixed;inset:var(--banner) 0 0 0;z-index:70;overflow:hidden;
+}
+@media (min-width:821px){
+  .device > .welcome-layer,.device > .coach-layer{position:absolute;inset:0}
+}
+.welcome-layer[hidden],.coach-layer[hidden]{display:none!important}
+.welcome-layer{
+  display:flex;flex-direction:column;
+  background:var(--bg);color:var(--text);
+}
+.welcome-slides{flex:1;min-height:0;overflow:hidden;touch-action:pan-y}
+.welcome-track{display:flex;height:100%;width:100%;transition:transform .32s var(--ease)}
+.welcome-card{
+  flex:0 0 100%;width:100%;height:100%;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:28px 28px 16px;box-sizing:border-box;
+}
+.welcome-ico{
+  width:64px;height:64px;border-radius:20px;
+  display:grid;place-items:center;
+  background:var(--accent-soft);color:var(--accent);
+  margin-bottom:22px;border:1px solid var(--line-gold);flex:none;
+}
+.welcome-ico .i{width:28px;height:28px;max-width:none}
+.welcome-card .eyebrow{color:var(--accent);margin-bottom:10px}
+.welcome-card h2{font-size:28px;letter-spacing:-.03em;margin:0 0 12px;max-width:16ch}
+.welcome-card .welcome-copy{font-size:16px;line-height:1.45;color:var(--text-2);max-width:28ch}
+.welcome-nav{
+  flex:none;padding:10px 20px calc(16px + env(safe-area-inset-bottom));
+  display:flex;flex-direction:column;gap:10px;
+  border-top:1px solid var(--line);
+  background:color-mix(in srgb,var(--bg) 90%,transparent);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.welcome-dots{display:flex;justify-content:center;gap:2px}
+.welcome-dots button{
+  width:44px;height:44px;min-width:44px;min-height:44px;padding:0;border:0;background:none;
+  display:grid;place-items:center;border-radius:8px;
+}
+.welcome-dots button i{
+  width:8px;height:8px;border-radius:50%;background:var(--text-3);opacity:.45;display:block;pointer-events:none;
+  transition:width .2s var(--ease),border-radius .2s,background .2s,opacity .2s;
+}
+.welcome-dots button[aria-current="true"] i{width:20px;border-radius:4px;background:var(--accent);opacity:1}
+.welcome-actions{display:flex;align-items:center;gap:10px}
+.welcome-actions .btn{min-height:44px;min-width:44px}
+.welcome-actions .btn.grow{flex:1}
+.coach-layer{pointer-events:auto}
+.coach-spot{
+  position:absolute;border-radius:16px;
+  box-shadow:0 0 0 9999px rgba(6,29,42,.72);
+  outline:2px solid var(--accent);outline-offset:0;
+  pointer-events:none;transition:top .2s var(--ease),left .2s var(--ease),width .2s var(--ease),height .2s var(--ease);
+}
+[data-theme="light"] .coach-spot{box-shadow:0 0 0 9999px rgba(6,29,42,.56)}
+.coach-bubble{
+  position:absolute;z-index:1;width:min(320px,calc(100% - 24px));
+  background:var(--surface);color:var(--text);
+  border:1px solid var(--line-2);border-radius:16px;
+  padding:14px 16px 12px;box-shadow:var(--shadow-lg);
+}
+.coach-bubble .coach-step{font:500 12px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);margin:0 0 6px}
+.coach-bubble h2{font-size:16px;margin:0 0 6px}
+.coach-bubble .coach-copy{font-size:14px;line-height:1.45;color:var(--text-2);margin:0 0 12px}
+.coach-actions{display:flex;align-items:center;gap:8px}
+.coach-actions .btn{min-height:44px;min-width:44px}
+.coach-actions .btn.grow{flex:1}
+.coach-arrow{
+  position:absolute;width:12px;height:12px;background:var(--surface);
+  border-right:1px solid var(--line-2);border-bottom:1px solid var(--line-2);
+  transform:rotate(45deg);pointer-events:none;
+}
+.coach-bubble[data-place="below"] .coach-arrow{top:-7px;border-right:0;border-bottom:0;border-left:1px solid var(--line-2);border-top:1px solid var(--line-2)}
+.coach-bubble[data-place="above"] .coach-arrow{bottom:-7px}
+@media (prefers-reduced-motion:reduce){
+  .welcome-track,.coach-spot{transition:none}
+}

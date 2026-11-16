@@ -64,7 +64,7 @@ def customer_screens():
     S.append(mscreen("approve", "Change order", f'''<div class="panel" data-item><div class="bd col gap16"><div class="row between"><span class="eyebrow">CO-2 · REQ-1042</span><span class="chip warn" data-status>Needs your approval</span></div>
 <h2>Sister a ceiling joist</h2><div class="big">+$620</div>{photo("lock","Joist damage found","11:20","EVIDENCE")}
 <div class="inset"><div class="row between small"><span class="t3">Original NTE</span><b class="mono">$4,800</b></div><div class="row between small" style="margin-top:6px"><span class="t3">New total</span><b class="mono">$4,970</b></div></div>
-<button class="btn primary xl block" type="button" data-set="Approved · IVO confirms next|ok" data-toast="Approved. The crew can continue once IVO confirms.">{ic("check")}<span>Approve +$620</span></button>
+<button class="btn primary xl block" type="button" data-coach="approvals" data-set="Approved · IVO confirms next|ok" data-toast="Approved. The crew can continue once IVO confirms.">{ic("check")}<span>Approve +$620</span></button>
 <button class="btn lg block" type="button" data-toast="Question sent to your IVO coordinator (prototype).">{ic("message-circle","sm")}<span>Ask a question</span></button></div></div>''', back="#job"))
     S.append(mscreen("closeout", "Sign off", f'''<p class="t2 small">Work is done and the punch list is closed. Review before and after, then sign to close REQ-1042.</p>{before_after()}
 <div class="panel"><div class="list">{li("Punch list","5 of 5 closed","list-checks","ok",chip("Done","ok"))}{li("Closeout package","Photos, waiver, warranty","package-check","gold",btn("Preview","sm",href="#docs"))}</div></div>
@@ -74,7 +74,7 @@ def customer_screens():
     S.append(mscreen("invoices", "Invoices", f'''<div class="panel"><div class="list">{li("REQ-1031 · Gutter cleaning","Approved amount","receipt","",'<b class="mono">$980</b>')}{li("REQ-1036 · Water mitigation","Approved amount","receipt","",'<b class="mono">$1,200</b>')}</div></div>{note("You see approved amounts on every job. Online payments are <b>Later</b>, not in the launch build.","clock-4")}'''))
     S.append(mscreen("account", "Account", f'''<div class="panel"><div class="bd row"><span class="avatar" style="width:48px;height:48px">MO</span><div class="grow"><b>Maya Ortiz</b><div class="small t3">maya.ortiz@harborline.example</div></div></div></div>
 <section class="panel" aria-labelledby="cu-h"><div class="hd"><h2 id="cu-h">Company users</h2><span class="grow"></span><button class="btn sm" type="button" data-toast="Invite drafted. IVO confirms every colleague invite.">{ic("user-plus","sm")}<span>Invite</span></button></div><div class="list">{li("Maya Ortiz","Admin · you","user","gold")}{li("Jordan Lee","Requester","user")}</div></section>
-<div class="panel"><div class="list">{li("Properties","Cedar Court, Harbor Point","building-2",href="#gallery")}<button class="li" type="button" data-theme-toggle aria-label="Switch theme"><span class="ic">{ic("sun-moon")}</span><span class="grow" style="font-weight:550">Light / dark</span>{ic("chevron-right")}</button></div></div>
+<div class="panel"><div class="list">{li("Properties","Cedar Court, Harbor Point","building-2",href="#gallery")}<button class="li" type="button" data-theme-toggle aria-label="Switch theme"><span class="ic">{ic("sun-moon")}</span><span class="grow" style="font-weight:550">Light / dark</span>{ic("chevron-right")}</button><button class="li" type="button" data-replay-welcome><span class="ic">{ic("rotate-ccw")}</span><span class="grow" style="font-weight:550">Replay welcome and tips</span>{ic("chevron-right")}</button></div></div>
 {note("Workspace opened after IVO reviewed your request (option 1).","badge-check")}'''))
     S.append(gallery_screen("gallery", "Cedar Court Apartments", "410 Sample Ave, Tacoma, WA", "exterior", "CC",
         mine=[("exterior", "Front entrance", True), ("lobby", "Lobby, looking east"), ("office", "Property office")],
@@ -90,10 +90,13 @@ NOTES_C = lambda: f'''<div class="panel"><div class="bd stack-s"><div class="eye
 <div class="panel"><div class="bd stack-s"><h3>Invite-only, request first</h3><p class="small t2">New customers send a request, then IVO invites them (option 1, approved 2026-11-13).</p></div></div>'''
 
 def build_customer():
+    for _wicon in ("clipboard-list", "sparkles", "rotate-ccw", "package-check", "receipt"):
+        ic(_wicon)
+
     idx = [("Getting in",[("invite","Invitation"),("signin","Email-code sign-in")]),("Everyday",[("home","Home · property and feed"),("emergency","Emergency · one tap"),("new","New request"),("submitted","Request sent")]),("Jobs",[("requests","Requests"),("job","Job tracker"),("approve","Approve change order"),("closeout","Sign off")]),("Account",[("gallery","Photo gallery · Cedar Court"),("gallery-hp","Photo gallery · Harbor Point"),("docs","Documents"),("invoices","Invoices"),("account","Account &amp; users")])]
     tabs = [("home","Home","house","emergency gallery gallery-hp"),("requests","Requests","list","job approve closeout"),("new","New","plus","submitted","fab"),("docs","Files","folder",""),("account","Account","user","invoices")]
     body = m_shell("Customer app · phone", PERSONA, idx, customer_screens(), tabs, NOTES_C(), portal_href=("../customer-portal/index.html","Desktop portal"))
-    page("customer/index.html", "Customer app", body, cmds=CTL, app="IVO customer app", bodyattrs=' data-sw="1"', head='<link rel="manifest" href="manifest.webmanifest">')
+    page("customer/index.html", "Customer app", body, cmds=CTL, app="IVO customer app", bodyattrs=' data-sw="1" data-welcome-kind="customer" data-welcome-name="Maya"', head='<link rel="manifest" href="manifest.webmanifest">')
 
 # ---------------- customer portal (desktop) ----------------
 def build_portal():
