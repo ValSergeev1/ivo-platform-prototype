@@ -176,10 +176,23 @@ def before_after(a="slab", b="office", depth=2, label="Before and after, drag to
 def cmd_json(items):
     return '<script type="application/json" id="cmd-data">' + json.dumps([{"g": g, "t": t, "h": h, "s": s, "ic": i} for g, t, h, s, i in items]).replace("</", "<\\/") + "</script>"
 
+def official_canonical(rel):
+    leaf = rel.replace("\\", "/").lstrip("./")
+    for pfx in ("v3/", "v2/"):
+        if leaf.startswith(pfx):
+            leaf = leaf[len(pfx):]
+    key = leaf.lower()
+    if "apply" in key:
+        return "https://ivoservgroup.com/partner-with-ivo/"
+    if any(s in key for s in ("customer", "contractor", "console", "vendor", "onboarding", "portal")):
+        return "https://ivoservgroup.com/portal/"
+    return "https://ivoservgroup.com/"
+
 def page(rel, title, body, depth=1, cmds=(), app="IVO OS", bodyattrs="", head="", hub=False, touch="assets/img/apple-touch-icon.png"):
     for c in cmds:
         ICONS.add(c[4])
     pre = "../" * depth if depth else ""
+    canon = official_canonical(rel)
     v1 = pre + "../index.html"
     v2 = pre + "../v2/index.html"
     hubh = pre + "index.html"
@@ -204,6 +217,7 @@ def page(rel, title, body, depth=1, cmds=(), app="IVO OS", bodyattrs="", head=""
 <html lang="en" data-theme="dark"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow,noarchive"><meta name="googlebot" content="noindex,nofollow">
+<link rel="canonical" href="{canon}">
 <meta name="theme-color" content="#061d2a"><meta name="color-scheme" content="dark light">
 <title>{esc(title)} · IVO OS V03 prototype (sample data)</title>
 <link rel="icon" href="{pre}assets/img/favicon.ico" sizes="48x48"><link rel="icon" href="{pre}assets/img/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="{pre}{touch}" sizes="180x180"><link rel="apple-touch-startup-image" href="{pre}assets/img/splash/apple-1170x2532.png">

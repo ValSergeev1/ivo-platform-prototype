@@ -4,6 +4,14 @@ import os, shutil
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "v2")
 
+def official_canonical(title=""):
+    key = (title or "").lower()
+    if "apply" in key or "application" in key:
+        return "https://ivoservgroup.com/partner-with-ivo/"
+    if any(s in key for s in ("customer", "contractor", "console", "vendor", "onboarding", "portal", "staff")):
+        return "https://ivoservgroup.com/portal/"
+    return "https://ivoservgroup.com/"
+
 def write(rel, html):
     p = os.path.join(OUT, rel)
     os.makedirs(os.path.dirname(p) if os.path.dirname(rel) else OUT, exist_ok=True)
@@ -18,6 +26,7 @@ def cmd_items(items):
 
 def shell(title, body, depth=1, bodyclass="", cmds=None, head=""):
     R = "../" * depth
+    canon = official_canonical(title)
     cmds = cmds or []
     cmd_html = cmd_items(cmds)
     index = f"{R}index.html" if depth else "index.html"
@@ -27,6 +36,7 @@ def shell(title, body, depth=1, bodyclass="", cmds=None, head=""):
 <html lang="en" data-theme="dark"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow,noarchive"><meta name="googlebot" content="noindex,nofollow">
+<link rel="canonical" href="{canon}">
 <meta name="theme-color" content="#061d2a">
 <title>{title} · IVO Platform prototype V02 (sample data)</title>
 <link rel="icon" href="{R}assets/img/favicon.png"><link rel="apple-touch-icon" href="{R}assets/img/apple-touch-icon.png">

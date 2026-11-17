@@ -1,2 +1,4 @@
+# Official site: https://ivoservgroup.com/
+# This GitHub Pages prototype is sample data only and must not be indexed.
 User-agent: *
 Disallow: /
