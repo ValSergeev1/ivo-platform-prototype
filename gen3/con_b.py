@@ -21,7 +21,7 @@ def s_bidding():
     rows = "".join(f'<tr><td class="lead" data-label="Bid"><a class="mono" href="{h}">{i}</a> {n}</td><td data-label="Stage">{st}</td><td data-label="Due">{m}</td><td data-label="Status">{chip(ch,c)}</td><td data-label="Source">{"Imported from external platform" if imp else "Direct invite"}</td></tr>' for st,i,n,m,ch,c,imp,h in BIDS)
     inner = f'''<div class="grid g4 kpis" style="margin-bottom:16px">{k}</div>
 <div class="row between wrap" style="margin-bottom:12px">{gate("every filled bid and every sub message waits for admin approval")}<div class="seg" data-views role="group" aria-label="View"><button type="button" data-view="board" aria-pressed="true">{ic("kanban","sm")}Board</button><button type="button" data-view="table" aria-pressed="false">{ic("table-2","sm")}Table</button></div></div>
-<div data-pane="board"><div class="kb" style="grid-auto-columns:minmax(240px,1fr)">{kb}</div></div>
+<div data-pane="board" data-coach="bidding"><div class="kb" style="grid-auto-columns:minmax(240px,1fr)">{kb}</div></div>
 <div data-pane="table" class="hide panel"><div class="tscroll"><table class="tbl cards"><thead><tr><th>Bid</th><th>Stage</th><th>Due</th><th>Status</th><th>Source</th></tr></thead><tbody>{rows}</tbody></table></div></div>'''
     return screen("bidding", "Bidding pipeline", inner, "Win work · IVO as a subcontractor", "Outside contracts from GCs and owners. The AI reads packages, structures scope, levels sub quotes and fills the bid form.", btn("Integrations","",icon="plug",href="#integrations") + btn("Import invitation","primary",icon="download",attrs=' data-toast="Forward invites to the intake mailbox (sample)."'))
 
@@ -202,7 +202,14 @@ def s_settings():
 <div data-tabpane="tiers" class="panel hide"><div class="hd">{ic("timer")}<h2>Response-time tiers</h2></div><div class="list">{tiers}</div></div>
 <div data-tabpane="notif" class="panel hide"><div class="bd stack">{note("Email through the company mail relay at launch. Text messages are <b>Later</b>.","bell")}</div></div>
 <div data-tabpane="sec" class="panel hide"><div class="list">{li("Sign-in","One-time code by email, no passwords","mail","gold")}{li("Session length","Open decision","timer","warn")}{li("Audit log","Append-only, hash-chained","scroll-text","ok",btn("Open","sm",href="#audit"))}</div></div>'''
-    inner = f'<div data-tabscope><div class="grid g3" role="tablist" aria-label="Settings sections" style="margin-bottom:16px">{tiles}</div>{panes}</div>'
+    replay = (
+        '<div class="panel" style="margin-bottom:16px"><div class="list">'
+        '<button class="li" type="button" data-replay-welcome>'
+        f'<span class="ic">{ic("rotate-ccw")}</span>'
+        '<span class="grow" style="font-weight:550">Replay welcome and tips</span>'
+        f'{ic("chevron-right")}</button></div></div>'
+    )
+    inner = replay + f'<div data-tabscope><div class="grid g3" role="tablist" aria-label="Settings sections" style="margin-bottom:16px">{tiles}</div>{panes}</div>'
     return screen("settings", "Settings", inner, "System", "Who can do what, and what needs approval.", btn("Audit log","",icon="scroll-text",href="#audit"))
 
 def s_audit():
@@ -224,5 +231,5 @@ CMDS = [("Navigate","Today","#today","Command center","layout-dashboard"),("Navi
 def build():
     screens = "".join([s_today(), s_dispatch(), s_workorders(), s_triage(), s_job(), s_closeout(), s_approvals(), s_bidding(), s_bidpkg(), s_bidscope(), s_bidsubs(), s_bidlevel(), s_bidform(), s_bidwon(), s_bidlost(), s_contractors(), s_contractor(), staff_directory(), staff_vendor_detail(), s_applications(), s_integrations(), s_settings(), s_audit()])
     bnav = [("today","Today","layout-dashboard",""),("dispatch","Dispatch","radar",""),("approvals","Approvals","shield-check",""),("bidding","Bids","file-text","bidpkg bidscope bidsubs bidlevel bidform bidwon bidlost")]
-    body = os_shell("staff console", GROUPS, screens, bnav, copilot=copilot(), top_right=staff_notif_bell())
-    page("console/index.html", "Staff console", body, depth=1, cmds=CMDS, app="IVO staff console")
+    body = os_shell("staff console", GROUPS, screens, bnav, copilot=copilot(), top_right=staff_notif_bell(), account_href="#settings")
+    page("console/index.html", "Staff console", body, depth=1, cmds=CMDS, app="IVO staff console", bodyattrs=' data-welcome-kind="console" data-welcome-name="Dana"')

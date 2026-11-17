@@ -224,7 +224,7 @@ def page(rel, title, body, depth=1, cmds=(), app="IVO OS", bodyattrs="", head=""
 def sprite_placeholder(): return "@@SPRITE@@"
 
 # ---------- desktop app shell ----------
-def os_shell(brand_sub, groups, screens, bnav, user=("DW", "Dana Whitfield", "Operations · sample"), copilot="", depth=1, top_right=""):
+def os_shell(brand_sub, groups, screens, bnav, user=("DW", "Dana Whitfield", "Operations · sample"), copilot="", depth=1, top_right="", account_href=""):
     pre = "../" * depth
     rail = [f'<div class="brandbox"><img class="mark-d" src="{pre}assets/img/ivo-mark-white.png" alt=""><img class="mark-l" src="{pre}assets/img/ivo-mark-navy.png" alt=""><div><b>IVO OS</b><span>{brand_sub}</span></div></div>',
             f'<button class="search" type="button" data-cmd-open style="min-width:0;margin:0 0 6px">{ic("search","sm")}<span>Jump to…</span><span class="kbd">⌘K</span></button>']
@@ -241,7 +241,11 @@ def os_shell(brand_sub, groups, screens, bnav, user=("DW", "Dana Whitfield", "Op
             m = f' data-match="{match}"' if match else ""
             rail.append(f'<a class="nav" href="#{sid}"{m}{gattr}>{ic(icon)}<span>{lab}</span>{ctc}</a>')
             sheet_links.append(f'<a class="nav" href="#{sid}"{m}>{ic(icon)}<span>{lab}</span></a>')
-    rail.append(f'<div class="foot"><span class="avatar">{user[0]}</span><div class="grow"><div class="small" style="font-weight:600">{user[1]}</div><div class="xs t3">{user[2]}</div></div></div>')
+    foot = f'<span class="avatar">{user[0]}</span><div class="grow"><div class="small" style="font-weight:600">{user[1]}</div><div class="xs t3">{user[2]}</div></div>'
+    if account_href:
+        rail.append(f'<a class="foot" href="{account_href}" aria-label="Open account">{foot}</a>')
+    else:
+        rail.append(f'<div class="foot">{foot}</div>')
     bn = []
     for sid, lab, icon, match in bnav:
         m = f' data-match="{match}"' if match else ""

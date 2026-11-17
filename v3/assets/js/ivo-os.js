@@ -660,7 +660,7 @@ $$('[data-join]').forEach(root=>{
 });
 })();
 
-/* first-run welcome + on-screen tips (customer and contractor apps) */
+/* first-run welcome + on-screen tips (customer, contractor, portal, console) */
 (()=>{
   const kind=document.body.dataset.welcomeKind;
   if(!kind)return;
@@ -671,6 +671,7 @@ $$('[data-join]').forEach(root=>{
   const TK=`ivo-v3-tips-${kind}`;
   const reduce=window.matchMedia("(prefers-reduced-motion:reduce)").matches;
   const AUTH=new Set(["invite","signin"]);
+  const hi=`Welcome, ${name}`.trim().replace(/,\s*$/,"");
 
   function icon(n,cls="xl"){return `<svg class="i ${cls}" aria-hidden="true"><use href="#i-${n}"></use></svg>`}
   function params(){try{return new URLSearchParams(location.search)}catch(e){return new URLSearchParams()}}
@@ -689,37 +690,81 @@ $$('[data-join]').forEach(root=>{
   function markTip(id){const st=tipState();if(!st.seen.includes(id))st.seen.push(id);saveTips(st)}
   function skipAllTips(){const st=tipState();st.skipped=true;CARDS.tips.forEach(t=>{if(!st.seen.includes(t.id))st.seen.push(t.id)});saveTips(st)}
 
-  const CARDS=kind==="customer"?{
-    welcome:[
-      {icon:"clipboard-list",eyebrow:`Welcome, ${name}`.trim().replace(/,\s*$/,""),title:"Request work in one place",body:"Send a new request from Home, including a one-tap Emergency when something is unsafe."},
-      {icon:"camera",eyebrow:"On the job",title:"Track your job live",body:"See when the crew arrives, new photos, and other updates in your job feed."},
-      {icon:"check",eyebrow:"When work changes",title:"Approve change orders in one tap",body:"When extra work is needed, you'll see the amount here and can approve it, or ask a question first."},
-      {icon:"package-check",eyebrow:"When work is done",title:"Closeout, docs, and invoices",body:"Review the closeout package and see approved invoice amounts in this app."}
-    ],
-    tips:[
-      {id:"job-card",screen:"home",sel:'[data-coach="job-card"]',title:"The job happening now",body:"This card is the job in progress. Open it for status, photos, and the next step."},
-      {id:"feed",screen:"home",sel:'[data-coach="feed"]',title:"Your job feed",body:"New updates land here — arrivals, photos, and notes from the crew."},
-      {id:"new-request",screen:"home",sel:'.tabbar a[href="#new"]',title:"Start a new request",body:"Tap New to send a request. Use Emergency on Home only when something is unsafe."},
-      {id:"approvals",screen:"approve",sel:'[data-coach="approvals"]',title:"Approve in one tap",body:"This change order is waiting on you. Approve it here, or ask a question first."},
-      {id:"gallery",screen:"gallery",sel:'[data-coach="gallery"]',title:"Property photos",body:"Your property photos live here. Photos from jobs show up under each request.",screens:["gallery","gallery-hp"]},
-      {id:"vendors",screen:"vendors",sel:'[data-coach="vendors"]',title:"Invite a vendor you trust",body:"Invite a technician or trade you already trust. They complete the same checks as every IVO network member, and they cannot be assigned work until IVO staff approves."}
-    ]
-  }:{
-    welcome:[
-      {icon:"briefcase",eyebrow:`Welcome, ${name}`.trim().replace(/,\s*$/,""),title:"Get invites and bid fast",body:"When IVO sends an invite, review the packet and submit a bid from this app."},
-      {icon:"sun",eyebrow:"On site",title:"Your day starts on Today",body:"The job card shows your window, your checklist, and GPS check-in when you arrive."},
-      {icon:"camera",eyebrow:"In the field",title:"Photos, markup, and voice notes",body:"Take photos, mark up a plan with your finger, or leave a voice note from the field."},
-      {icon:"package-check",eyebrow:"Wrap up",title:"Change orders and closeout",body:"Request a change order when the work changes, then submit closeout when you're done."}
-    ],
-    tips:[
-      {id:"job-card",screen:"today",sel:'[data-coach="job-card"]',title:"Today's job",body:"This is today's job. Your window, checklist, and GPS check-in are all on this card."},
-      {id:"camera",screen:"today",sel:'.tabbar a[href="#photos"]',title:"Take a job photo",body:"The camera tab takes a job photo. Use it for check-in, before, and after shots."},
-      {id:"markup",screen:"today",sel:'[data-coach="markup"]',title:"Mark up a plan",body:"Mark up a plan with your finger — pen, arrows, shapes, and pins, with undo."},
-      {id:"voice",screen:"today",sel:'[data-coach="voice"]',title:"Leave a voice note",body:"Leave a voice note from the field. Notes cap at 3 minutes."},
-      {id:"projects",screen:"today",sel:'.tabbar a[href="#opps"]',title:"Projects and bids",body:"Invites and your bids are under Projects. Open a packet to review and bid."},
-      {id:"closeout",screen:"closeout",sel:'[data-coach="closeout"]',title:"Submit closeout",body:"When the work is done, check these items and submit closeout from here."}
-    ]
+  const ALL={
+    customer:{
+      home:"home",
+      welcome:[
+        {icon:"clipboard-list",eyebrow:hi,title:"Request work in one place",body:"Send a new request from Home, including a one-tap Emergency when something is unsafe."},
+        {icon:"camera",eyebrow:"On the job",title:"Track your job live",body:"See when the crew arrives, new photos, and other updates in your job feed."},
+        {icon:"check",eyebrow:"When work changes",title:"Approve change orders in one tap",body:"When extra work is needed, you'll see the amount here and can approve it, or ask a question first."},
+        {icon:"package-check",eyebrow:"When work is done",title:"Closeout, docs, and invoices",body:"Review the closeout package and see approved invoice amounts in this app."}
+      ],
+      tips:[
+        {id:"job-card",screen:"home",sel:'[data-coach="job-card"]',title:"The job happening now",body:"This card is the job in progress. Open it for status, photos, and the next step."},
+        {id:"feed",screen:"home",sel:'[data-coach="feed"]',title:"Your job feed",body:"New updates land here — arrivals, photos, and notes from the crew."},
+        {id:"new-request",screen:"home",sel:'.tabbar a[href="#new"]',title:"Start a new request",body:"Tap New to send a request. Use Emergency on Home only when something is unsafe."},
+        {id:"approvals",screen:"approve",sel:'[data-coach="approvals"]',title:"Approve in one tap",body:"This change order is waiting on you. Approve it here, or ask a question first."},
+        {id:"gallery",screen:"gallery",sel:'[data-coach="gallery"]',title:"Property photos",body:"Your property photos live here. Photos from jobs show up under each request.",screens:["gallery","gallery-hp"]},
+        {id:"vendors",screen:"vendors",sel:'[data-coach="vendors"]',title:"Invite a vendor you trust",body:"Invite a technician or trade you already trust. They complete the same checks as every IVO network member, and they cannot be assigned work until IVO staff approves."}
+      ]
+    },
+    contractor:{
+      home:"today",
+      welcome:[
+        {icon:"briefcase",eyebrow:hi,title:"Get invites and bid fast",body:"When IVO sends an invite, review the packet and submit a bid from this app."},
+        {icon:"sun",eyebrow:"On site",title:"Your day starts on Today",body:"The job card shows your window, your checklist, and GPS check-in when you arrive."},
+        {icon:"camera",eyebrow:"In the field",title:"Photos, markup, and voice notes",body:"Take photos, mark up a plan with your finger, or leave a voice note from the field."},
+        {icon:"package-check",eyebrow:"Wrap up",title:"Change orders and closeout",body:"Request a change order when the work changes, then submit closeout when you're done."}
+      ],
+      tips:[
+        {id:"job-card",screen:"today",sel:'[data-coach="job-card"]',title:"Today's job",body:"This is today's job. Your window, checklist, and GPS check-in are all on this card."},
+        {id:"camera",screen:"today",sel:'.tabbar a[href="#photos"]',title:"Take a job photo",body:"The camera tab takes a job photo. Use it for check-in, before, and after shots."},
+        {id:"markup",screen:"today",sel:'[data-coach="markup"]',title:"Mark up a plan",body:"Mark up a plan with your finger — pen, arrows, shapes, and pins, with undo."},
+        {id:"voice",screen:"today",sel:'[data-coach="voice"]',title:"Leave a voice note",body:"Leave a voice note from the field. Notes cap at 3 minutes."},
+        {id:"projects",screen:"today",sel:'.tabbar a[href="#opps"]',title:"Projects and bids",body:"Invites and your bids are under Projects. Open a packet to review and bid."},
+        {id:"closeout",screen:"closeout",sel:'[data-coach="closeout"]',title:"Submit closeout",body:"When the work is done, check these items and submit closeout from here."},
+        {id:"compliance",screen:"compliance",sel:'[data-coach="compliance"]',title:"Keep documents current",body:"IVO only routes work when your insurance, W-9, and registration are current. Upload renewals here before they expire."}
+      ]
+    },
+    portal:{
+      home:"dashboard",
+      welcome:[
+        {icon:"clipboard-list",eyebrow:hi,title:"Request work from your desk",body:"Send a new request from this portal, including a one-tap Emergency when something is unsafe. An IVO coordinator reviews every request before a technician is invited."},
+        {icon:"camera",eyebrow:"On the job",title:"Follow the job from start to finish",body:"Open a request to see the live timeline, photos, and anything waiting on you — including change orders you can approve in one click."},
+        {icon:"package-check",eyebrow:"When work is done",title:"Documents, closeout, and invoices",body:"Review the closeout package, download documents, and see approved invoice amounts in this portal."},
+        {icon:"handshake",eyebrow:"Your network",title:"Invite a technician you trust",body:"Invite a technician or trade you already work with. They complete the same checks as every IVO network member, and they cannot be assigned work until IVO staff approves."}
+      ],
+      tips:[
+        {id:"new-request",screen:"dashboard",sel:'[data-coach="new-request"]',title:"Start a new request",body:"Use New request to describe the work, pick a property, and send it to IVO. For an active emergency, use the Emergency button instead."},
+        {id:"job-timeline",screen:"job",sel:'[data-coach="job-timeline"]',title:"The job timeline",body:"Every update lands here: received, reviewed, assigned, on site, and sign-off. Open a request anytime to see the latest."},
+        {id:"documents",screen:"documents",sel:'[data-coach="documents"]',title:"Documents and closeout",body:"Closeout packages, change orders, and files for each job live here. Download what you need when the work is done."},
+        {id:"vendors",screen:"vendors",sel:'[data-coach="vendors"]',title:"Invite a vendor you trust",body:"Invite a technician or trade you already trust. They complete the same checks as every IVO network member, and they cannot be assigned work until IVO staff approves."},
+        {id:"messages",screen:"approvals",sel:'[data-coach="messages"]',title:"Ask a question",body:"Have a question about a change order or the work? Send it here and your IVO coordinator will follow up."},
+        {id:"account",screen:"users",sel:'[data-coach="account"]',title:"Your account",body:"Manage company users from here, switch light and dark, and replay this welcome and the tips anytime."}
+      ]
+    },
+    console:{
+      home:"today",
+      welcome:[
+        {icon:"layout-dashboard",eyebrow:hi,title:"Today is your starting point",body:"The Today board shows work waiting on you, SLA timers, and new vendor invites. Start here each morning."},
+        {icon:"inbox",eyebrow:"Intake and dispatch",title:"Confirm requests, then assign",body:"Triage is where you confirm type, trade, and urgency. Dispatch is where you assign work. Preferred and blocked vendors are marked so a vendor who is not yet qualified cannot be assigned."},
+        {icon:"handshake",eyebrow:"Network and bids",title:"Qualify vendors and win work",body:"Customer-invited vendors stay in the Invited vendors queue until the checklist is complete and you approve them. Bids and closeout QA also live in this console."},
+        {icon:"bell",eyebrow:"Stay in the loop",title:"Notifications and settings",body:"The bell shows new invites and items waiting on you. Replay this tour anytime from Settings."}
+      ],
+      tips:[
+        {id:"today-board",screen:"today",sel:'[data-coach="today-board"]',title:"Today's board",body:"This is the morning brief. SLA timers, work waiting on you, and new vendor invites land here first."},
+        {id:"triage",screen:"triage",sel:'[data-coach="triage"]',title:"Request intake and scoping",body:"New requests arrive here from forms and email. AI suggests type, trade, and urgency — a person confirms every one before anything is routed."},
+        {id:"dispatch",screen:"dispatch",sel:'[data-coach="dispatch-vendors"]',title:"Preferred and blocked vendors",body:"Preferred vendors are tagged when the customer asked for them. If they are not yet qualified, assignment stays locked until the checklist is complete and staff approve."},
+        {id:"invited-queue",screen:"invited-vendors",sel:'[data-coach="invited-queue"]',title:"Invited-vendor queue",body:"Every vendor a customer has invited appears here. They cannot be assigned work until every required document is on file and you approve them."},
+        {id:"qual-checklist",screen:"invited-vendor",sel:'[data-coach="qual-checklist"]',title:"Qualification checklist",body:"This is the full checklist: licenses, insurance, W-9, terms, and safety. Approve only when every required item is complete."},
+        {id:"bidding",screen:"bidding",sel:'[data-coach="bidding"]',title:"Bidding pipeline",body:"Outside contracts from owners and general contractors move through this board. Filled bids and sub messages wait for admin approval before anything is sent."},
+        {id:"closeout",screen:"closeout",sel:'[data-coach="closeout"]',title:"Closeout and QA",body:"Build the closeout package here: photos, punch, sign-off, and required documents. Sending it to the customer waits for admin approval."},
+        {id:"notifications",screen:"today",sel:'[data-coach="notifications"]',title:"Notifications",body:"The bell in the top bar flags new vendor invites and other items waiting on you. Open it anytime without leaving the page."}
+      ]
+    }
   };
+  const CARDS=ALL[kind];
+  if(!CARDS)return;
 
   function currentScreen(){
     const s=$("[data-router] [data-screen].on");
@@ -727,10 +772,14 @@ $$('[data-join]').forEach(root=>{
   }
   function isAuth(id){return AUTH.has(id||currentScreen())}
   function host(){return $(".device")||document.body}
-  function phone(){return window.matchMedia("(max-width:820px)").matches}
+  function afterLayout(fn){
+    const go=()=>requestAnimationFrame(()=>requestAnimationFrame(fn));
+    if(reduce)go();
+    else setTimeout(go,80);
+  }
 
-  let welcomeEl=null, welcomeIdx=0, welcomeThenTips=true, prevFocus=null;
-  let coachEl=null, coachQueue=[], coachI=0, coachReposition=null;
+  let welcomeEl=null, welcomeIdx=0, welcomeThenTips=true, pendingTipStart=1, prevFocus=null;
+  let coachEl=null, coachQueue=[], coachI=0, coachReposition=null, navToken=0;
 
   function focusables(root){
     return $$("button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])",root)
@@ -754,6 +803,7 @@ $$('[data-join]').forEach(root=>{
   }
 
   function renderWelcome(i){
+    if(!welcomeEl)return;
     const cards=CARDS.welcome;
     const n=cards.length;
     i=Math.max(0,Math.min(n-1,i));
@@ -761,11 +811,11 @@ $$('[data-join]').forEach(root=>{
     const track=$(".welcome-track",welcomeEl);
     const title=$("#welcome-title",welcomeEl);
     const next=$("[data-welcome-next]",welcomeEl);
-    const last=i===n-1;
     if(track)track.style.transform=`translateX(${-i*100}%)`;
     $$(".welcome-card",welcomeEl).forEach((c,k)=>{
-      c.setAttribute("aria-hidden",k===i?"false":"true");
-      if(k===i)c.removeAttribute("inert");else c.setAttribute("inert","");
+      const on=k===i;
+      c.toggleAttribute("inert",!on);
+      if(on)c.removeAttribute("aria-hidden");else c.setAttribute("aria-hidden","true");
     });
     $$(".welcome-dots button",welcomeEl).forEach((b,k)=>{
       if(k===i)b.setAttribute("aria-current","true");else b.removeAttribute("aria-current");
@@ -776,14 +826,14 @@ $$('[data-join]').forEach(root=>{
       $$(".welcome-card h2",welcomeEl).forEach(h=>h.removeAttribute("id"));
       visibleTitle.id="welcome-title";
     }
-    if(next)next.innerHTML=last?`<span>Get started</span>`:`<span>Next</span>${icon("arrow-right","sm")}`;
+    if(next)next.innerHTML=i>=n-1?`<span>Get started</span>`:`<span>Next</span>${icon("arrow-right","sm")}`;
     welcomeEl.setAttribute("aria-label",`${cards[i].title} (${i+1} of ${n})`);
   }
 
   function finishWelcome(){
     markWelcome();
     closeWelcome();
-    if(welcomeThenTips)startTipsFor(currentScreen());
+    if(welcomeThenTips)startTipsTour({all:true,tip:pendingTipStart});
   }
 
   function showWelcome(opts){
@@ -865,11 +915,14 @@ $$('[data-join]').forEach(root=>{
   }
 
   function closeCoach(){
+    navToken+=1;
     if(coachReposition){
       window.removeEventListener("resize",coachReposition);
       window.removeEventListener("scroll",coachReposition,true);
       const scr=$(".device .scr");
       if(scr)scr.removeEventListener("scroll",coachReposition);
+      const main=$(".mainwrap")||$("[data-router]");
+      if(main)main.removeEventListener("scroll",coachReposition);
       coachReposition=null;
     }
     if(!coachEl)return;
@@ -881,17 +934,24 @@ $$('[data-join]').forEach(root=>{
     if(prevFocus && document.contains(prevFocus))try{prevFocus.focus({preventScroll:true})}catch(e){}
   }
 
-  function tabReserve(){
+  function chromeReserve(){
+    let reserve=12;
+    const layerR=coachEl?coachEl.getBoundingClientRect():null;
+    function overlap(el){
+      if(!el||!layerR)return 0;
+      const cs=getComputedStyle(el);
+      if(cs.display==="none"||cs.visibility==="hidden")return 0;
+      const dev=el.closest(".device");
+      if(dev&&dev.classList.contains("notab"))return 0;
+      const r=el.getBoundingClientRect();
+      if(r.bottom<=layerR.top||r.top>=layerR.bottom)return 0;
+      return Math.max(0,Math.round(layerR.bottom-r.top)+8);
+    }
     const tb=$(".tabbar");
-    if(!tb||!coachEl)return 12;
-    const dev=tb.closest(".device");
-    if(dev&&dev.classList.contains("notab"))return 12;
-    const cs=getComputedStyle(tb);
-    if(cs.display==="none"||cs.visibility==="hidden")return 12;
-    const layerR=coachEl.getBoundingClientRect();
-    const tbR=tb.getBoundingClientRect();
-    if(tbR.bottom<=layerR.top||tbR.top>=layerR.bottom)return 12;
-    return Math.max(12, Math.round(layerR.bottom-tbR.top)+8);
+    if(tb)reserve=Math.max(reserve,overlap(tb));
+    const bn=$(".bnav");
+    if(bn)reserve=Math.max(reserve,overlap(bn));
+    return reserve;
   }
 
   function scrollRoot(){
@@ -904,9 +964,9 @@ $$('[data-join]').forEach(root=>{
   }
 
   function scrollTargetIntoView(target, bubbleH){
-    if(!target||target.closest(".tabbar")||!coachEl)return;
+    if(!target||target.closest(".tabbar")||target.closest(".bnav")||!coachEl)return;
     const layerR=coachEl.getBoundingClientRect();
-    const reserve=tabReserve();
+    const reserve=chromeReserve();
     const bh=bubbleH||160;
     const availTop=layerR.top+12;
     const floor=layerR.bottom-reserve;
@@ -914,7 +974,6 @@ $$('[data-join]').forEach(root=>{
     const visiblePx=Math.min(r.bottom,floor)-Math.max(r.top,availTop);
     const spaceAbove=r.top-availTop-16;
     const spaceBelow=floor-r.bottom-16;
-    // If enough of the target is already on screen and the bubble fits, don't scroll.
     if(visiblePx>=Math.min(r.height,72) && (spaceAbove>=bh || spaceBelow>=bh || visiblePx>=Math.min(r.height,120))){
       return;
     }
@@ -924,7 +983,6 @@ $$('[data-join]').forEach(root=>{
     if(r.height>availH){
       delta=r.top-availTop;
     }else if(r.bottom>availBot && r.top>=availTop){
-      // prefer scrolling only if the top would stay visible
       const need=r.bottom-availBot;
       if(r.top-need>=availTop)delta=need;
       else delta=r.top-availTop;
@@ -970,7 +1028,7 @@ $$('[data-join]').forEach(root=>{
     spot.style.borderRadius=`${radius}px`;
 
     const gap=14;
-    const reserve=tabReserve();
+    const reserve=chromeReserve();
     const bw=Math.min(bubble.offsetWidth||320,layerR.width-24);
     const bh=bubble.offsetHeight||160;
     const visTop=Math.max(top,0);
@@ -991,7 +1049,13 @@ $$('[data-join]').forEach(root=>{
     }
   }
 
-  function renderCoach(){
+  function targetVisible(el){
+    if(!el)return false;
+    const r=el.getBoundingClientRect();
+    return r.width>=8 && r.height>=8;
+  }
+
+  function paintCoach(){
     const tip=coachQueue[coachI];if(!tip||!coachEl)return;
     const n=coachQueue.length;
     const target=$(tip.sel);
@@ -1009,6 +1073,32 @@ $$('[data-join]').forEach(root=>{
     const go=()=>placeCoach();
     go();
     requestAnimationFrame(()=>{go();requestAnimationFrame(go)});
+  }
+
+  function goToTipScreen(tip,done){
+    const sid=tip.screen;
+    const target=$(tip.sel);
+    if(!sid || targetVisible(target) || currentScreen()===sid || (tip.screens||[]).includes(currentScreen())){
+      done();
+      return;
+    }
+    const token=++navToken;
+    const idx=coachI;
+    const finish=()=>{if(!coachEl||navToken!==token||coachI!==idx)return;done()};
+    const once=ev=>{
+      if(ev.target&&ev.target.dataset.screen===sid){
+        document.removeEventListener("screen:show",once);
+        afterLayout(finish);
+      }
+    };
+    document.addEventListener("screen:show",once);
+    if(location.hash.slice(1)!==sid)location.hash=sid;
+    setTimeout(()=>{document.removeEventListener("screen:show",once);finish()},500);
+  }
+
+  function renderCoach(){
+    const tip=coachQueue[coachI];if(!tip||!coachEl)return;
+    goToTipScreen(tip,paintCoach);
   }
 
   function advanceCoach(skipMissing){
@@ -1053,6 +1143,8 @@ $$('[data-join]').forEach(root=>{
     window.addEventListener("scroll",coachReposition,true);
     const scr=$(".device .scr");
     if(scr)scr.addEventListener("scroll",coachReposition,{passive:true});
+    const main=$(".mainwrap")||$("[data-router]");
+    if(main&&main!==scr)main.addEventListener("scroll",coachReposition,{passive:true});
     renderCoach();
     requestAnimationFrame(()=>{const n=$("[data-coach-next]",el);if(n)n.focus({preventScroll:true});placeCoach()});
   }
@@ -1070,8 +1162,20 @@ $$('[data-join]').forEach(root=>{
   }
   function startTipsFor(sid,opts){
     const o=opts||{};
-    if(welcomeEl||isAuth(sid))return;
+    if(welcomeEl||isAuth(sid)||coachEl)return;
     const queue=tipsForScreen(sid,o);
+    if(!queue.length)return;
+    showCoach(queue,o.tip);
+  }
+  function startTipsTour(opts){
+    const o=opts||{};
+    if(welcomeEl||isAuth()||(coachEl&&!o.force))return;
+    const st=tipState();
+    const queue=CARDS.tips.filter(t=>{
+      if(o.force||o.all)return true;
+      if(st.skipped)return false;
+      return !st.seen.includes(t.id);
+    });
     if(!queue.length)return;
     showCoach(queue,o.tip);
   }
@@ -1081,16 +1185,16 @@ $$('[data-join]').forEach(root=>{
     const sid=currentScreen();
     if(qs.get("tips")==="reset")clearTips();
     const forceWelcome=qs.get("welcome")==="1";
-    const forceTips=qs.get("tips")==="1";
+    const forceTips=qs.get("tips")==="1"||qs.get("tips")==="reset";
     const step=parseInt(qs.get("step")||"1",10);
     const tipN=parseInt(qs.get("tip")||"1",10);
+    pendingTipStart=Number.isFinite(tipN)&&tipN>0?tipN:1;
     if(forceWelcome){
-      showWelcome({step:isFinite(step)?step:1,thenTips:!forceTips});
-      if(forceTips)startTipsFor(sid,{force:true,tip:isFinite(tipN)?tipN:1});
+      showWelcome({step:Number.isFinite(step)&&step>0?step:1,thenTips:true});
       return;
     }
     if(forceTips){
-      startTipsFor(sid,{force:true,tip:isFinite(tipN)?tipN:1});
+      startTipsTour({force:true,tip:pendingTipStart,all:true});
       return;
     }
     if(isAuth(sid))return;
@@ -1120,9 +1224,10 @@ $$('[data-join]').forEach(root=>{
     if(!b)return;
     clearWelcome();
     clearTips();
-    const dest=kind==="customer"?"#home":"#today";
+    pendingTipStart=1;
+    const dest="#"+CARDS.home;
     const go=()=>showWelcome({thenTips:true,step:1});
-    if(location.hash!==dest){
+    if(currentScreen()!==CARDS.home){
       const once=ev=>{
         if(AUTH.has(ev.target.dataset.screen))return;
         document.removeEventListener("screen:show",once);
@@ -1134,7 +1239,7 @@ $$('[data-join]').forEach(root=>{
   });
 
   document.addEventListener("screen:show",e=>{
-    if(welcomeEl)return;
+    if(welcomeEl||coachEl)return;
     const sid=e.target&&e.target.dataset.screen;
     if(!sid||isAuth(sid))return;
     if(!welcomeSeen() && params().get("welcome")!=="1"){
@@ -1146,7 +1251,7 @@ $$('[data-join]').forEach(root=>{
 
   maybeFirstRun();
   window.IVO=window.IVO||{};
-  window.IVO.welcome={show:showWelcome,tips:sid=>startTipsFor(sid||currentScreen(),{force:true}),reset(){clearWelcome();clearTips()}};
+  window.IVO.welcome={show:showWelcome,tips:sid=>sid?startTipsFor(sid,{force:true}):startTipsTour({force:true,all:true}),reset(){clearWelcome();clearTips()}};
 })();
 
 

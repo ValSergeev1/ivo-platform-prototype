@@ -242,7 +242,7 @@ def checklist_html(v):
     )
     return (
         head
-        + f'<div class="panel" data-qual-list data-vendor="{esc(v["id"])}"><div class="list">'
+        + f'<div class="panel" data-qual-list data-coach="qual-checklist" data-vendor="{esc(v["id"])}"><div class="list">'
         + "".join(rows)
         + "</div></div>"
     )
@@ -318,7 +318,7 @@ def portal_vendor_screen():
             f'<td data-label="Status">{status_chip(v["status"])}</td>'
             f'<td data-label="Qualification">{qual_chip(v)} {pref}</td></tr>'
         )
-    form = f"""<form class="formgrid" data-vendor-invite-form onsubmit="return false">
+    form = f"""<form class="formgrid" data-vendor-invite-form data-coach="vendors" onsubmit="return false">
 <label class="field"><span>Vendor company</span><input class="input" name="company" value="Northshore Paint Co. (sample)"></label>
 <label class="field"><span>Contact name</span><input class="input" name="contact" value="Elena Vasquez"></label>
 <label class="field"><span>Email</span><input class="input" name="email" value="elena@northshore-paint.example" inputmode="email"></label>
@@ -510,7 +510,7 @@ def staff_directory():
     inner = (
         standards_note("staff")
         + f'<div class="grid g4 kpis" style="margin:16px 0">{k}</div>'
-        + f'<section class="panel" aria-labelledby="vq-h"><div class="hd">{ic("inbox")}<h2 id="vq-h">Approval queue · {len(queue)}</h2>'
+        + f'<section class="panel" data-coach="invited-queue" aria-labelledby="vq-h"><div class="hd">{ic("inbox")}<h2 id="vq-h">Approval queue · {len(queue)}</h2>'
         + '<span class="grow"></span>' + chip("Docs required before approval", "gold")
         + f'</div><div class="bd"><div class="grid g3">{"".join(qcards)}</div></div></section>'
         + '<section class="panel" style="margin-top:16px" aria-labelledby="vd-h"><div class="hd">'
@@ -594,7 +594,7 @@ def staff_notifications_items():
 def staff_notif_bell():
     notes = staff_notifications_items()
     n = len(new_invites())
-    return f"""<div class="notif-wrap" data-notif>
+    return f"""<div class="notif-wrap" data-notif data-coach="notifications">
 <button class="btn sm icon" type="button" data-notif-toggle aria-expanded="false" aria-haspopup="true" aria-controls="notif-pop" aria-label="Notifications, {n} new vendor invites">{ic("bell")}<span class="notif-dot" aria-hidden="true">{n}</span></button>
 <div class="notif-pop panel hide" id="notif-pop" role="menu" aria-label="New vendor invites">
 <div class="hd"><h2 class="h4" style="margin:0">New invites</h2><span class="chip warn">{n} new</span></div>

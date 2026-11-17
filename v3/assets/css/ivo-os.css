@@ -855,6 +855,20 @@ a.phero:hover .phero-img{transform:scale(1.02)}
 @media (prefers-reduced-motion:reduce){
   .welcome-track,.coach-spot{transition:none}
 }
+body.welcome-open{overflow:hidden}
+@media (min-width:821px){
+  body > .welcome-layer .welcome-card{
+    align-items:center;text-align:center;padding:48px 48px 24px;
+  }
+  body > .welcome-layer .welcome-ico{margin-inline:auto}
+  body > .welcome-layer .welcome-card h2,
+  body > .welcome-layer .welcome-card .welcome-copy{margin-inline:auto}
+  body > .welcome-layer .welcome-nav{
+    max-width:560px;width:100%;margin-inline:auto;box-sizing:border-box;
+  }
+}
+.rail a.foot{color:inherit;text-decoration:none;border-radius:10px}
+.rail a.foot:hover,.rail a.foot:focus-visible{background:var(--surface-2)}
 
 /* ---- customer-invited vendors (managed vendor program) ---- */
 .notif-wrap{position:relative}

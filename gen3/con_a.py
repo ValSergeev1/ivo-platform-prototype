@@ -28,7 +28,7 @@ def s_today():
         kpi("Bids due · 7 days", "3", "$1.24M in play", "t2", [1,2,2,3,2,3,3], "info", "file-text"),
         kpi("Waiting on you", "5", "Oldest 2h 10m", "warnc", [2,3,5,4,6,5,5], "warn", "inbox"),
     ])
-    brief = f'''<section class="panel ai" aria-labelledby="brief-h"><div class="hd"><span class="orb">{ic("sparkles","sm")}</span><h2 id="brief-h">Morning brief</h2><span class="grow"></span>{chip("Generated 7:00 AM PT","gold")}</div>
+    brief = f'''<section class="panel ai" data-coach="today-board" aria-labelledby="brief-h"><div class="hd"><span class="orb">{ic("sparkles","sm")}</span><h2 id="brief-h">Morning brief</h2><span class="grow"></span>{chip("Generated 7:00 AM PT","gold")}</div>
 <div class="list">
 {li("Confirm change order CO-2 on REQ-1042", "+$620 · customer already approved in the app", "file-pen-line", "gold", btn("Review","sm",href="#approvals"))}
 {li("Submit BID-2201 by Fri 2:00 PM PT", "Cedar Ridge Elementary · AI-filled form ready · $442,000", "send", "info", btn("Open","sm",href="#bidform"))}
@@ -95,7 +95,7 @@ def s_dispatch():
         + ic("calendar-plus", "sm") + "<span>Assign draft</span></button>"
         '<span class="xs t3">or drag onto a lane</span></div></div>'
     )
-    q = q + blocked + assignable
+    q = q + '<div class="col gap16" data-coach="dispatch-vendors">' + blocked + assignable + "</div>"
 
     crews = [("Bluewater · Ana Kim","AK",[(2,46,"REQ-1042 Unit 3B ceiling","gold")]),
              ("Bluewater · Ben Okafor","BO",[(0,18,"REQ-1059 hallway",""),(70,20,"REQ-1036 punch","")]),
@@ -145,7 +145,7 @@ def s_workorders():
 
 def s_triage():
     why_hvac = WHY("Harbor Air LLC", "Trade: HVAC", "Scorecard 4.6 · on-time 93%")
-    cards = f'''<div class="panel" data-item><div class="hd">{ic("thermometer-sun")}<h2>HVAC not cooling, medical office</h2><span class="grow"></span>{chip("Urgent","urgent",True)}<span class="chip" data-status hidden></span></div><div class="bd grid g2">
+    cards = f'''<div class="panel" data-item data-coach="triage"><div class="hd">{ic("thermometer-sun")}<h2>HVAC not cooling, medical office</h2><span class="grow"></span>{chip("Urgent","urgent",True)}<span class="chip" data-status hidden></span></div><div class="bd grid g2">
 <div class="col"><div class="small t3">Tacoma · public request form · 14 min ago · Lakeside Medical (new customer)</div>
 <p class="small">“Exam rooms 3–6 are at 81°F and climbing. Patients are scheduled from 1 PM. Rooftop unit is making a clicking noise.”</p>
 <div class="inset"><div class="row small">{ic("sparkles","sm acc")}<b>AI classification</b><span class="grow"></span><span class="mono xs t3">conf. 0.93</span></div>
@@ -191,7 +191,7 @@ def s_job():
 def s_closeout():
     items = [("Before and after photos (12)",True,True),("Punch list closed · 5 of 5",True,True),("Customer sign-off",True,False),("Change orders summary (CO-1, CO-2)",True,True),("Lien waiver from Bluewater Flooring",True,True),("Warranty letter · 1 year workmanship",False,True),("Product data · paint and texture",False,False),("Final invoice amount (no payment at launch)",True,True),("Permit closeout",False,False)]
     cks = "".join(f'<label class="li check" style="cursor:pointer"><input type="checkbox"{" data-req" if r else ""}{" checked" if c else ""}><span class="grow">{t}</span>{chip("Required","gold") if r else chip("Optional")}</label>' for t,r,c in items)
-    inner = f'''<div class="grid g-main-l" data-closeout><section class="panel" aria-labelledby="co-h"><div class="hd">{ic("package")}<h2 id="co-h">Package contents</h2><span class="grow"></span><span class="small t3" data-co-count></span></div><div class="list">{cks}</div></section>
+    inner = f'''<div class="grid g-main-l" data-closeout data-coach="closeout"><section class="panel" aria-labelledby="co-h"><div class="hd">{ic("package")}<h2 id="co-h">Package contents</h2><span class="grow"></span><span class="small t3" data-co-count></span></div><div class="list">{cks}</div></section>
 <section class="panel"><div class="bd col"><div class="row"><div class="ring"><span>0%</span></div><div><b>REQ-1042 closeout package</b><div class="small t3">PDF + photo archive · IVO branded</div></div></div>
 {before_after()}
 <button class="btn primary lg block" type="button" data-generate>{ic("package-check","sm")}<span>Assemble package</span></button><span class="chip" data-status hidden></span>
