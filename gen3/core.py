@@ -176,7 +176,7 @@ def before_after(a="slab", b="office", depth=2, label="Before and after, drag to
 def cmd_json(items):
     return '<script type="application/json" id="cmd-data">' + json.dumps([{"g": g, "t": t, "h": h, "s": s, "ic": i} for g, t, h, s, i in items]).replace("</", "<\\/") + "</script>"
 
-def page(rel, title, body, depth=1, cmds=(), app="IVO OS", bodyattrs="", head="", hub=False):
+def page(rel, title, body, depth=1, cmds=(), app="IVO OS", bodyattrs="", head="", hub=False, touch="assets/img/apple-touch-icon.png"):
     for c in cmds:
         ICONS.add(c[4])
     pre = "../" * depth if depth else ""
@@ -206,7 +206,7 @@ def page(rel, title, body, depth=1, cmds=(), app="IVO OS", bodyattrs="", head=""
 <meta name="robots" content="noindex,nofollow,noarchive"><meta name="googlebot" content="noindex,nofollow">
 <meta name="theme-color" content="#061d2a"><meta name="color-scheme" content="dark light">
 <title>{esc(title)} · IVO OS V03 prototype (sample data)</title>
-<link rel="icon" href="{pre}assets/img/favicon.ico" sizes="48x48"><link rel="icon" href="{pre}assets/img/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="{pre}assets/img/apple-touch-icon.png" sizes="180x180"><link rel="apple-touch-startup-image" href="{pre}assets/img/splash/apple-1170x2532.png">
+<link rel="icon" href="{pre}assets/img/favicon.ico" sizes="48x48"><link rel="icon" href="{pre}assets/img/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="{pre}{touch}" sizes="180x180"><link rel="apple-touch-startup-image" href="{pre}assets/img/splash/apple-1170x2532.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{pre}assets/css/ivo-os.css">{head}

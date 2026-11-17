@@ -100,7 +100,7 @@ def build_customer():
     idx = [("Getting in",[("invite","Invitation"),("signin","Email-code sign-in")]),("Everyday",[("home","Home · property and feed"),("emergency","Emergency · one tap"),("new","New request"),("submitted","Request sent")]),("Jobs",[("requests","Requests"),("job","Job tracker"),("approve","Approve change order"),("closeout","Sign off")]),("Account",[("gallery","Photo gallery · Cedar Court"),("gallery-hp","Photo gallery · Harbor Point"),("docs","Documents"),("invoices","Invoices"),("account","Account &amp; users"),("vendors","Invite your vendor")])]
     tabs = [("home","Home","house","emergency gallery gallery-hp"),("requests","Requests","list","job approve closeout"),("new","New","plus","submitted","fab"),("docs","Files","folder",""),("account","Account","user","invoices vendors")]
     body = m_shell("Customer app · phone", PERSONA, idx, customer_screens(), tabs, NOTES_C(), portal_href=("../customer-portal/index.html","Desktop portal"))
-    page("customer/index.html", "Customer app", body, cmds=CTL, app="IVO customer app", bodyattrs=' data-sw="1" data-welcome-kind="customer" data-welcome-name="Maya"', head='<link rel="manifest" href="manifest.webmanifest">')
+    page("customer/index.html", "Customer app", body, cmds=CTL, app="IVO customer app", bodyattrs=' data-sw="1" data-welcome-kind="customer" data-welcome-name="Maya"', head='<link rel="manifest" href="manifest.webmanifest">', touch="assets/img/app-customer/apple-touch-icon.png")
 
 # ---------------- customer portal (desktop) ----------------
 def build_portal():

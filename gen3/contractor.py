@@ -2,8 +2,15 @@ from con_a import job_tl, ptimeline
 from core import *
 from field import markup_editor, markup_versions_screen, voice_notes_body
 
-def pwa(folder, name):
-    write(f"{folder}/manifest.webmanifest", json.dumps({"name":f"{name} (IVO prototype)","short_name":name,"start_url":"./index.html","scope":"./","display":"standalone","background_color":"#061d2a","theme_color":"#061d2a","icons":[{"src":"../assets/img/icon-192.png","sizes":"192x192","type":"image/png"},{"src":"../assets/img/icon-512.png","sizes":"512x512","type":"image/png"}]}))
+PWA_TEXT = {"customer": ("IVO Customer", "Request work, track jobs, and sign off in your IVO workspace."),
+            "contractor": ("IVO Technician", "Today's jobs, photos, and closeout in the IVO technician app.")}
+
+def pwa(folder, name=None):
+    """Manifest with that app's own icons (original IVO mark + app badge) in assets/img/app-<folder>/."""
+    name, desc = PWA_TEXT[folder]
+    ic = lambda n, sz, purpose: f'    {{"src": "../assets/img/app-{folder}/{n}.png", "sizes": "{sz}x{sz}", "type": "image/png", "purpose": "{purpose}"}}'
+    icons = ",\n".join([ic("icon-192",192,"any"), ic("icon-192-maskable",192,"maskable"), ic("icon-512",512,"any"), ic("icon-512-maskable",512,"maskable")])
+    write(f"{folder}/manifest.webmanifest", "{\n" + ",\n".join(f'  "{k}": {json.dumps(v)}' for k, v in [("name",name),("short_name",name),("description",desc),("start_url","./index.html"),("scope","./"),("display","standalone"),("background_color","#061d2a"),("theme_color","#061d2a"),("lang","en")]) + ',\n  "icons": [\n' + icons + "\n  ]\n}\n")
     write(f"{folder}/sw.js", "// Prototype service worker: network only, enables install. Caches nothing.\nself.addEventListener('install',e=>self.skipWaiting());\nself.addEventListener('activate',e=>self.clients.claim());\nself.addEventListener('fetch',()=>{});\n")
 
 def bidconfirm_card(portal=False):
@@ -97,7 +104,7 @@ def build_contractor():
 <div class="panel"><div class="bd stack-s"><h3>Bid confirmations</h3><p class="small t2">When IVO bids as a sub, you confirm price, dates and capacity in one tap.</p></div></div>'''
     cmds = [("Navigate","Today","#today","Job card","sun"),("Actions","Camera check-in","#checkin","REQ-1042","map-pin"),("Actions","Take photo","#photos","","camera"),("Navigate","Punch on plan","#punch","5 items","list-checks"),("Actions","Mark up plan","#markup","Draw on A-201","pen-tool"),("Navigate","Saved versions","#markup-versions","","layers"),("Actions","Voice notes","#voice","3 min cap","mic"),("Actions","Request change order","#co","","file-pen-line"),("Navigate","Posted projects","#opps","2","briefcase"),("Actions","Submit a bid","#bid","","send"),("Actions","Confirm BID-2201 price","#bidconfirm","$86,400","check"),("Navigate","Schedule","#jobs","","calendar"),("Navigate","Documents","#compliance","","shield-check"),("Navigate","Joining IVO","#onboarding","Option A","badge-check")]
     body = m_shell("Contractor app · phone", ("Sam Rivera (sample)","Bluewater Flooring LLC · owner"), idx, screens(), tabs, notes, portal_href=("../vendor-portal/index.html","Office portal"))
-    page("contractor/index.html", "Contractor app", body, cmds=cmds, app="IVO contractor app", bodyattrs=' data-sw="1" data-welcome-kind="contractor" data-welcome-name="Sam"', head='<link rel="manifest" href="manifest.webmanifest">')
+    page("contractor/index.html", "Contractor app", body, cmds=cmds, app="IVO contractor app", bodyattrs=' data-sw="1" data-welcome-kind="contractor" data-welcome-name="Sam"', head='<link rel="manifest" href="manifest.webmanifest">', touch="assets/img/app-contractor/apple-touch-icon.png")
     pwa("contractor","IVO Contractor"); pwa("customer","IVO Customer")
 
 def build_vendor():
